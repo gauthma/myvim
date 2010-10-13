@@ -2,8 +2,10 @@ set nocompatible    " use vim defaults
 
 " Use pathogen to easily modify the runtime path to include all
 " " plugins under the ~/.vim/bundle directory
-call pathogen#helptags()
+filetype off
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+filetype on
 
 "hidden
 set hidden
