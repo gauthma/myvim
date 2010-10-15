@@ -98,13 +98,14 @@ au BufEnter *.pdc call WriteTextMode()
 au WinEnter *.pdc call WriteTextMode()
 
 function WriteTextMode()
+	" remember, select and gq to format manually!
 	set wrap
 	"set linebreak
 	set fo+=t
-	"set fo+=a --> remember, select and gq to format!
+	set fo+=a 
 	set fo+=n
 	"--> in pandoc (and Markdown) 2 trailing whitespaces mean <br/>
-	set fo+=w 
+	"set fo+=w "trailing whitespace does NOT indicate end of paragraph
 	set tw=80
 endfunction
 
