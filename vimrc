@@ -182,7 +182,9 @@ endf
 
 " iQuickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" and other files
+nmap <silent> <leader>essh :e ~/.ssh/config<CR>
 
 " AHAHAHAAH :-D
 " Use the damn hjkl keys
