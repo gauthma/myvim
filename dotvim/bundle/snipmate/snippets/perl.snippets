@@ -7,7 +7,8 @@ snippet .
 	 =>
 # Function
 snippet sub
-	sub ${1:function_name} {
+	sub ${1:function_name} 
+	{
 		${2:#body ...}
 	}
 # Conditional
@@ -67,6 +68,11 @@ snippet for
 snippet fore
 	foreach my $${1:x} (@${2:array}) {
 		${3:# body...}
+	}
+# simple foreach
+snippet sfor
+	foreach (@${1:array}) {
+		${2:# body...}
 	}
 # Foreach Loop One-line
 snippet xfore
