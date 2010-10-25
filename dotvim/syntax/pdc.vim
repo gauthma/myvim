@@ -188,8 +188,9 @@ syn match pdcLinkTitle /\s*[("'].*[)"']/ contained contains=@Spell
 syn match pdcEmphasis   /\(^\| \)\(_\|__\)\([^_ ]\|[^_]\( [^_]\)\+\)\_.\{-}\2/    contains=@Spell
 
 "   Using Asterisks
+"   3 Asterisks makes text italic AND bold
 "syn match pdcEmphasis   / \(\*\|\*\*\)\([^\* ]\|[^\*]\( [^\*]\)\+\)\+\1/    contains=@Spell
-syn match pdcEmphasis   /\(^\| \)\(\*\|\*\*\)\([^\* ]\|[^\*]\( [^\*]\)\+\)\_.\{-}\2/    contains=@Spell
+syn match pdcEmphasis   /\(^\| \)\(\*\|\*\*\|\*\*\*\)\([^\* ]\|[^\*]\( [^\*]\)\+\)\_.\{-}\2/    contains=@Spell
 
 
 """""""""""""""""""""""""""""""""""""""
@@ -220,15 +221,18 @@ syn match NONE /\\\W/
 
 """""""""""""""""""""""""""""""""""""""
 " Subscripts:
-syn match pdcSubscript   /\~\([^\~\\ ]\|\(\\ \)\)\+\~/   contains=@Spell
+syn match pdcSubscript   /\~\([^\~\\ ]\|\(\\ \)\)\+\n*\~/   contains=@Spell
+""syn match pdcSubscript   /\~\([^\~\\ ]\|\(\\ \)\)\+\~/   contains=@Spell
 
 """""""""""""""""""""""""""""""""""""""
 " Superscript:
 syn match pdcSuperscript /\^\([^\^\\ ]\|\(\\ \)\)\+\^/   contains=@Spell
+""syn match pdcSuperscript /\^\([^\^\\ ]\|\(\\ \)\)\+\^/   contains=@Spell
 
 """""""""""""""""""""""""""""""""""""""
 " Strikeout:
-syn match pdcStrikeout   /\~\~[^\~ ]\([^\~]\|\~ \)*\~\~/ contains=@Spell
+syn match pdcStrikeout     /\~\~[^\~ ]\([^\~]\|\~ \|\n\)*\~\~/ contains=@Spell
+""syn match pdcStrikeout   /\~\~[^\~ ]\([^\~]\|\~ \)*\~\~/ contains=@Spell
 
 
 """""""""""""""""""""""""""""""""""""""

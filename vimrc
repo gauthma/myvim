@@ -200,3 +200,23 @@ nmap <silent> ,/ :let @/=""<CR>
 
 " sudo to the rescue!
 cmap w!! w !sudo tee % >/dev/null
+
+cmap cc ! 
+
+" VIM LATEX *************
+" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
+""filetype plugin on -> already done
+
+" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
+" can be called correctly.
+"set shellslash
+
+" IMPORTANT: grep will sometimes skip displaying the file name if you
+" search in a singe file. This will confuse Latex-Suite. Set your grep
+" program to always generate a file-name.
+set grepprg=grep\ -nH\ $*
+
+" OPTIONAL: This enables automatic indentation as you type.
+filetype indent on
+
+" END VIM LATEX *************

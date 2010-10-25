@@ -13,7 +13,8 @@ endif
 
 let colors_name = "my_evening"
 
-hi Normal ctermbg=None ctermfg=DarkGreen guifg=White guibg=grey20
+""hi Normal ctermbg=None ctermfg=DarkGreen guifg=White guibg=grey20
+" for vim Normal, use normal shell color
 
 " Groups used in the 'highlight' and 'guicursor' options default value.
 hi ErrorMsg term=standout ctermbg=DarkRed ctermfg=White guibg=Red guifg=White
@@ -45,6 +46,9 @@ hi DiffDelete term=bold ctermfg=Blue ctermbg=DarkCyan gui=bold guifg=Blue guibg=
 hi CursorColumn term=reverse ctermbg=Black guibg=grey40
 hi CursorLine term=underline cterm=underline guibg=grey40
 hi MatchParen cterm=NONE ctermbg=cyan ctermfg=black
+
+" pandoc
+hi Comment term=bold ctermfg=DarkBlue gui=bold guifg=LightBlue
 
 " Groups for syntax highlighting
 hi Constant term=underline ctermfg=Magenta guifg=#ffa0a0 guibg=grey5
