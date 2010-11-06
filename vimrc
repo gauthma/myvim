@@ -158,7 +158,7 @@ function ClosePair(char)
 endf
 
 function CloseBracket()
-	if match(getline('.'), '.*{[^}]*$') >= 0
+	if match(getline('.'), '.*{.*\({.*}\)*[^}]*$') >= 0
 		return "}"
 	elseif match(getline(line('.') + 1), '\s*}') < 0
 		return "\<CR>}"
@@ -204,7 +204,15 @@ nmap <silent> ,/ :let @/=""<CR>
 " sudo to the rescue!
 cmap w!! w !sudo tee % >/dev/null
 
+" brings up command prompt in vim
 nmap ,cc :! 
+
+" for now, just english...
+map <M-F5> :set spell<CR>
+map <M-F6> :set nospell<CR>
+
+" brings up cmd prompt, filled with the last executed command
+" (just pressing <CR> will run it)
 nmap ,cp :! 
 
 " VIM LATEX *************
