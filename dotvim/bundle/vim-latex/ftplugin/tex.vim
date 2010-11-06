@@ -19,7 +19,8 @@ map <A-7> <Esc>\lv
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
-let g:Tex_CompileRule_pdf = 'xelatex --interaction=nonstopmode $*'
+""let g:Tex_CompileRule_dvi='xelatex --interaction=nonstopmode $*'
+let g:Tex_CompileRule_pdf='xelatex -interaction=nonstopmode $*'
 let g:Tex_ViewRule_pdf='okular &> /dev/null'
 
 let g:Tex_MultipleCompileFormats='pdf'

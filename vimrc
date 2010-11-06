@@ -10,6 +10,9 @@ filetype on
 "hidden
 set hidden
 
+" disable cursorline in netrw (scp et al. over vim)
+let g:netrw_cursorline = 0 
+
 """ tab stuff
 "set expandtab
 set softtabstop=2
@@ -201,7 +204,8 @@ nmap <silent> ,/ :let @/=""<CR>
 " sudo to the rescue!
 cmap w!! w !sudo tee % >/dev/null
 
-cmap cc ! 
+nmap ,cc :! 
+nmap ,cp :! 
 
 " VIM LATEX *************
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
