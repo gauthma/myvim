@@ -207,13 +207,13 @@ cmap w!! w !sudo tee % >/dev/null
 " brings up command prompt in vim
 nmap ,cc :! 
 
+" brings up cmd prompt, filled with the last executed command
+" (just pressing <CR> will run it)
+nmap ,cp :! <up>
+
 " for now, just english...
 map <M-F5> :set spell<CR>
 map <M-F6> :set nospell<CR>
-
-" brings up cmd prompt, filled with the last executed command
-" (just pressing <CR> will run it)
-nmap ,cp :! 
 
 " VIM LATEX *************
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
