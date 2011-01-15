@@ -80,7 +80,7 @@ filetype plugin indent on
 syntax enable
 
 "for current date
-iab ddate <C-R>=strftime("%A(%d) %B(%m) %Y")<CR>
+iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
 iab ttime <C-R>=strftime("%H:%M")<CR>
 
 "for sagemath syntax
@@ -146,7 +146,7 @@ inoremap ) <c-r>=ClosePair(')')<CR>
 inoremap ] <c-r>=ClosePair(']')<CR>
 inoremap } <c-r>=CloseBracket()<CR>
 inoremap " <c-r>=QuoteDelim('"')<CR>
-inoremap ' <c-r>=QuoteDelim("'")<CR>
+"inoremap ' <c-r>=QuoteDelim("'")<CR>
 "inoremap } <c-r>=ClosePair('}')<CR>
 
 function ClosePair(char)
@@ -199,7 +199,11 @@ map <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
+" clear search highlights
 nmap <silent> ,/ :let @/=""<CR>
+
+" open tag in new tab
+nmap <S-T> <C-w><C-]>
 
 " sudo to the rescue!
 cmap w!! w !sudo tee % >/dev/null
