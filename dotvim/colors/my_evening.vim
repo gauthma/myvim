@@ -13,15 +13,17 @@ endif
 
 let colors_name = "my_evening"
 
-""hi Normal ctermbg=None ctermfg=DarkGreen guifg=White guibg=grey20
+"hi Normal ctermbg=None ctermfg=DarkGreen guifg=White guibg=grey20
 " for vim Normal, use normal shell color
 
 " Groups used in the 'highlight' and 'guicursor' options default value.
 hi ErrorMsg term=standout ctermbg=DarkRed ctermfg=White guibg=Red guifg=White
 hi IncSearch term=reverse cterm=reverse gui=reverse
 hi ModeMsg term=bold cterm=bold gui=bold
-hi StatusLine term=reverse,bold cterm=reverse,bold gui=reverse,bold
-hi StatusLineNC term=reverse cterm=reverse gui=reverse
+"hi StatusLine term=reverse,bold cterm=reverse,bold gui=reverse,bold
+hi StatusLine term=reverse,bold ctermfg=LightGrey ctermbg=Blue gui=reverse,bold
+hi StatusLineNC term=reverse ctermfg=Black ctermbg=White gui=reverse
+"hi StatusLineNC term=reverse cterm=reverse gui=reverse
 hi VertSplit term=reverse cterm=reverse gui=reverse
 hi Visual term=reverse ctermbg=black guibg=grey60
 hi VisualNOS term=underline,bold cterm=underline,bold gui=underline,bold
@@ -43,12 +45,12 @@ hi FoldColumn term=standout ctermbg=DarkBlue ctermfg=White guibg=DarkBlue guifg=
 hi DiffAdd term=bold ctermbg=DarkBlue guibg=DarkBlue
 hi DiffChange term=bold ctermbg=DarkMagenta guibg=DarkMagenta
 hi DiffDelete term=bold ctermfg=Blue ctermbg=DarkCyan gui=bold guifg=Blue guibg=DarkCyan
-hi CursorColumn term=reverse ctermbg=Black guibg=grey40
+hi CursorColumn term=reverse ctermbg=Green guibg=grey40
 hi CursorLine term=underline cterm=underline guibg=grey40
 hi MatchParen cterm=NONE ctermbg=cyan ctermfg=black
 
 " pandoc
-hi Comment term=bold ctermfg=DarkBlue gui=bold guifg=LightBlue
+hi Comment term=bold ctermfg=DarkCyan gui=bold guifg=LightBlue
 
 " Groups for syntax highlighting
 hi Constant term=underline ctermfg=Magenta guifg=#ffa0a0 guibg=grey5

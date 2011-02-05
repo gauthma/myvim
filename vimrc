@@ -32,6 +32,7 @@ set title           " show title in console title bar
 set ttyfast         " smoother changes
 set shortmess=atI   " Abbreviate messages
 set nostartofline   " don't jump to first character when paging
+set nojoinspaces    " when joining lines, never put two spaces after .,?! et al
 
 """ search options
 set ignorecase      " ignore case when searching

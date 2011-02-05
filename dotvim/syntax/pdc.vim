@@ -329,7 +329,6 @@ hi link pdcTableCaptionCont	Label
 
 hi link pdcNewLine		Error
 
-
 " For testing
 hi link pdctest		Error
 
