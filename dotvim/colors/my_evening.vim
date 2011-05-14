@@ -50,7 +50,7 @@ hi CursorLine term=underline cterm=underline guibg=grey40
 hi MatchParen cterm=NONE ctermbg=cyan ctermfg=black
 
 " pandoc
-hi Comment term=bold ctermfg=DarkCyan gui=bold guifg=LightBlue
+hi Comment term=None ctermfg=DarkCyan gui=bold guifg=LightBlue
 
 " Groups for syntax highlighting
 hi Constant term=underline ctermfg=Magenta guifg=#ffa0a0 guibg=grey5

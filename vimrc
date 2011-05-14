@@ -1,11 +1,22 @@
-set nocompatible    " use vim defaults
+" IMPORTANT NOTICE: when using this config in a new computer, 
+" the first thing to do is to clone vundle:
+" git clone http://github.com/gmarik/vundle.git ~/.vim/vundle.git
+"
+" Next, enter vim, and in normal mode, do :BundleInstall
+" This will clone all the required plugins from their repos (github, et al.)
+"
+" More info here: http://www.charlietanksley.net/philtex/sane-vim-plugin-management/
 
-" Use pathogen to easily modify the runtime path to include all
-" " plugins under the ~/.vim/bundle directory
-filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-filetype on
+set nocompatible    " use vim defaults
+let mapleader = ","
+
+" to use vundle
+filetype off  " required!
+
+set rtp+=~/.vim/vundle.git/ 
+call vundle#rc()
+
+filetype plugin indent on  " required!
 
 "hidden
 set hidden
@@ -57,7 +68,8 @@ set nobackup
 set noswapfile
 
 " toggle set paste
-set pastetoggle=<F3>
+"set pastetoggle=<F3>
+imap <Leader>v <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
 
 " gui font
 set gfn=Monospace\ 10
@@ -237,3 +249,13 @@ set grepprg=grep\ -nH\ $*
 filetype indent on
 
 " END VIM LATEX *************
+
+" VUNDLE plugin list
+" repos at github vim-script mirror of vim.org
+Bundle 'comment.vim'
+Bundle 'comments.vim'
+Bundle 'The-NERD-tree'
+Bundle 'netrw.vim'
+Bundle 'superSnipMate'
+Bundle 'surround.vim'
+Bundle 'LaTeX-Suite-aka-Vim-LaTeX'
