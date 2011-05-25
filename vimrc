@@ -1,4 +1,4 @@
-" IMPORTANT NOTICE: when using this config in a new computer, 
+" IMPORTANT NOTICE: when using this config(*) in a new computer, 
 " the first thing to do is to clone vundle:
 " git clone http://github.com/gmarik/vundle.git ~/.vim/vundle.git
 "
@@ -6,6 +6,8 @@
 " This will clone all the required plugins from their repos (github, et al.)
 "
 " More info here: http://www.charlietanksley.net/philtex/sane-vim-plugin-management/
+" 
+" (*) The config I use can be found here: https://github.com/gauthma/myvim
 
 set nocompatible    " use vim defaults
 let mapleader = ","
@@ -219,7 +221,8 @@ nmap <silent> ,/ :let @/=""<CR>
 nmap <S-T> <C-w><C-]>
 
 " sudo to the rescue!
-cmap w!! w !sudo tee % >/dev/null
+command! -bar -nargs=0 W2 :silent exe "write !sudo tee % >/dev/null" | silent edit!
+cmap ww W2
 
 " brings up command prompt in vim
 nmap ,cc :! 
