@@ -103,6 +103,10 @@ augroup filetypedetect
        au! BufRead,BufNewFile *.sage,*.spyx,*.pyx setfiletype python
 augroup END
 
+" save fold status automagically
+au BufWinLeave * silent! mkview
+au BufWinEnter * silent! loadview
+
 "for 80 char line limit
 "au BufReadPre * highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 "au BufReadPre * match OverLength /\%81v.*/
@@ -220,7 +224,7 @@ nmap <silent> ,/ :let @/=""<CR>
 " open tag in new tab
 nmap <S-T> <C-w><C-]>
 
-" sudo to the rescue!
+" sudo to the rescue! Do :ww and you write in sudo mode! 
 command! -bar -nargs=0 W2 :silent exe "write !sudo tee % >/dev/null" | silent edit!
 cmap ww W2
 
@@ -234,6 +238,17 @@ nmap ,cp :! <up>
 " for now, just english...
 map <M-F5> :set spell<CR>
 map <M-F6> :set nospell<CR>
+
+map <leader>ff :call ToggleFold()<cr>
+fun! ToggleFold()
+	if &foldmethod == 'marker'
+		exe 'set foldmethod=indent'
+	else
+		exe 'set foldmethod=marker'
+	endif
+endfun
+
+vmap <Leader>F mz:<Esc>:set paste<CR>'<O {{{<Esc><C-c>'>o }}}<Esc><C-c>`z?{{{<CR>A<Space><Esc>:set nopaste<CR>:set foldmethod=marker<CR><Esc>zc
 
 " VIM LATEX *************
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
@@ -253,6 +268,9 @@ filetype indent on
 
 " END VIM LATEX *************
 
+" c.vim is not automatically bundle-aware
+let g:C_LocalTemplateFile = $HOME.'/.vim/bundle/c.vim/c-support/templates/Templates'
+
 " VUNDLE plugin list
 " repos at github vim-script mirror of vim.org
 Bundle 'comment.vim'
@@ -262,3 +280,9 @@ Bundle 'netrw.vim'
 Bundle 'superSnipMate'
 Bundle 'surround.vim'
 Bundle 'LaTeX-Suite-aka-Vim-LaTeX'
+Bundle 'a.vim'
+Bundle 'c.vim'
+Bundle 'DoxygenToolkit.vim'
+Bundle 'allfold'
+
+Bundle 'mileszs/ack.vim'
