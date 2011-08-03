@@ -57,7 +57,7 @@ set foldmethod=indent
 set foldignore=""
 autocmd BufWinEnter * norm zR
 
-" more tralha
+" more settings
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
@@ -70,8 +70,7 @@ set nobackup
 set noswapfile
 
 " toggle set paste
-"set pastetoggle=<F3>
-imap <Leader>v <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
+nmap <Leader>p :set paste<CR>"+P:set nopaste<CR>
 
 " gui font
 set gfn=Monospace\ 10
@@ -90,10 +89,6 @@ if version>=600
    "au BufNewFile,BufRead  *.py    set syntax=python
 endif
 
-" for omnicompletion...
-filetype plugin indent on
-syntax enable
-
 "for current date
 iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
 iab ttime <C-R>=strftime("%H:%M")<CR>
@@ -107,20 +102,12 @@ augroup END
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 
-"for 80 char line limit
-"au BufReadPre * highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-"au BufReadPre * match OverLength /\%81v.*/
-
 "tex file highlight 80
 au BufEnter *.tex call WriteLaTeXMode()
 au WinEnter *.tex call WriteLaTeXMode()
 
-"wrap 80 char lines
-au BufEnter *.pdc call WriteTextMode()
-au WinEnter *.pdc call WriteTextMode()
-
 function WriteTextMode()
-	" remember, select and gq to format manually!
+	" remember, visual select and gq to format manually!
 	set wrap
 	"set linebreak
 	set fo+=t
@@ -141,11 +128,6 @@ function WriteLaTeXMode()
 	set tw=80
 endfunction
 
-"for CMAKE
-autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake.vim 
-autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in setf cmake
-autocmd BufRead,BufNewFile *.ctest,*.ctest.in setf cmake
-
 colorscheme my_evening
 
 "for shell in bash (Shell.vim in .vim/ftplugin)
@@ -154,53 +136,6 @@ runtime! ftplugin/man.vim
 
 "for NERDTree
 map <F2> :NERDTreeToggle<CR>
-
-"parenthesis et al. autoclosing (XXX beware Lisp, LaTeX...)
-inoremap ( ()<Esc>i
-inoremap [ []<Esc>i
-"inoremap { {<CR>}<Esc>O
-inoremap {<CR> {<CR>}<Esc>ko
-"autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
-inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap ] <c-r>=ClosePair(']')<CR>
-inoremap } <c-r>=CloseBracket()<CR>
-inoremap " <c-r>=QuoteDelim('"')<CR>
-"inoremap ' <c-r>=QuoteDelim("'")<CR>
-"inoremap } <c-r>=ClosePair('}')<CR>
-
-function ClosePair(char)
-	if getline('.')[col('.') - 1] == a:char
-		return "\<Right>"
-	else
-		return a:char
-	endif
-endf
-
-function CloseBracket()
-	if match(getline('.'), '.*{.*\({.*}\)*[^}]*$') >= 0
-		return "}"
-	elseif match(getline(line('.') + 1), '\s*}') < 0
-		return "\<CR>}"
-	else
-		return "\<Esc>j0f}a"
-	endif
-endf
-
-function QuoteDelim(char)
-	let line = getline('.')
-	let col = col('.')
-	if line[col - 2] == "\\"
-		"Inserting a quoted quotation mark into the string
-		return a:char
-	elseif line[col - 1] == a:char
-		"Escaping out of the string
-		return "\<Right>"
-	else
-		"Starting a string
-		return a:char.a:char."\<Esc>i"
-	endif
-endf
-"END parenthesis stuff
 
 " iQuickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -224,6 +159,9 @@ nmap <silent> ,/ :let @/=""<CR>
 " open tag in new tab
 nmap <S-T> <C-w><C-]>
 
+" switch header and src file -- C++
+nmap <S-F2> :A<CR>
+
 " sudo to the rescue! Do :ww and you write in sudo mode! 
 command! -bar -nargs=0 W2 :silent exe "write !sudo tee % >/dev/null" | silent edit!
 cmap ww W2
@@ -234,10 +172,6 @@ nmap ,cc :!
 " brings up cmd prompt, filled with the last executed command
 " (just pressing <CR> will run it)
 nmap ,cp :! <up>
-
-" for now, just english...
-map <M-F5> :set spell<CR>
-map <M-F6> :set nospell<CR>
 
 map <leader>ff :call ToggleFold()<cr>
 fun! ToggleFold()
@@ -263,13 +197,20 @@ vmap <Leader>F mz:<Esc>:set paste<CR>'<O {{{<Esc><C-c>'>o }}}<Esc><C-c>`z?{{{<CR
 " program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
 
-" OPTIONAL: This enables automatic indentation as you type.
-filetype indent on
-
 " END VIM LATEX *************
 
-" c.vim is not automatically bundle-aware
-let g:C_LocalTemplateFile = $HOME.'/.vim/bundle/c.vim/c-support/templates/Templates'
+" for mail spell checking (et al.)
+nmap <M-F5> <Esc>:set spell<CR>
+imap <M-F5> <Esc>:set spell<CR>
+nmap <M-F6> <Esc>:set nospell<CR>
+imap <M-F6> <Esc>:set nospell<CR>
+
+set spelllang=en "XXX way to toggle this with pt?
+set spellfile=~/.vim/spell.en.utf-8.add
+
+" for mutt mail composing
+au BufNewFile,BufRead /tmp/mutt*  setf mail
+au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68 
 
 " VUNDLE plugin list
 " repos at github vim-script mirror of vim.org
@@ -281,7 +222,6 @@ Bundle 'superSnipMate'
 Bundle 'surround.vim'
 Bundle 'LaTeX-Suite-aka-Vim-LaTeX'
 Bundle 'a.vim'
-Bundle 'c.vim'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'allfold'
 

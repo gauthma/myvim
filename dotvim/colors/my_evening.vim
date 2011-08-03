@@ -46,7 +46,7 @@ hi FoldColumn term=standout ctermbg=DarkBlue ctermfg=White guibg=DarkBlue guifg=
 hi DiffAdd term=bold ctermbg=DarkBlue guibg=DarkBlue
 hi DiffChange term=bold ctermbg=DarkMagenta guibg=DarkMagenta
 hi DiffDelete term=bold ctermfg=Blue ctermbg=DarkCyan gui=bold guifg=Blue guibg=DarkCyan
-hi CursorColumn term=reverse ctermbg=Green guibg=grey40
+hi CursorColumn term=reverse ctermbg=Black guibg=grey40
 hi CursorLine term=underline cterm=underline guibg=grey40
 hi MatchParen cterm=NONE ctermbg=cyan ctermfg=black
 
