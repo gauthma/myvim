@@ -67,7 +67,7 @@ set noerrorbells         " don't beep
 
 " give this a try
 set nobackup
-set noswapfile
+"set noswapfile
 
 " toggle set paste
 nmap <Leader>p :set paste<CR>"+P:set nopaste<CR>
@@ -184,21 +184,6 @@ endfun
 
 vmap <Leader>F mz:<Esc>:set paste<CR>'<O {{{<Esc><C-c>'>o }}}<Esc><C-c>`z?{{{<CR>A<Space><Esc>:set nopaste<CR>:set foldmethod=marker<CR><Esc>zc
 
-" VIM LATEX *************
-" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
-""filetype plugin on -> already done
-
-" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
-" can be called correctly.
-"set shellslash
-
-" IMPORTANT: grep will sometimes skip displaying the file name if you
-" search in a singe file. This will confuse Latex-Suite. Set your grep
-" program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
-
-" END VIM LATEX *************
-
 " for mail spell checking (et al.)
 nmap <M-F5> <Esc>:set spell<CR>
 imap <M-F5> <Esc>:set spell<CR>
@@ -220,9 +205,10 @@ Bundle 'The-NERD-tree'
 Bundle 'netrw.vim'
 Bundle 'superSnipMate'
 Bundle 'surround.vim'
-Bundle 'LaTeX-Suite-aka-Vim-LaTeX'
 Bundle 'a.vim'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'allfold'
+Bundle 'https://github.com/Raimondi/delimitMate.git'
+Bundle 'https://github.com/mikewest/vimroom.git'
 
 Bundle 'mileszs/ack.vim'
