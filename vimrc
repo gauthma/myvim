@@ -167,11 +167,11 @@ command! -bar -nargs=0 W2 :silent exe "write !sudo tee % >/dev/null" | silent ed
 cmap ww W2
 
 " brings up command prompt in vim
-nmap ,cc :! 
+nmap <Leader>cc :! 
 
 " brings up cmd prompt, filled with the last executed command
 " (just pressing <CR> will run it)
-nmap ,cp :! <up>
+nmap <Leader>cp :! <up>
 
 map <leader>ff :call ToggleFold()<cr>
 fun! ToggleFold()
@@ -183,6 +183,12 @@ fun! ToggleFold()
 endfun
 
 vmap <Leader>F mz:<Esc>:set paste<CR>'<O {{{<Esc><C-c>'>o }}}<Esc><C-c>`z?{{{<CR>A<Space><Esc>:set nopaste<CR>:set foldmethod=marker<CR><Esc>zc
+
+" to deal with LaTeX (must be run from the dir where the source .tex file is)
+nmap <M-F7> :! xelatex -interaction=errorstopmode % <CR> 
+nmap <M-F8> :! okular --unique &> /dev/null `echo % <Bar> sed -e's/\.tex/\.pdf/'` &<CR> 
+
+nmap <Leader>j <Esc>{j<S-V>}kJgqgq
 
 " for mail spell checking (et al.)
 nmap <M-F5> <Esc>:set spell<CR>

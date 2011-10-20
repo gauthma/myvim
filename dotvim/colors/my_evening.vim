@@ -20,10 +20,10 @@ let colors_name = "my_evening"
 hi ErrorMsg term=standout ctermbg=DarkRed ctermfg=White guibg=Red guifg=White
 hi IncSearch term=reverse cterm=reverse gui=reverse
 hi ModeMsg term=bold cterm=bold gui=bold
-hi TabLineSel term=reverse,bold ctermfg=White ctermbg=Blue gui=reverse,bold
+hi TabLineSel term=reverse,bold ctermfg=White ctermbg=Red gui=reverse,bold
 "hi StatusLine term=reverse,bold cterm=reverse,bold gui=reverse,bold
-hi StatusLine term=reverse,bold ctermfg=LightGrey ctermbg=Blue gui=reverse,bold
-hi StatusLineNC term=None ctermfg=Grey ctermbg=White gui=reverse
+hi StatusLine term=bold ctermfg=Red ctermbg=White gui=reverse,bold
+hi StatusLineNC term=bold ctermfg=LightGrey ctermbg=Black gui=reverse
 "hi StatusLineNC term=reverse cterm=reverse gui=reverse
 hi VertSplit term=reverse cterm=reverse gui=reverse
 hi Visual term=reverse ctermbg=black guibg=grey60
