@@ -188,6 +188,9 @@ vmap <Leader>F mz:<Esc>:set paste<CR>'<O {{{<Esc><C-c>'>o }}}<Esc><C-c>`z?{{{<CR
 nmap <M-F7> :! xelatex -interaction=errorstopmode % <CR> 
 nmap <M-F8> :! okular --unique &> /dev/null `echo % <Bar> sed -e's/\.tex/\.pdf/'` &<CR> 
 
+" In LaTeX et al., a paragraph is usually separated by a blank line before, and
+" a blank line after. This command justifies that text (auto-wrapping *modified* text
+" is disabled)
 nmap <Leader>j <Esc>{j<S-V>}kJgqgq
 
 " for mail spell checking (et al.)
