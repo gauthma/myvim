@@ -99,6 +99,7 @@ augroup filetypedetect
 augroup END
 
 " save fold status automagically
+set viewoptions=folds " save only folds
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 
@@ -128,7 +129,13 @@ function WriteLaTeXMode()
 	set tw=80
 endfunction
 
-colorscheme my_evening
+if &diff
+	set t_Co=256
+	set background=dark
+	colorscheme peaksea
+else
+	colorscheme my_evening
+endif
 
 "for shell in bash (Shell.vim in .vim/ftplugin)
 source ~/.vim/ftplugin/Shell.vim
@@ -191,7 +198,7 @@ nmap <M-F8> :! okular --unique &> /dev/null `echo % <Bar> sed -e's/\.tex/\.pdf/'
 " In LaTeX et al., a paragraph is usually separated by a blank line before, and
 " a blank line after. This command justifies that text (auto-wrapping *modified* text
 " is disabled)
-nmap <Leader>j <Esc>{j<S-V>}kJgqgq
+nmap <Leader>j <Esc>{gqgqj<S-V>}kJgqgq
 
 " for mail spell checking (et al.)
 nmap <M-F5> <Esc>:set spell<CR>
@@ -206,6 +213,11 @@ set spellfile=~/.vim/spell.en.utf-8.add
 au BufNewFile,BufRead /tmp/mutt*  setf mail
 au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68 
 
+"for status line
+"set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+"let g:smartusline_string_to_highlight = '(%n) %f '
+set laststatus=2
+
 " VUNDLE plugin list
 " repos at github vim-script mirror of vim.org
 Bundle 'comment.vim'
@@ -217,6 +229,8 @@ Bundle 'surround.vim'
 Bundle 'a.vim'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'allfold'
+"Bundle 'SmartusLine'
+
 Bundle 'https://github.com/Raimondi/delimitMate.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
 

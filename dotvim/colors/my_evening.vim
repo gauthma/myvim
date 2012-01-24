@@ -14,7 +14,7 @@ endif
 let colors_name = "my_evening"
 
 "hi Normal ctermbg=None ctermfg=DarkGreen guifg=White guibg=grey20
-" for vim Normal, use normal shell color
+" for vim Normal, use normal shell color -> comment the line above
 
 " Groups used in the 'highlight' and 'guicursor' options default value.
 hi ErrorMsg term=standout ctermbg=DarkRed ctermfg=White guibg=Red guifg=White
