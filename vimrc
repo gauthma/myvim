@@ -180,20 +180,21 @@ nmap <Leader>cc :!
 " (just pressing <CR> will run it)
 nmap <Leader>cp :! <up>
 
-map <leader>ff :call ToggleFold()<cr>
+" toggle foldmethod between indent and marker
+map <leader>tf :call ToggleFold()<cr>
 fun! ToggleFold()
 	if &foldmethod == 'marker'
 		exe 'set foldmethod=indent'
+		echo "Fold method set to INDENT"
 	else
 		exe 'set foldmethod=marker'
+		echo "Fold method set to MARKER"
 	endif
 endfun
 
-vmap <Leader>F mz:<Esc>:set paste<CR>'<O {{{<Esc><C-c>'>o }}}<Esc><C-c>`z?{{{<CR>A<Space><Esc>:set nopaste<CR>:set foldmethod=marker<CR><Esc>zc
-
-" to deal with LaTeX (must be run from the dir where the source .tex file is)
-nmap <M-F7> :! xelatex -interaction=errorstopmode % <CR> 
-nmap <M-F8> :! okular --unique &> /dev/null `echo % <Bar> sed -e's/\.tex/\.pdf/'` &<CR> 
+" select a couple of lines, and this will wrap them in {{{ }}} and collapse the fold.
+" useful for hiding large portions of source code, for instance
+vmap <Leader>H mz:<Esc>:set paste<CR>'<O {{{<Esc><C-c>'>o }}}<Esc><C-c>`z?{{{<CR>A<Space><Esc>:set nopaste<CR>:set foldmethod=marker<CR><Esc>zc
 
 " In LaTeX et al., a paragraph is usually separated by a blank line before, and
 " a blank line after. This command justifies that text (auto-wrapping *modified* text
@@ -214,8 +215,6 @@ au BufNewFile,BufRead /tmp/mutt*  setf mail
 au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68 
 
 "for status line
-"set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-"let g:smartusline_string_to_highlight = '(%n) %f '
 set laststatus=2
 
 " VUNDLE plugin list
@@ -229,7 +228,6 @@ Bundle 'surround.vim'
 Bundle 'a.vim'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'allfold'
-"Bundle 'SmartusLine'
 
 Bundle 'https://github.com/Raimondi/delimitMate.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
