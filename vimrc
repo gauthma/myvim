@@ -216,6 +216,7 @@ au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68
 
 "for status line
 set laststatus=2
+set wildmenu
 
 " VUNDLE plugin list
 " repos at github vim-script mirror of vim.org
