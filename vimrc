@@ -33,6 +33,9 @@ set tabstop=2       " numbers of spaces of tab character
 set shiftwidth=2    " numbers of spaces to (auto)indent
 set smarttab
 
+" and about VIM tabs
+set tabpagemax=200 " just to be sure...
+
 " indentation, scrolling, et al.
 set scrolloff=3     " keep 3 lines when scrolling
 set autoindent      " always set autoindenting on
@@ -47,15 +50,32 @@ set shortmess=atI   " Abbreviate messages
 set nostartofline   " don't jump to first character when paging
 set nojoinspaces    " when joining lines, never put two spaces after .,?! et al
 
-""" search options
-set ignorecase      " ignore case when searching
+" search options
+set noignorecase    " DO NOT ignore case when searching -> best default
 set hlsearch        " highlight searches
 set incsearch       " do incremental searching
 
-""" set fold options
+" set fold options
 set foldmethod=indent
 set foldignore=""
 autocmd BufWinEnter * norm zR
+
+" save fold status automagically
+set viewoptions=folds " save only folds
+au BufWinLeave * silent! mkview
+au BufWinEnter * silent! loadview
+
+" toggle foldmethod between indent and marker
+map <leader>tf :call ToggleFold()<cr>
+fun! ToggleFold()
+	if &foldmethod == 'marker'
+		exe 'set foldmethod=indent'
+		echo "Fold method set to INDENT"
+	else
+		exe 'set foldmethod=marker'
+		echo "Fold method set to MARKER"
+	endif
+endfun
 
 " more settings
 set history=1000         " remember more commands and search history
@@ -93,29 +113,22 @@ endif
 iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
 iab ttime <C-R>=strftime("%H:%M")<CR>
 
-"for sagemath syntax
-augroup filetypedetect
-       au! BufRead,BufNewFile *.sage,*.spyx,*.pyx setfiletype python
-augroup END
-
-" save fold status automagically
-set viewoptions=folds " save only folds
-au BufWinLeave * silent! mkview
-au BufWinEnter * silent! loadview
-
 "tex file highlight 80
 au BufEnter *.tex call WriteLaTeXMode()
 au WinEnter *.tex call WriteLaTeXMode()
+" and set the mode for pandoc 
+au BufEnter *.pdc call WriteTextMode()
+au WinEnter *.pdc call WriteTextMode()
 
 function WriteTextMode()
 	" remember, visual select and gq to format manually!
 	set wrap
 	"set linebreak
 	set fo+=t
-	set fo+=a 
+	set fo-=a 
 	set fo+=n
 	"--> in pandoc (and Markdown) 2 trailing whitespaces mean <br/>
-	"set fo+=w "trailing whitespace does NOT indicate end of paragraph
+	set fo-=w "trailing whitespace does NOT indicate end of paragraph
 	set tw=80
 endfunction
 
@@ -137,18 +150,11 @@ else
 	colorscheme my_evening
 endif
 
-"for shell in bash (Shell.vim in .vim/ftplugin)
-source ~/.vim/ftplugin/Shell.vim
-runtime! ftplugin/man.vim
-
-"for NERDTree
-map <F2> :NERDTreeToggle<CR>
-
 " iQuickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 
 " and other files
-nmap <silent> <leader>essh :e ~/.ssh/config<CR>
+nmap <silent> <leader>ssh :e ~/.ssh/config<CR>
 
 " AHAHAHAAH :-D
 " Use the damn hjkl keys
@@ -166,9 +172,6 @@ nmap <silent> ,/ :let @/=""<CR>
 " open tag in new tab
 nmap <S-T> <C-w><C-]>
 
-" switch header and src file -- C++
-nmap <S-F2> :A<CR>
-
 " sudo to the rescue! Do :ww and you write in sudo mode! 
 command! -bar -nargs=0 W2 :silent exe "write !sudo tee % >/dev/null" | silent edit!
 cmap ww W2
@@ -179,18 +182,6 @@ nmap <Leader>cc :!
 " brings up cmd prompt, filled with the last executed command
 " (just pressing <CR> will run it)
 nmap <Leader>cp :! <up>
-
-" toggle foldmethod between indent and marker
-map <leader>tf :call ToggleFold()<cr>
-fun! ToggleFold()
-	if &foldmethod == 'marker'
-		exe 'set foldmethod=indent'
-		echo "Fold method set to INDENT"
-	else
-		exe 'set foldmethod=marker'
-		echo "Fold method set to MARKER"
-	endif
-endfun
 
 " select a couple of lines, and this will wrap them in {{{ }}} and collapse the fold.
 " useful for hiding large portions of source code, for instance
@@ -218,6 +209,18 @@ au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68
 set laststatus=2
 set wildmenu
 
+" NerdTree 
+map <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+"map <leader>e :NERDTreeFind<CR>
+nmap <leader>nt :NERDTreeFind<CR>
+
+"let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=0
+let NERDTreeKeepTreeInNewTab=1
+
 " VUNDLE plugin list
 " repos at github vim-script mirror of vim.org
 Bundle 'comment.vim'
@@ -229,8 +232,10 @@ Bundle 'surround.vim'
 Bundle 'a.vim'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'allfold'
+Bundle 'vim-pandoc'
 
 Bundle 'https://github.com/Raimondi/delimitMate.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
 
 Bundle 'mileszs/ack.vim'
+

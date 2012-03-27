@@ -1,2 +1,4 @@
 " Pandoc
-au! Bufread,BufNewFile *.pdc    set filetype=pdc
+au! Bufread,BufNewFile *.pdc    set filetype=pandoc
+let maplocalleader = ","
+
