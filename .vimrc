@@ -203,7 +203,8 @@ set spellfile=~/.vim/spell.en.utf-8.add
 
 " for mutt mail composing
 au BufNewFile,BufRead /tmp/mutt*  setf mail
-au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68 
+au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68
+au BufNewFile,BufRead /tmp/mutt*  startinsert
 
 "for status line
 set laststatus=2
