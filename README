@@ -1,0 +1,6 @@
+My vim config settings. To install, do: 
+
+git clone git://github.com/gauthma/myvim.git ~/.vim
+ln -s ~/.vim/vimrc ~/.vimrc
+
+And presto, it's ready to use. Feedback on improvements is always welcome. Enjoy!
