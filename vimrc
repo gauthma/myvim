@@ -146,6 +146,8 @@ if &diff
 	set t_Co=256
 	set background=dark
 	colorscheme peaksea
+elseif has("gui_running")
+	colorscheme oceandeep
 else
 	colorscheme my_evening
 endif
@@ -234,6 +236,7 @@ Bundle 'a.vim'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'allfold'
 Bundle 'vim-pandoc'
+Bundle 'slimv.vim'
 
 Bundle 'https://github.com/Raimondi/delimitMate.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
