@@ -224,6 +224,9 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
 
+" settings for Tex-9
+let g:tex_flavor="xetex"
+
 " VUNDLE plugin list
 " repos at github vim-script mirror of vim.org
 Bundle 'comment.vim'
@@ -237,6 +240,7 @@ Bundle 'DoxygenToolkit.vim'
 Bundle 'allfold'
 Bundle 'vim-pandoc'
 Bundle 'slimv.vim'
+Bundle 'TeX-9'
 
 Bundle 'https://github.com/Raimondi/delimitMate.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
