@@ -1,8 +1,12 @@
-My vim config settings. To install, do: 
+My vim config settings. 
 
-git clone git://github.com/gauthma/myvim.git ~/.vim
-ln -s ~/.vim/vimrc ~/.vimrc
+INSTALL:
+$ git clone git://github.com/gauthma/myvim.git ~/.vim
+$ ln -s ~/.vim/vimrc ~/.vimrc
 
 And presto, it's (almost*) ready to use. Feedback on improvements is always welcome. Enjoy!
 
 * For the final configuration step, checkout the first comment lines in vimrc!
+
+NOTES:
+ - when using LaTeX, pressing Esc *once* will keep the insert mode indication, but it will allow you to execute some normal mode commands, in particular saving the file (:w). I'm still working through the details
