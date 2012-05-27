@@ -227,6 +227,9 @@ let NERDTreeKeepTreeInNewTab=1
 " settings for Tex-9
 let g:tex_flavor="xetex"
 
+" for gundo
+nnoremap <F5> :GundoToggle<CR>
+
 " VUNDLE plugin list
 " repos at github vim-script mirror of vim.org
 Bundle 'comment.vim'
@@ -244,6 +247,7 @@ Bundle 'TeX-9'
 
 Bundle 'https://github.com/Raimondi/delimitMate.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
+Bundle 'https://github.com/sjl/gundo.vim'
 
 Bundle 'mileszs/ack.vim'
 
