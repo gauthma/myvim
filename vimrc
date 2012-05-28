@@ -5,6 +5,10 @@
 " Next, enter vim, and in normal mode, do :BundleInstall
 " This will clone all the required plugins from their repos (github, et al.)
 "
+" Further, from time to time, when you (or I) add new plugins, :BundleInstall
+" should be ran again. To check for new versions of existing plugins, and
+" update should they exist, run :BundleInstall!
+"
 " More info here: http://www.charlietanksley.net/philtex/sane-vim-plugin-management/
 " 
 " (*) The config I use can be found here: https://github.com/gauthma/myvim
