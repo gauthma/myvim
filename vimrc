@@ -59,28 +59,6 @@ set noignorecase    " DO NOT ignore case when searching -> best default
 set hlsearch        " highlight searches
 set incsearch       " do incremental searching
 
-" set fold options
-set foldmethod=indent
-set foldignore=""
-autocmd BufWinEnter * norm zR
-
-" save fold status automagically
-set viewoptions=folds " save only folds
-au BufWinLeave * silent! mkview
-au BufWinEnter * silent! loadview
-
-" toggle foldmethod between indent and marker
-map <leader>tf :call ToggleFold()<cr>
-fun! ToggleFold()
-	if &foldmethod == 'marker'
-		exe 'set foldmethod=indent'
-		echo "Fold method set to INDENT"
-	else
-		exe 'set foldmethod=marker'
-		echo "Fold method set to MARKER"
-	endif
-endfun
-
 " more settings
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
@@ -189,10 +167,6 @@ nmap <Leader>cc :!
 " (just pressing <CR> will run it)
 nmap <Leader>cp :! <up>
 
-" select a couple of lines, and this will wrap them in {{{ }}} and collapse the fold.
-" useful for hiding large portions of source code, for instance
-vmap <Leader>H mz:<Esc>:set paste<CR>'<O {{{<Esc><C-c>'>o }}}<Esc><C-c>`z?{{{<CR>A<Space><Esc>:set nopaste<CR>:set foldmethod=marker<CR><Esc>zc
-
 " In LaTeX et al., a paragraph is usually separated by a blank line before, and
 " a blank line after. This command justifies that text (auto-wrapping *modified* text
 " is disabled)
@@ -215,6 +189,14 @@ au BufNewFile,BufRead /tmp/mutt*  startinsert
 "for status line
 set laststatus=2
 set wildmenu
+
+" Vertical Split Buffer Function
+function VerticalSplitBuffer(buffer)
+    execute "vert belowright sb" a:buffer 
+endfunction
+
+" Vertical Split Buffer Mapping - call like :Vb <buf-num>
+command -nargs=1 Vb call VerticalSplitBuffer(<f-args>)
 
 " NerdTree 
 map <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
@@ -252,6 +234,7 @@ Bundle 'TeX-9'
 Bundle 'https://github.com/Raimondi/delimitMate.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
 Bundle 'https://github.com/sjl/gundo.vim'
+Bundle 'https://github.com/rson/vim-conque'
 
 Bundle 'mileszs/ack.vim'
 
