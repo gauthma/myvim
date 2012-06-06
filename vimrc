@@ -14,7 +14,8 @@
 " (*) The config I use can be found here: https://github.com/gauthma/myvim
 
 set nocompatible    " use vim defaults
-let mapleader = ","
+let g:mapleader = ","
+let g:maplocalleader = ";"
 
 " to use vundle
 filetype off  " required!
