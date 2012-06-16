@@ -13,6 +13,9 @@ nmap <F6> :! cd "%:p:h" ; xelatex --interaction=nonstopmode --shell-escape "%:t"
 nmap <F7> :! okular --unique &> /dev/null %<.pdf &<CR>
 nmap <silent> <F8> :call FullDocumentGeneration()<CR>
 
+" insert new line below starting with a % (not indented)
+nmap <Leader>o o<Esc>0i%<Esc>
+
 inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
 
 " for LaTeX quotes
