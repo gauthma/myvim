@@ -1,21 +1,7 @@
-" IMPORTANT NOTICE: when using this config(*) in a new computer, 
-" the first thing to do is to clone vundle:
-" git clone http://github.com/gmarik/vundle.git ~/.vim/vundle.git
-"
-" Next, enter vim, and in normal mode, do :BundleInstall
-" This will clone all the required plugins from their repos (github, et al.)
-"
-" Further, from time to time, when you (or I) add new plugins, :BundleInstall
-" should be ran again. To check for new versions of existing plugins, and
-" update should they exist, run :BundleInstall!
-"
-" More info here: http://www.charlietanksley.net/philtex/sane-vim-plugin-management/
-" 
-" (*) The config I use can be found here: https://github.com/gauthma/myvim
-
 set nocompatible    " use vim defaults
 let g:mapleader = ","
 let g:maplocalleader = ";"
+let g:lisp_rainbow=1
 
 " to use vundle
 filetype off  " required!
@@ -44,8 +30,9 @@ set tabpagemax=200 " just to be sure...
 " indentation, scrolling, et al.
 set scrolloff=3     " keep 3 lines when scrolling
 set autoindent      " always set autoindenting on
-"set smartindent --> DO NOT ENABLE! starts indenting C keywords in ANY file...
-"set cindent         " cindent
+"set smartindent -->  DO NOT ENABLE! starts indenting C keywords in ANY file...
+"set cindent        " cindent
+set cinoptions=l1   " otherwise the case statement is wrongly indented (see :help cinoptions-values)
 set showcmd         " display incomplete commands
 set ruler           " show the cursor position all the time
 set nonumber          " show line numbers
@@ -227,9 +214,7 @@ Bundle 'The-NERD-tree'
 Bundle 'netrw.vim'
 Bundle 'superSnipMate'
 Bundle 'surround.vim'
-Bundle 'a.vim'
 Bundle 'DoxygenToolkit.vim'
-Bundle 'allfold'
 Bundle 'vim-pandoc'
 Bundle 'slimv.vim'
 Bundle 'TeX-9'
@@ -238,6 +223,4 @@ Bundle 'https://github.com/Raimondi/delimitMate.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
 Bundle 'https://github.com/sjl/gundo.vim'
 Bundle 'https://github.com/rson/vim-conque'
-
-Bundle 'mileszs/ack.vim'
 
