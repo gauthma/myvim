@@ -14,6 +14,11 @@ update should they exist, run :BundleInstall!
 
 More info here: http://www.charlietanksley.net/philtex/sane-vim-plugin-management/
 
+The last step is to include custom snippets into the "proper" snippet files read by superSnipMate:
+
+$ cd ~/.vim
+$ for i in `ls customizations/code_snippets/` ; do cat customizations/code_snippets/$i >> bundle/superSnipMate/snippets/$i ; done
+
 And presto, it's ready to use. Feedback on improvements is always welcome. Enjoy!
 
 NOTES:

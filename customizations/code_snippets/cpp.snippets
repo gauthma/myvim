@@ -1,10 +1,9 @@
+## CUSTOM ##
 # oldest debug tool: print
 snippet errd
 	std::cerr << "${1}" << std::endl;
-
 # stl is fugly and iterators take too long to write
 snippet stlfor
 	for ( ${1:it}=${2:s}.begin() ; $1 < $2.end(); ++$1 ){
 		$1${3}
 	}
-
