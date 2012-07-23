@@ -122,6 +122,10 @@ else
 	colorscheme my_evening
 endif
 
+" toggle hex mode
+map <Leader>h :%!xxd<CR>
+map <Leader>nh :%!xxd -r<CR>
+
 " iQuickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 
