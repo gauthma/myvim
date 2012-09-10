@@ -90,6 +90,9 @@ au WinEnter *.tex call WriteLaTeXMode()
 au BufEnter *.pdc call WriteTextMode()
 au WinEnter *.pdc call WriteTextMode()
 
+" tell pandoc plugin NOT to fold sections (by default)
+let g:pandoc_no_folding = 1
+
 function WriteTextMode()
 	" remember, visual select and gq to format manually!
 	set wrap
@@ -227,4 +230,5 @@ Bundle 'https://github.com/Raimondi/delimitMate.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
 Bundle 'https://github.com/sjl/gundo.vim'
 Bundle 'https://github.com/rson/vim-conque'
-
+Bundle 'https://github.com/scrooloose/syntastic.git'
+Bundle 'https://github.com/dhallman/bufexplorer.git'
