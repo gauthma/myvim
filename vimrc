@@ -211,7 +211,16 @@ let NERDTreeKeepTreeInNewTab=1
 let g:tex_flavor="xetex"
 
 " for gundo
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <F5> :GundoToggle<CR><CR>
+
+" syntastic
+let g:syntastic_mode_map = { 'mode': 'passive',
+			\ 'active_filetypes': [],
+			\ 'passive_filetypes': [] }
+map <F3> :SyntasticToggle<CR>
+" Note: I map the toggle command because the messages from  SyntaxCheck
+" command cannot be cleared (you have to close and re-open the file). Not so
+" with SyntasticToggle 
 
 " VUNDLE plugin list
 " repos at github vim-script mirror of vim.org
