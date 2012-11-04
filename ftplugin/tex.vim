@@ -7,11 +7,11 @@
 "   reason, leader in *.tex files yields no output... Also, the .gnuplot and
 "   .table files are generated when using gnuplot as described above.
 "
-nnoremap <F4> :! cd "%:p:h" ; rm -f *.{dvi,ps,pdf,aux,log,out,toc,gnuplot,table,bbl,blg} ; echo "Clean up done" <CR>
 nnoremap <F5> :! cd "%:p:h" ; bibtex "%:t"<CR>
 nnoremap <F6> :! cd "%:p:h" ; xelatex --interaction=nonstopmode --shell-escape "%:t"<CR>
 nnoremap <F7> :! okular --unique &> /dev/null %<.pdf &<CR>
-nnoremap <silent> <F8> :call FullDocumentGeneration()<CR>
+nnoremap <F8> :! cd "%:p:h" ; rm -f *.{dvi,ps,pdf,aux,log,out,toc,gnuplot,table,bbl,blg} ; echo "Clean up done" <CR>
+nnoremap <silent> <F10> :call FullDocumentGeneration()<CR>
 
 " insert new line below starting with a % (not indented)
 nnoremap <Leader>o o<Esc>0i%<Esc>
