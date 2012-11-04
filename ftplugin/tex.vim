@@ -7,14 +7,14 @@
 "   reason, leader in *.tex files yields no output... Also, the .gnuplot and
 "   .table files are generated when using gnuplot as described above.
 "
-nmap <F4> :! cd "%:p:h" ; rm -f *.{dvi,ps,pdf,aux,log,out,toc,gnuplot,table,bbl,blg} ; echo "Clean up done" <CR>
-nmap <F5> :! cd "%:p:h" ; bibtex "%:t"<CR>
-nmap <F6> :! cd "%:p:h" ; xelatex --interaction=nonstopmode --shell-escape "%:t"<CR>
-nmap <F7> :! okular --unique &> /dev/null %<.pdf &<CR>
-nmap <silent> <F8> :call FullDocumentGeneration()<CR>
+nnoremap <F4> :! cd "%:p:h" ; rm -f *.{dvi,ps,pdf,aux,log,out,toc,gnuplot,table,bbl,blg} ; echo "Clean up done" <CR>
+nnoremap <F5> :! cd "%:p:h" ; bibtex "%:t"<CR>
+nnoremap <F6> :! cd "%:p:h" ; xelatex --interaction=nonstopmode --shell-escape "%:t"<CR>
+nnoremap <F7> :! okular --unique &> /dev/null %<.pdf &<CR>
+nnoremap <silent> <F8> :call FullDocumentGeneration()<CR>
 
 " insert new line below starting with a % (not indented)
-nmap <Leader>o o<Esc>0i%<Esc>
+nnoremap <Leader>o o<Esc>0i%<Esc>
 
 inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
 
@@ -41,3 +41,4 @@ function! FullDocumentGeneration()
 	execute "normal \<F6>"
 	execute "normal \<F6>"
 endfunction
+
