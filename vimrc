@@ -14,6 +14,7 @@ filetype plugin indent on  " required!
 """ buffers
 set hidden
 nnoremap <Leader>b :buffers<CR>:buffer<Space>
+nnoremap <Leader>d :bdelete<CR>
 
 nnoremap <Leader>1 :1b<CR>
 nnoremap <Leader>2 :2b<CR>

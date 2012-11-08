@@ -44,3 +44,6 @@ endfunction
 
 vnoremap <M-F5> :w! /tmp/aspell:'<,'>d:!aspell check -l en_GB --mode=tex /tmp/aspell<Esc>k:r /tmp/aspell
 vnoremap <M-F6> :w! /tmp/aspell:'<,'>d:!aspell check -l pt_PT --mode=tex /tmp/aspell<Esc>k:r /tmp/aspell
+
+" TeX-9 missing emph mapping
+inoremap <C-e> \emph{
