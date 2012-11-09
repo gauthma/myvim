@@ -47,3 +47,6 @@ vnoremap <M-F6> :w! /tmp/aspell:'<,'>d:!aspell check -l pt_PT --mode=tex /tmp/
 
 " TeX-9 missing emph mapping
 inoremap <C-e> \emph{
+
+" ... as well as varepsilon
+inoremap <buffer> <LocalLeader>e \varepsilon
