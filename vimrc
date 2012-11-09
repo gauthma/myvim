@@ -210,7 +210,7 @@ let NERDTreeKeepTreeInNewTab=1
 let g:tex_flavor="xetex"
 
 " for gundo
-nnoremap <F5> :GundoToggle<CR><CR>
+nnoremap <F4> :GundoToggle<CR><CR>
 
 " syntastic
 let g:syntastic_mode_map = { 'mode': 'passive',
