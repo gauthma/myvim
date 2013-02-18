@@ -234,7 +234,6 @@ Bundle 'vim-pandoc'
 Bundle 'slimv.vim'
 Bundle 'TeX-9'
 
-Bundle 'https://github.com/Raimondi/delimitMate.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
 Bundle 'https://github.com/sjl/gundo.vim'
 Bundle 'https://github.com/rson/vim-conque'
