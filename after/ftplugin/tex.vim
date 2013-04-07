@@ -1,5 +1,5 @@
 " Notes: 
-" - when running XeLaTeX (<F6> mapping), --shell-escape is needed to
+" - when running LuaTeX (<F6> mapping), --shell-escape is needed to
 "   allow it to invoke external programs, e.g. gnuplot when using Tikz to plot
 "   functions
 "
@@ -8,8 +8,8 @@
 "   .table files are generated when using gnuplot as described above.
 "
 nnoremap <F5> :execute '! cd ' . shellescape("%:p:h") . ' ; bibtex ' . shellescape("%:r")<CR>
-inoremap <F6> <Esc>:w<CR>: execute '! cd ' . shellescape("%:p:h") . '; xelatex --interaction=nonstopmode --shell-escape ' . shellescape("%:t")<CR>
-nnoremap <F6> <Esc>:w<CR>: execute '! cd ' . shellescape("%:p:h") . '; xelatex --interaction=nonstopmode --shell-escape ' . shellescape("%:t")<CR>
+inoremap <F6> <Esc>:w<CR>: execute '! cd ' . shellescape("%:p:h") . '; lualatex --debug-format --interaction=nonstopmode --shell-escape ' . shellescape("%:t")<CR>
+nnoremap <F6> <Esc>:w<CR>: execute '! cd ' . shellescape("%:p:h") . '; lualatex --debug-format --interaction=nonstopmode --shell-escape ' . shellescape("%:t")<CR>
 nnoremap <F7> :execute '! okular --unique &> /dev/null ' . shellescape("%<.pdf") . '&'<CR>
 nnoremap <F8> :execute '! cd '. shellescape("%:p:h") . '; rm -f *.{dvi,ps,pdf,aux,log,out,toc,gnuplot,table,bbl,blg} ; echo "Clean up done"'<CR>
 nnoremap <silent> <F10> :call FullDocumentGeneration()<CR>
