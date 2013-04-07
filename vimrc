@@ -212,15 +212,6 @@ let g:tex_flavor="xetex"
 " for gundo
 nnoremap <F4> :GundoToggle<CR><CR>
 
-" syntastic
-let g:syntastic_mode_map = { 'mode': 'passive',
-			\ 'active_filetypes': [],
-			\ 'passive_filetypes': [] }
-noremap <F3> :SyntasticToggle<CR>
-" Note: I map the toggle command because the messages from  SyntaxCheck
-" command cannot be cleared (you have to close and re-open the file). Not so
-" with SyntasticToggle 
-
 " VUNDLE plugin list
 " repos at github vim-script mirror of vim.org
 Bundle 'comment.vim'
@@ -237,5 +228,4 @@ Bundle 'TeX-9'
 Bundle 'https://github.com/mikewest/vimroom.git'
 Bundle 'https://github.com/sjl/gundo.vim'
 Bundle 'https://github.com/rson/vim-conque'
-Bundle 'https://github.com/scrooloose/syntastic.git'
 Bundle 'https://github.com/dhallman/bufexplorer.git'
