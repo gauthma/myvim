@@ -23,4 +23,5 @@ And presto, it's ready to use. Feedback on improvements is always welcome. Enjoy
 
 NOTES:
  - The config I use can be found here: https://github.com/gauthma/myvim
+ - IMPORTANT: vim-pandoc requires that vim be compiled with python support. Otherwise, comment it out in vimrc!
  - when using LaTeX, pressing Esc *once* will keep the insert mode indication, but it will allow you to execute some normal mode commands, in particular saving the file (:w). I'm still working through the details

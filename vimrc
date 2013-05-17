@@ -227,5 +227,5 @@ Bundle 'TeX-9'
 
 Bundle 'https://github.com/mikewest/vimroom.git'
 Bundle 'https://github.com/sjl/gundo.vim'
-Bundle 'https://github.com/rson/vim-conque'
+"Bundle 'https://github.com/rson/vim-conque'
 Bundle 'https://github.com/dhallman/bufexplorer.git'
