@@ -80,7 +80,7 @@ set hlsearch        " highlight searches
 set incsearch       " do incremental searching
 
 " toggle set paste
-nmap <Leader>p :set paste<CR>"+P:set nopaste<CR>
+nmap <Leader>ep :set paste<CR>"+P:set nopaste<CR>
 
 " gui font (XXX remove this? I never use GUI these days...)
 set gfn=Monospace\ 10
@@ -88,6 +88,7 @@ set gfn=Monospace\ 10
 "for current date
 iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
 iab ttime <C-R>=strftime("%H:%M")<CR>
+iab <Leader>-- --Óscar
 
 "tex file highlight 80
 au BufEnter *.tex call WriteLaTeXMode()
@@ -108,7 +109,7 @@ function WriteTextMode()
 	set fo+=n
 	"--> in pandoc (and Markdown) 2 trailing whitespaces mean <br/>
 	set fo-=w "trailing whitespace does NOT indicate end of paragraph
-	set tw=80
+	set tw=68
 endfunction
 
 function WriteLaTeXMode()
@@ -156,7 +157,6 @@ nnoremap <silent> ,/ :let @/=""<CR>
 
 " sudo to the rescue! Do :ww and you write in sudo mode! 
 command! -bar -nargs=0 W2 :silent exe "write !sudo tee % >/dev/null" | silent edit!
-cnoremap ww W2
 
 " brings up command prompt in vim
 nnoremap <Leader>cc :! 
@@ -172,10 +172,66 @@ vnoremap <Leader>J Jgqgq
 " delimited paragraphs
 nnoremap <Leader>j <Esc>{gqgqj<S-V>}kJgqgq
 
-" for mail spell checking (et al.) -- someday this will be a function, that
-" takes into account the filetype, and sets aspell accordingly
-vnoremap <M-F5> :w! /tmp/aspell:'<,'>d:!aspell check -l en_GB /tmp/aspell<Esc>k:r /tmp/aspell
-vnoremap <M-F6> :w! /tmp/aspell:'<,'>d:!aspell check -l pt_PT /tmp/aspell<Esc>k:r /tmp/aspell
+" for spell checking 
+vnoremap <M-F5> :call SpellCheck("en")<cr>
+vnoremap <M-F6> :call SpellCheck("pt")<cr>
+
+" TODO detect file type
+function! SpellCheck(lang) range
+	if visualmode() != 'V'
+		echo "Wrong mode: selection must be linewise ('V')!"
+		return
+	endif
+
+	" get selected text
+	normal! gv"xy
+	let text=@x
+
+	" Create temporary file (it's placed in /tmp because in
+	" some systems, including ArchLinux, that folder is mapped to RAM)
+	let tmpname= system('echo $random `date` | md5sum | cut -d" " -f1 | tr -d "\n"')
+	let tmpfile="/tmp/" . tmpname
+
+	" Write the selected text to the temp file
+	execute "redir > " . tmpfile
+	echo text
+	redir END
+
+	" Run spell checking on the temp file
+	silent !clear
+	if a:lang ==? "pt"
+		execute "! aspell --dont-backup check -l pt_PT --variety=preao " . tmpfile 
+	elseif a:lang ==? "en"
+		execute "! aspell --dont-backup check -l en_GB " . tmpfile 
+	endif
+
+	" Read the temp into an array (one line per array element)
+	" and dump the first element (it's a newline introduced by 
+	" the echo command when redirecting output)
+	let f=readfile(tmpfile)
+	call remove(f, 0)
+
+	" Join the array and put contents on register.
+	let res=join(f, "\n")
+	let @x=res . "\n"
+
+	" Select the previous selection (the one that 
+	" was pasted to the temp file), delete it and 
+	" put in its place the (spell checked) text 
+	" read from the temp file.
+	" The report thingy is to suppress output when
+	" deleting and pasting in the original file; 
+	" this way the user is not asked to Press Enter
+	" one more time.
+	let l:report = &report
+	set report=9999
+	normal! gvd
+	normal! "xP
+	let &report = l:report
+
+	" Remove the tmp file.
+	call delete(tmpfile)
+endfunction
 
 " for mutt mail composing
 au BufNewFile,BufRead /tmp/mutt*  setf mail
@@ -207,10 +263,14 @@ let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
 
 " settings for Tex-9
-let g:tex_flavor="xetex"
+let g:tex_flavor="luatex"
 
 " for gundo
 nnoremap <F4> :GundoToggle<CR><CR>
+
+" for YankStack
+nmap <Leader>p <Plug>yankstack_substitute_older_paste
+nmap <Leader>P <Plug>yankstack_substitute_newer_paste
 
 " VUNDLE plugin list
 " repos at github vim-script mirror of vim.org
@@ -229,3 +289,4 @@ Bundle 'https://github.com/mikewest/vimroom.git'
 Bundle 'https://github.com/sjl/gundo.vim'
 "Bundle 'https://github.com/rson/vim-conque'
 Bundle 'https://github.com/dhallman/bufexplorer.git'
+Bundle 'https://github.com/maxbrunsfeld/vim-yankstack'
