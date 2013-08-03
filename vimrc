@@ -6,8 +6,33 @@ let g:lisp_rainbow=1
 " to use vundle
 filetype off  " required!
 
-set rtp+=~/.vim/vundle.git/ 
+set rtp+=~/.vim/bundle/vundle/ 
 call vundle#rc()
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My VUNDLE plugin list
+" repos at github vim-script mirror of vim.org
+Bundle 'comment.vim'
+Bundle 'comments.vim'
+Bundle 'The-NERD-tree'
+Bundle 'netrw.vim'
+Bundle 'superSnipMate'
+Bundle 'surround.vim'
+Bundle 'DoxygenToolkit.vim'
+Bundle 'vim-pandoc'
+Bundle 'slimv.vim'
+"Bundle 'TeX-9' 
+" -> I forked this on github, so had to use the below line instead;
+"    you can just uncomment the line above and comment the one below
+
+Bundle 'git@github.com:gauthma/TeX-9.git'
+Bundle 'https://github.com/mikewest/vimroom.git'
+Bundle 'https://github.com/sjl/gundo.vim'
+Bundle 'https://github.com/scrooloose/nerdcommenter'
+Bundle 'https://github.com/dhallman/bufexplorer.git'
+Bundle 'https://github.com/maxbrunsfeld/vim-yankstack'
 
 filetype plugin indent on  " required!
 
@@ -172,67 +197,6 @@ vnoremap <Leader>J Jgqgq
 " delimited paragraphs
 nnoremap <Leader>j <Esc>{gqgqj<S-V>}kJgqgq
 
-" for spell checking 
-vnoremap <M-F5> :call SpellCheck("en")<cr>
-vnoremap <M-F6> :call SpellCheck("pt")<cr>
-
-" TODO detect file type
-function! SpellCheck(lang) range
-	if visualmode() != 'V'
-		echo "Wrong mode: selection must be linewise ('V')!"
-		return
-	endif
-
-	" get selected text
-	normal! gv"xy
-	let text=@x
-
-	" Create temporary file (it's placed in /tmp because in
-	" some systems, including ArchLinux, that folder is mapped to RAM)
-	let tmpname= system('echo $random `date` | md5sum | cut -d" " -f1 | tr -d "\n"')
-	let tmpfile="/tmp/" . tmpname
-
-	" Write the selected text to the temp file
-	execute "redir > " . tmpfile
-	echo text
-	redir END
-
-	" Run spell checking on the temp file
-	silent !clear
-	if a:lang ==? "pt"
-		execute "! aspell --dont-backup check -l pt_PT --variety=preao " . tmpfile 
-	elseif a:lang ==? "en"
-		execute "! aspell --dont-backup check -l en_GB " . tmpfile 
-	endif
-
-	" Read the temp into an array (one line per array element)
-	" and dump the first element (it's a newline introduced by 
-	" the echo command when redirecting output)
-	let f=readfile(tmpfile)
-	call remove(f, 0)
-
-	" Join the array and put contents on register.
-	let res=join(f, "\n")
-	let @x=res . "\n"
-
-	" Select the previous selection (the one that 
-	" was pasted to the temp file), delete it and 
-	" put in its place the (spell checked) text 
-	" read from the temp file.
-	" The report thingy is to suppress output when
-	" deleting and pasting in the original file; 
-	" this way the user is not asked to Press Enter
-	" one more time.
-	let l:report = &report
-	set report=9999
-	normal! gvd
-	normal! "xP
-	let &report = l:report
-
-	" Remove the tmp file.
-	call delete(tmpfile)
-endfunction
-
 " for mutt mail composing
 au BufNewFile,BufRead /tmp/mutt*  setf mail
 au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68
@@ -272,21 +236,3 @@ nnoremap <F4> :GundoToggle<CR><CR>
 nmap <Leader>p <Plug>yankstack_substitute_older_paste
 nmap <Leader>P <Plug>yankstack_substitute_newer_paste
 
-" VUNDLE plugin list
-" repos at github vim-script mirror of vim.org
-Bundle 'comment.vim'
-Bundle 'comments.vim'
-Bundle 'The-NERD-tree'
-Bundle 'netrw.vim'
-Bundle 'superSnipMate'
-Bundle 'surround.vim'
-Bundle 'DoxygenToolkit.vim'
-Bundle 'vim-pandoc'
-Bundle 'slimv.vim'
-Bundle 'TeX-9'
-
-Bundle 'https://github.com/mikewest/vimroom.git'
-Bundle 'https://github.com/sjl/gundo.vim'
-"Bundle 'https://github.com/rson/vim-conque'
-Bundle 'https://github.com/dhallman/bufexplorer.git'
-Bundle 'https://github.com/maxbrunsfeld/vim-yankstack'

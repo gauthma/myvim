@@ -1,3 +1,29 @@
+" Custom extensions for (and automagically sourced by) TeX-9
+
+" TeX-9 missing emph mapping
+inoremap <C-e> \emph{
+
+" ... as well as varepsilon
+inoremap <buffer> <LocalLeader>e \varepsilon
+
+" insert new line below starting with a % (not indented)
+nnoremap <Leader>o o<Esc>0i%<Esc>
+
+" for LaTeX quotes
+" from auctex: https://github.com/vim-scripts/auctex.vim
+function! s:TexQuotes()
+    let insert = "''"
+    let left = getline('.')[col('.')-2]
+    if left =~ '^\(\|\s\)$'
+			let insert = '``'
+    elseif left == '\'
+			let insert = '"'
+    endif
+    return insert
+endfunction
+inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
+
+" Mapping for LaTeX, Kyle-style!
 " Notes: 
 " - when running LuaTeX (<F6> mapping), --shell-escape is needed to
 "   allow it to invoke external programs, e.g. gnuplot when using Tikz to plot
@@ -14,24 +40,6 @@ nnoremap <F7> :execute '! okular --unique &> /dev/null ' . shellescape("%<.pdf")
 nnoremap <F8> :execute '! cd '. shellescape("%:p:h") . '; rm -f *.{dvi,ps,pdf,aux,log,out,toc,gnuplot,table,bbl,blg} ; echo "Clean up done"'<CR>
 nnoremap <silent> <F10> :call FullDocumentGeneration()<CR>
 
-" insert new line below starting with a % (not indented)
-nnoremap <Leader>o o<Esc>0i%<Esc>
-
-inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
-
-" for LaTeX quotes
-" from auctex: https://github.com/vim-scripts/auctex.vim
-function! s:TexQuotes()
-    let insert = "''"
-    let left = getline('.')[col('.')-2]
-    if left =~ '^\(\|\s\)$'
-let insert = '``'
-    elseif left == '\'
-let insert = '"'
-    endif
-    return insert
-endfunction
-
 " TODO eventually figure out a way of avoiding that after calling this
 " function (which gets executed in the shell), the control flow get
 " automatically to vim (no "press enter to continue", as per usual shell
@@ -43,11 +51,3 @@ function! FullDocumentGeneration()
 	execute "normal \<F6>"
 endfunction
 
-vnoremap <M-F5> :w! /tmp/aspell:'<,'>d:!aspell check -l en_GB --mode=tex /tmp/aspell<Esc>k:r /tmp/aspell
-vnoremap <M-F6> :w! /tmp/aspell:'<,'>d:!aspell check -l pt_PT --mode=tex /tmp/aspell<Esc>k:r /tmp/aspell
-
-" TeX-9 missing emph mapping
-inoremap <C-e> \emph{
-
-" ... as well as varepsilon
-inoremap <buffer> <LocalLeader>e \varepsilon

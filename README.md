@@ -4,9 +4,10 @@ My vim configuration
 Install:
 ---
 ```bash
+$ mkdir -p ~/.vim/bundle
 $ git clone git://github.com/gauthma/myvim.git ~/.vim
 $ ln -s ~/.vim/vimrc ~/.vimrc
-$ git clone http://github.com/gmarik/vundle.git ~/.vim/vundle.git
+$ git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 ```
 
 Next, enter vim, and in normal mode, do :BundleInstall
