@@ -24,8 +24,6 @@ Bundle 'DoxygenToolkit.vim'
 Bundle 'vim-pandoc'
 Bundle 'slimv.vim'
 "Bundle 'TeX-9' 
-" -> I forked this on github, so had to use the below line instead;
-"    you can just uncomment the line above and comment the one below
 
 Bundle 'git@github.com:gauthma/TeX-9.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
