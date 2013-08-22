@@ -23,10 +23,8 @@ Bundle 'surround.vim'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'vim-pandoc'
 Bundle 'slimv.vim'
-"Bundle 'TeX-9' 
 
-Bundle 'git@github.com:gauthma/TeX-9.git'
-Bundle 'https://github.com/mikewest/vimroom.git'
+Bundle 'http://www.chem.helsinki.fi/~eatoivan/tex_nine.git'
 Bundle 'https://github.com/sjl/gundo.vim'
 Bundle 'https://github.com/scrooloose/nerdcommenter'
 Bundle 'https://github.com/dhallman/bufexplorer.git'
@@ -49,8 +47,6 @@ nnoremap <Leader>7 :7b<CR>
 nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
-
-set statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 """ misc
 " disable cursorline in netrw (scp et al. over vim)
@@ -105,45 +101,19 @@ set incsearch       " do incremental searching
 " toggle set paste
 nmap <Leader>ep :set paste<CR>"+P:set nopaste<CR>
 
-" gui font (XXX remove this? I never use GUI these days...)
-set gfn=Monospace\ 10
+" gui font (get it here: https://aur.archlinux.org/packages/ttf-inconsolata-g)
+set gfn=Inconsolata-g\ 10
 
 "for current date
 iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
 iab ttime <C-R>=strftime("%H:%M")<CR>
-iab <Leader>-- --Óscar
 
-"tex file highlight 80
-au BufEnter *.tex call WriteLaTeXMode()
-au WinEnter *.tex call WriteLaTeXMode()
-" and set the mode for pandoc 
-au BufEnter *.pdc call WriteTextMode()
-au WinEnter *.pdc call WriteTextMode()
+" adapt as needed
+iab <Leader>-- --Óscar
 
 " tell pandoc plugin NOT to fold sections (by default)
 let g:pandoc_no_folding = 1
-
-function WriteTextMode()
-	" remember, visual select and gq to format manually!
-	set wrap
-	"set linebreak
-	set fo+=t
-	set fo-=a 
-	set fo+=n
-	"--> in pandoc (and Markdown) 2 trailing whitespaces mean <br/>
-	set fo-=w "trailing whitespace does NOT indicate end of paragraph
-	set tw=68
-endfunction
-
-function WriteLaTeXMode()
-	"set wrap
-	"set linebreak
-	set fo+=t
-	set fo+=l
-	set fo+=n
-	set fo+=w
-	set tw=80
-endfunction
+let g:pandoc_use_hard_wraps = 1
 
 if &diff
 	set t_Co=256
@@ -188,12 +158,16 @@ nnoremap <Leader>cc :!
 " (just pressing <CR> will run it)
 nnoremap <Leader>cp :! <up>
 
-" auto-justify selected text
-vnoremap <Leader>J Jgqgq
+" justify selected text
+vnoremap <Leader>Q Jgqgq
+
+" justify paragraph
+nnoremap Q gq}
 
 " and the automatic version for blank-line
 " delimited paragraphs
-nnoremap <Leader>j <Esc>{gqgqj<S-V>}kJgqgq
+"nnoremap <Leader>j <Esc>{gqgqj<S-V>}kJgqgq
+nnoremap <Leader>j <Esc>gq}
 
 " for mutt mail composing
 au BufNewFile,BufRead /tmp/mutt*  setf mail
@@ -203,6 +177,16 @@ au BufNewFile,BufRead /tmp/mutt*  startinsert
 "for status line
 set laststatus=2
 set wildmenu
+set statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
+hi StatusLine term=bold ctermfg=Red ctermbg=White gui=reverse,bold
+hi StatusLineNC term=bold ctermfg=LightGrey ctermbg=Black gui=reverse
+" now set it up to change the status line based on mode
+if version >= 700
+	"au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
+	au InsertEnter * hi StatusLine term=bold ctermfg=Blue ctermbg=White gui=undercurl guisp=Magenta
+	au InsertLeave * hi StatusLine term=bold ctermfg=Red ctermbg=White gui=reverse,bold
+endif
 
 " Vertical Split Buffer Function
 function VerticalSplitBuffer(buffer)
@@ -225,7 +209,10 @@ let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
 
 " settings for Tex-9
-let g:tex_flavor="luatex"
+let g:tex_nine_config = {
+			\'compiler': 'luatex',
+			\'viewer': {'app':'xdvi', 'target':'dvi'},
+		\}
 
 " for gundo
 nnoremap <F4> :GundoToggle<CR><CR>
@@ -233,4 +220,3 @@ nnoremap <F4> :GundoToggle<CR><CR>
 " for YankStack
 nmap <Leader>p <Plug>yankstack_substitute_older_paste
 nmap <Leader>P <Plug>yankstack_substitute_newer_paste
-
