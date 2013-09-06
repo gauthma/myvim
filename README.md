@@ -10,9 +10,10 @@ Requirements:
 Install:
 ---
 ```bash
-$ mkdir -p ~/.vim/bundle
+$ mkdir ~/.vim
 $ git clone git://github.com/gauthma/myvim.git ~/.vim
 $ ln -s ~/.vim/vimrc ~/.vimrc
+$ mkdir .vim/bundle
 $ git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 ```
 
