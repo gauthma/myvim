@@ -121,16 +121,6 @@ function WriteLaTeXMode()
 	set tw=80
 endfunction
 
-if &diff
-	set t_Co=256
-	set background=dark
-	colorscheme peaksea
-elseif has("gui_running")
-	colorscheme oceandeep
-else
-	colorscheme my_evening
-endif
-
 " toggle hex mode
 noremap <Leader>h :%!xxd<CR>
 noremap <Leader>nh :%!xxd -r<CR>
@@ -229,3 +219,20 @@ Bundle 'https://github.com/mikewest/vimroom.git'
 Bundle 'https://github.com/sjl/gundo.vim'
 "Bundle 'https://github.com/rson/vim-conque'
 Bundle 'https://github.com/dhallman/bufexplorer.git'
+Bundle 'git://github.com/altercation/vim-colors-solarized.git'
+
+" this has to come after loading solarized colorscheme
+if &diff
+	set t_Co=256
+	set background=dark
+	colorscheme peaksea
+elseif has("gui_running")
+	set guifont=Inconsolata-g\ 11
+	set background=dark
+	colorscheme solarized
+else
+	set background=dark
+	colorscheme solarized
+	"colorscheme my_evening
+endif
+
