@@ -6,10 +6,50 @@ let g:lisp_rainbow=1
 " to use vundle
 filetype off  " required!
 
-set rtp+=~/.vim/vundle.git/ 
+set rtp+=~/.vim/bundle/vundle/ 
 call vundle#rc()
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My VUNDLE plugin list
+" repos at github vim-script mirror of vim.org
+Bundle 'comment.vim'
+Bundle 'comments.vim'
+Bundle 'The-NERD-tree'
+Bundle 'netrw.vim'
+Bundle 'superSnipMate'
+Bundle 'surround.vim'
+Bundle 'DoxygenToolkit.vim'
+Bundle 'vim-pandoc'
+Bundle 'slimv.vim'
+Bundle 'TeX-9' 
+
+Bundle 'https://github.com/mikewest/vimroom.git'
+Bundle 'https://github.com/sjl/gundo.vim'
+Bundle 'https://github.com/scrooloose/nerdcommenter'
+Bundle 'https://github.com/dhallman/bufexplorer.git'
+Bundle 'https://github.com/maxbrunsfeld/vim-yankstack'
+Bundle 'git://github.com/altercation/vim-colors-solarized.git'
 
 filetype plugin indent on  " required!
+
+" Themes
+" this has to come after loading solarized colorscheme
+" (last Bundle line)
+if &diff
+	set t_Co=256
+	set background=dark
+	colorscheme peaksea
+elseif has("gui_running")
+	set guifont=Inconsolata-g\ 11
+	set background=dark
+	colorscheme solarized
+else
+	set background=dark
+	colorscheme solarized
+	"colorscheme my_evening
+endif
 
 """ buffers
 set hidden
@@ -80,7 +120,7 @@ set hlsearch        " highlight searches
 set incsearch       " do incremental searching
 
 " toggle set paste
-nmap <Leader>p :set paste<CR>"+P:set nopaste<CR>
+nmap <Leader>ep :set paste<CR>"+P:set nopaste<CR>
 
 " gui font (XXX remove this? I never use GUI these days...)
 set gfn=Monospace\ 10
@@ -88,6 +128,7 @@ set gfn=Monospace\ 10
 "for current date
 iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
 iab ttime <C-R>=strftime("%H:%M")<CR>
+iab <Leader>-- --Óscar
 
 "tex file highlight 80
 au BufEnter *.tex call WriteLaTeXMode()
@@ -108,7 +149,7 @@ function WriteTextMode()
 	set fo+=n
 	"--> in pandoc (and Markdown) 2 trailing whitespaces mean <br/>
 	set fo-=w "trailing whitespace does NOT indicate end of paragraph
-	set tw=80
+	set tw=68
 endfunction
 
 function WriteLaTeXMode()
@@ -146,7 +187,6 @@ nnoremap <silent> ,/ :let @/=""<CR>
 
 " sudo to the rescue! Do :ww and you write in sudo mode! 
 command! -bar -nargs=0 W2 :silent exe "write !sudo tee % >/dev/null" | silent edit!
-cnoremap ww W2
 
 " brings up command prompt in vim
 nnoremap <Leader>cc :! 
@@ -161,11 +201,6 @@ vnoremap <Leader>J Jgqgq
 " and the automatic version for blank-line
 " delimited paragraphs
 nnoremap <Leader>j <Esc>{gqgqj<S-V>}kJgqgq
-
-" for mail spell checking (et al.) -- someday this will be a function, that
-" takes into account the filetype, and sets aspell accordingly
-vnoremap <M-F5> :w! /tmp/aspell:'<,'>d:!aspell check -l en_GB /tmp/aspell<Esc>k:r /tmp/aspell
-vnoremap <M-F6> :w! /tmp/aspell:'<,'>d:!aspell check -l pt_PT /tmp/aspell<Esc>k:r /tmp/aspell
 
 " for mutt mail composing
 au BufNewFile,BufRead /tmp/mutt*  setf mail
@@ -197,42 +232,12 @@ let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
 
 " settings for Tex-9
-let g:tex_flavor="xetex"
+let g:tex_flavor="luatex"
 
 " for gundo
 nnoremap <F4> :GundoToggle<CR><CR>
 
-" VUNDLE plugin list
-" repos at github vim-script mirror of vim.org
-Bundle 'comment.vim'
-Bundle 'comments.vim'
-Bundle 'The-NERD-tree'
-Bundle 'netrw.vim'
-Bundle 'superSnipMate'
-Bundle 'surround.vim'
-Bundle 'DoxygenToolkit.vim'
-Bundle 'vim-pandoc'
-Bundle 'slimv.vim'
-Bundle 'TeX-9'
-
-Bundle 'https://github.com/mikewest/vimroom.git'
-Bundle 'https://github.com/sjl/gundo.vim'
-"Bundle 'https://github.com/rson/vim-conque'
-Bundle 'https://github.com/dhallman/bufexplorer.git'
-Bundle 'git://github.com/altercation/vim-colors-solarized.git'
-
-" this has to come after loading solarized colorscheme
-if &diff
-	set t_Co=256
-	set background=dark
-	colorscheme peaksea
-elseif has("gui_running")
-	set guifont=Inconsolata-g\ 11
-	set background=dark
-	colorscheme solarized
-else
-	set background=dark
-	colorscheme solarized
-	"colorscheme my_evening
-endif
+" for YankStack
+nmap <Leader>p <Plug>yankstack_substitute_older_paste
+nmap <Leader>P <Plug>yankstack_substitute_newer_paste
 
