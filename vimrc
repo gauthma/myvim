@@ -71,6 +71,15 @@ nnoremap <Leader>0 :10b<CR>
 
 set statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
+" change status line when in insert mode
+if version >= 700
+	"au InsertEnter * hi StatusLine term=None ctermbg=5 gui=undercurl guisp=Magenta
+	"au InsertLeave * hi StatusLine term=None ctermfg=0 ctermbg=2 gui=bold,reverse
+	" XXX TODO do this for GUI 
+	au InsertEnter * hi StatusLine term=None ctermfg=Red  
+	au InsertLeave * hi StatusLine term=None ctermfg=LightCyan
+endif
+
 """ misc
 " disable cursorline in netrw (scp et al. over vim)
 let g:netrw_cursorline = 0 

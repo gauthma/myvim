@@ -35,3 +35,5 @@ set fo+=l
 set fo+=n
 set fo+=w
 set tw=80
+
+iab --- \textemdash
