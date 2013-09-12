@@ -36,4 +36,7 @@ set fo+=n
 set fo+=w
 set tw=80
 
-iab --- \textemdash
+" The next map ensures that LaTeX breaks (hyphenates) words either immediately
+" before or immediately after an em-dash. 
+" NOTE: this line must end with ONE space.
+inoremap --- \textemdash 
