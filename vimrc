@@ -32,6 +32,7 @@ Bundle 'https://github.com/scrooloose/nerdcommenter'
 Bundle 'https://github.com/dhallman/bufexplorer.git'
 Bundle 'https://github.com/maxbrunsfeld/vim-yankstack'
 Bundle 'git://github.com/altercation/vim-colors-solarized.git'
+Bundle 'git://github.com/klen/python-mode.git'
 
 filetype plugin indent on  " required!
 
@@ -76,8 +77,8 @@ if version >= 700
 	"au InsertEnter * hi StatusLine term=None ctermbg=5 gui=undercurl guisp=Magenta
 	"au InsertLeave * hi StatusLine term=None ctermfg=0 ctermbg=2 gui=bold,reverse
 	" XXX TODO do this for GUI 
-	au InsertEnter * hi StatusLine term=None ctermfg=Red  
-	au InsertLeave * hi StatusLine term=None ctermfg=LightCyan
+	"au InsertEnter * hi StatusLine term=None ctermfg=Red  
+	"au InsertLeave * hi StatusLine term=None ctermfg=LightCyan
 endif
 
 """ misc
@@ -196,7 +197,7 @@ nnoremap k gk
 " clear search highlights
 nnoremap <silent> ,/ :let @/=""<CR>
 
-" sudo to the rescue! Do :ww and you write in sudo mode! 
+" sudo to the rescue! Do :W2 and you write in sudo mode! 
 command! -bar -nargs=0 W2 :silent exe "write !sudo tee % >/dev/null" | silent edit!
 
 " brings up command prompt in vim
@@ -253,4 +254,3 @@ nnoremap <F4> :GundoToggle<CR><CR>
 " for YankStack
 nmap <Leader>p <Plug>yankstack_substitute_older_paste
 nmap <Leader>P <Plug>yankstack_substitute_newer_paste
-
