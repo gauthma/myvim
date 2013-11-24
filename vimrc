@@ -23,8 +23,9 @@ Bundle 'surround.vim'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'vim-pandoc'
 Bundle 'slimv.vim'
-Bundle 'TeX-9' 
+"Bundle 'TeX-9' 
 
+Bundle 'http://www.chem.helsinki.fi/~eatoivan/tex_nine.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
 Bundle 'https://github.com/sjl/gundo.vim'
 Bundle 'https://github.com/scrooloose/nerdcommenter'
@@ -42,13 +43,14 @@ if &diff
 	set background=dark
 	colorscheme peaksea
 elseif has("gui_running")
+	" gui font (get it here: https://aur.archlinux.org/packages/ttf-inconsolata-g)
+
 	set guifont=Inconsolata-g\ 11
 	set background=dark
 	colorscheme solarized
 else
 	set background=dark
 	colorscheme solarized
-	"colorscheme my_evening
 endif
 
 """ buffers
@@ -68,6 +70,15 @@ nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 
 set statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
+" change status line when in insert mode
+if version >= 700
+	"au InsertEnter * hi StatusLine term=None ctermbg=5 gui=undercurl guisp=Magenta
+	"au InsertLeave * hi StatusLine term=None ctermfg=0 ctermbg=2 gui=bold,reverse
+	" XXX TODO do this for GUI 
+	"au InsertEnter * hi StatusLine term=None ctermfg=Red  
+	"au InsertLeave * hi StatusLine term=None ctermfg=LightCyan
+endif
 
 """ misc
 " disable cursorline in netrw (scp et al. over vim)
@@ -122,12 +133,11 @@ set incsearch       " do incremental searching
 " toggle set paste
 nmap <Leader>ep :set paste<CR>"+P:set nopaste<CR>
 
-" gui font (XXX remove this? I never use GUI these days...)
-set gfn=Monospace\ 10
-
 "for current date
 iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
 iab ttime <C-R>=strftime("%H:%M")<CR>
+
+" adapt as needed
 iab <Leader>-- --Óscar
 
 "tex file highlight 80
@@ -139,6 +149,7 @@ au WinEnter *.pdc call WriteTextMode()
 
 " tell pandoc plugin NOT to fold sections (by default)
 let g:pandoc_no_folding = 1
+let g:pandoc_use_hard_wraps = 1
 
 function WriteTextMode()
 	" remember, visual select and gq to format manually!
@@ -185,7 +196,7 @@ nnoremap k gk
 " clear search highlights
 nnoremap <silent> ,/ :let @/=""<CR>
 
-" sudo to the rescue! Do :ww and you write in sudo mode! 
+" sudo to the rescue! Do :W2 and you write in sudo mode! 
 command! -bar -nargs=0 W2 :silent exe "write !sudo tee % >/dev/null" | silent edit!
 
 " brings up command prompt in vim
@@ -195,12 +206,11 @@ nnoremap <Leader>cc :!
 " (just pressing <CR> will run it)
 nnoremap <Leader>cp :! <up>
 
-" auto-justify selected text
-vnoremap <Leader>J Jgqgq
+" justify selected text
+vnoremap <Leader>Q Jgqgq
 
-" and the automatic version for blank-line
-" delimited paragraphs
-nnoremap <Leader>j <Esc>{gqgqj<S-V>}kJgqgq
+" justify paragraph
+nnoremap Q gq}
 
 " for mutt mail composing
 au BufNewFile,BufRead /tmp/mutt*  setf mail
@@ -232,7 +242,10 @@ let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
 
 " settings for Tex-9
-let g:tex_flavor="luatex"
+let g:tex_nine_config = {
+			\'compiler': 'luatex',
+			\'viewer': {'app':'xdvi', 'target':'dvi'},
+		\}
 
 " for gundo
 nnoremap <F4> :GundoToggle<CR><CR>
@@ -240,4 +253,3 @@ nnoremap <F4> :GundoToggle<CR><CR>
 " for YankStack
 nmap <Leader>p <Plug>yankstack_substitute_older_paste
 nmap <Leader>P <Plug>yankstack_substitute_newer_paste
-
