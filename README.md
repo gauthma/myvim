@@ -1,6 +1,6 @@
 My vim configuration
 ===
-The name pretty much says it all. Note that besides the "master" branch -- which is for everyday use -- there is also the "devel" branch, which is where I do my vim-experiments!
+The name pretty much says it all. 
 
 Requirements:
 ---
