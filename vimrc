@@ -6,10 +6,10 @@ let g:lisp_rainbow=1
 " to use vundle
 filetype off  " required!
 
-set rtp+=~/.vim/bundle/vundle/ 
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " My VUNDLE plugin list
@@ -23,7 +23,8 @@ Bundle 'surround.vim'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'vim-pandoc'
 Bundle 'slimv.vim'
-"Bundle 'TeX-9' 
+Bundle 'bling/vim-airline'
+"Bundle 'TeX-9'
 
 Bundle 'http://www.chem.helsinki.fi/~eatoivan/tex_nine.git'
 Bundle 'https://github.com/mikewest/vimroom.git'
@@ -45,7 +46,6 @@ if &diff
 	colorscheme peaksea
 elseif has("gui_running")
 	" gui font (get it here: https://aur.archlinux.org/packages/ttf-inconsolata-g)
-
 	set guifont=Inconsolata-g\ 11
 	set background=dark
 	colorscheme solarized
@@ -70,20 +70,9 @@ nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 
-set statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-
-" change status line when in insert mode
-if version >= 700
-	"au InsertEnter * hi StatusLine term=None ctermbg=5 gui=undercurl guisp=Magenta
-	"au InsertLeave * hi StatusLine term=None ctermfg=0 ctermbg=2 gui=bold,reverse
-	" XXX TODO do this for GUI 
-	"au InsertEnter * hi StatusLine term=None ctermfg=Red  
-	"au InsertLeave * hi StatusLine term=None ctermfg=LightCyan
-endif
-
 """ misc
 " disable cursorline in netrw (scp et al. over vim)
-let g:netrw_cursorline = 0 
+let g:netrw_cursorline = 0
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
@@ -126,7 +115,7 @@ set nostartofline   " try to leave cursor in same column when going up and down.
 set nojoinspaces    " when joining lines, never put two spaces after .,?! et al
 set foldmethod=marker
 
-""" search 
+""" search
 set noignorecase    " DO NOT ignore case when searching -> best default
 set hlsearch        " highlight searches
 set incsearch       " do incremental searching
@@ -144,7 +133,7 @@ iab <Leader>-- --Óscar
 "tex file highlight 80
 au BufEnter *.tex call WriteLaTeXMode()
 au WinEnter *.tex call WriteLaTeXMode()
-" and set the mode for pandoc 
+" and set the mode for pandoc
 au BufEnter *.pdc call WriteTextMode()
 au WinEnter *.pdc call WriteTextMode()
 
@@ -157,7 +146,7 @@ function WriteTextMode()
 	set wrap
 	"set linebreak
 	set fo+=t
-	set fo-=a 
+	set fo-=a
 	set fo+=n
 	"--> in pandoc (and Markdown) 2 trailing whitespaces mean <br/>
 	set fo-=w "trailing whitespace does NOT indicate end of paragraph
@@ -197,11 +186,11 @@ nnoremap k gk
 " clear search highlights
 nnoremap <silent> ,/ :let @/=""<CR>
 
-" sudo to the rescue! Do :W2 and you write in sudo mode! 
+" sudo to the rescue! Do :W2 and you write in sudo mode!
 command! -bar -nargs=0 W2 :silent exe "write !sudo tee % >/dev/null" | silent edit!
 
 " brings up command prompt in vim
-nnoremap <Leader>cc :! 
+nnoremap <Leader>cc :!
 
 " brings up cmd prompt, filled with the last executed command
 " (just pressing <CR> will run it)
@@ -224,13 +213,13 @@ set wildmenu
 
 " Vertical Split Buffer Function
 function VerticalSplitBuffer(buffer)
-    execute "vert belowright sb" a:buffer 
+	execute "vert belowright sb" a:buffer
 endfunction
 
 " Vertical Split Buffer Mapping - call like :Vb <buf-num>
 command -nargs=1 Vb call VerticalSplitBuffer(<f-args>)
 
-" NerdTree 
+" NerdTree
 noremap <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
 noremap <leader>e :NERDTreeFind<CR>
 nnoremap <leader>nt :NERDTreeFind<CR>
@@ -254,3 +243,8 @@ nnoremap <F4> :GundoToggle<CR><CR>
 " for YankStack
 nmap <Leader>p <Plug>yankstack_substitute_older_paste
 nmap <Leader>P <Plug>yankstack_substitute_newer_paste
+
+let g:pymode_lint_write = 0 " TODO see wtf this can't be set in ftplugin plugin!
+
+" vim-air
+let g:airline#extensions#whitespace#checks = [ ]
