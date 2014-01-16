@@ -55,8 +55,8 @@ endif
 
 """ buffers
 set hidden
-nnoremap <Leader>b :buffers<CR>:buffer<Space>
-nnoremap <Leader>d :bdelete<CR>
+nnoremap <Leader>bb :ls<CR>:buffer<Space>
+nnoremap <Leader>dd :bdelete<CR>
 
 nnoremap <Leader>1 :1b<CR>
 nnoremap <Leader>2 :2b<CR>
@@ -242,6 +242,10 @@ nnoremap <F4> :GundoToggle<CR><CR>
 " for YankStack
 nmap <Leader>p <Plug>yankstack_substitute_older_paste
 nmap <Leader>P <Plug>yankstack_substitute_newer_paste
+
+call yankstack#setup()
+" needed to make visual mode selection work in vim-surround
+nunmap S
 
 let g:pymode_lint_write = 0 " TODO see wtf this can't be set in ftplugin plugin!
 
