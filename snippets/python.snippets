@@ -1,0 +1,8 @@
+snippet pdb
+	import pdb; pdb.set_trace()
+
+# TODO multiple open modes?
+snippet woas
+	with open('${1:filename}') as f:
+		for line in f:
+			${2:# code...}

@@ -3,42 +3,11 @@ let g:mapleader = ","
 let g:maplocalleader = ";"
 let g:lisp_rainbow=1
 
-" to use vundle
-filetype off  " required!
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-" My VUNDLE plugin list
-" repos at github vim-script mirror of vim.org
-Bundle 'comment.vim'
-Bundle 'comments.vim'
-Bundle 'The-NERD-tree'
-Bundle 'netrw.vim'
-Bundle 'superSnipMate'
-Bundle 'surround.vim'
-Bundle 'DoxygenToolkit.vim'
-Bundle 'vim-pandoc'
-Bundle 'slimv.vim'
-Bundle 'bling/vim-airline'
-
-Bundle 'http://www.chem.helsinki.fi/~eatoivan/tex_nine.git'
-Bundle 'https://github.com/mikewest/vimroom.git'
-Bundle 'https://github.com/sjl/gundo.vim'
-Bundle 'https://github.com/scrooloose/nerdcommenter'
-Bundle 'https://github.com/dhallman/bufexplorer.git'
-Bundle 'https://github.com/maxbrunsfeld/vim-yankstack'
-Bundle 'git://github.com/altercation/vim-colors-solarized.git'
-Bundle 'git://github.com/klen/python-mode.git'
-
+execute pathogen#infect()
 filetype plugin indent on  " required!
 
 " Themes
 " this has to come after loading solarized colorscheme
-" (last Bundle line)
 if &diff
 	set t_Co=256
 	set background=dark
@@ -55,8 +24,7 @@ endif
 
 """ buffers
 set hidden
-nnoremap <Leader>bb :ls<CR>:buffer<Space>
-nnoremap <Leader>dd :bdelete<CR>
+nnoremap <Leader>d :bdelete<CR>
 
 nnoremap <Leader>1 :1b<CR>
 nnoremap <Leader>2 :2b<CR>
@@ -162,6 +130,9 @@ function WriteLaTeXMode()
 	set tw=80
 endfunction
 
+" toggle relative line numbers
+nnoremap <C-L><C-L> :set invrelativenumber<CR>
+
 " toggle hex mode
 noremap <Leader>h :%!xxd<CR>
 noremap <Leader>nh :%!xxd -r<CR>
@@ -181,6 +152,12 @@ noremap <right> <nop>
 
 nnoremap j gj
 nnoremap k gk
+
+" also, switching windows is easier like this
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
 
 " clear search highlights
 nnoremap <silent> ,/ :let @/=""<CR>
@@ -206,17 +183,9 @@ au BufNewFile,BufRead /tmp/mutt*  setf mail
 au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68
 au BufNewFile,BufRead /tmp/mutt*  startinsert
 
-"for status line
+"for status line (vim-air)
 set laststatus=2
 set wildmenu
-
-" Vertical Split Buffer Function
-function VerticalSplitBuffer(buffer)
-	execute "vert belowright sb" a:buffer
-endfunction
-
-" Vertical Split Buffer Mapping - call like :Vb <buf-num>
-command -nargs=1 Vb call VerticalSplitBuffer(<f-args>)
 
 " NerdTree
 noremap <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
@@ -239,15 +208,8 @@ let g:tex_nine_config = {
 " for gundo
 nnoremap <F4> :GundoToggle<CR><CR>
 
-" for YankStack
-nmap <Leader>p <Plug>yankstack_substitute_older_paste
-nmap <Leader>P <Plug>yankstack_substitute_newer_paste
-
-call yankstack#setup()
-" needed to make visual mode selection work in vim-surround
-nunmap S
-
-let g:pymode_lint_write = 0 " TODO see wtf this can't be set in ftplugin plugin!
+"let g:pymode_lint_write = 0 " TODO see wtf this can't be set in ftplugin plugin!
 
 " vim-air
 let g:airline#extensions#whitespace#checks = [ ]
+
