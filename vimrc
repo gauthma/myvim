@@ -208,8 +208,6 @@ let g:tex_nine_config = {
 " for gundo
 nnoremap <F4> :GundoToggle<CR><CR>
 
-"let g:pymode_lint_write = 0 " TODO see wtf this can't be set in ftplugin plugin!
-
 " vim-air
 let g:airline#extensions#whitespace#checks = [ ]
 
