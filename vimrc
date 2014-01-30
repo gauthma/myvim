@@ -131,7 +131,8 @@ function WriteLaTeXMode()
 endfunction
 
 " toggle relative line numbers
-nnoremap <C-L><C-L> :set invrelativenumber<CR>
+nnoremap <Leader>m :set invrelativenumber<CR>
+"nnoremap <C-M><C-M> :set invrelativenumber<CR>
 
 " toggle hex mode
 noremap <Leader>h :%!xxd<CR>
@@ -158,6 +159,7 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+map <c-i> <c-w>r
 
 " clear search highlights
 nnoremap <silent> ,/ :let @/=""<CR>
@@ -173,7 +175,7 @@ nnoremap <Leader>cc :!
 nnoremap <Leader>cp :! <up>
 
 " justify selected text
-vnoremap <Leader>Q Jgqgq
+vnoremap <Leader>Q Jgqgq<Esc>:set nornu<CR>
 
 " justify paragraph
 nnoremap Q gq}
@@ -211,3 +213,18 @@ nnoremap <F4> :GundoToggle<CR><CR>
 " vim-air
 let g:airline#extensions#whitespace#checks = [ ]
 
+let g:slimv_swank_cmd = '! sbcl --load ~/.vim/bundle/slimv.vim/slime/start-swank.lisp &'
+
+nnoremap <silent> v v:<C-u>set nonu rnu<CR>gv
+nnoremap <silent> V V:<C-u>set nonu rnu<CR>gv
+nnoremap <silent> <C-v> <C-v>:<C-u>set nonu rnu<CR>gv
+
+vnoremap <Esc> <Esc>:set nornu<CR>
+"autocmd CursorMoved * if mode() !~# "[vV\<C-v>]" | set nornu | endif
+"
+"Adapted from here:
+"https://stackoverflow.com/questions/13344987/how-can-i-activate-relative-line-numbering-in-and-only-in-vims-visual-mode
+"
+" I commented out the autocmd CursorMoved because makes moving the mouse 
+" with the arrows too slow. It still works, as long as exits visual mode 
+" using the <Esc> key... otherwise, there's always Ctrl-L...

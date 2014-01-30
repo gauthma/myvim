@@ -23,31 +23,21 @@ function! s:TexQuotes()
 endfunction
 inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
 
-" Mapping for LaTeX, Kyle-style!
+" Mapping for LaTeX, Kyle-style: F5 - BiBTeX, F6 -> compile, F7 -> view in
+" okular, F8 -> full compile, F9 -> clean aux files
 " Notes: 
+" - Vim must ALWAYS be launched from the folder where the Makefile (and the
+"   main *.tex file) are located -- otherwise the shortcuts b0rk, for obvious
+"   reasons (they won't be able to find the Makefile)
 " - when running LuaTeX (<F6> mapping), --shell-escape is needed to
 "   allow it to invoke external programs, e.g. gnuplot when using Tikz to plot
 "   functions
 "
-" - the cleaning map was changed from <Leader>c to <F4> because, for some
-"   reason, leader in *.tex files yields no output... Also, the .gnuplot and
-"   .table files are generated when using gnuplot as described above.
-"
-nnoremap <F5> :execute '! cd ' . shellescape("%:p:h") . ' ; bibtex ' . shellescape("%:r")<CR>
-inoremap <F6> <Esc>:w<CR>: execute '! cd ' . shellescape("%:p:h") . '; lualatex --debug-format --interaction=nonstopmode --shell-escape ' . shellescape("%:t")<CR>
-nnoremap <F6> <Esc>:w<CR>: execute '! cd ' . shellescape("%:p:h") . '; lualatex --debug-format --interaction=nonstopmode --shell-escape ' . shellescape("%:t")<CR>
-nnoremap <F7> :execute '! okular &> /dev/null ' . shellescape("%<.pdf") . '&'<CR>
-nnoremap <F8> :execute '! cd '. shellescape("%:p:h") . '; rm -f *.{dvi,ps,pdf,aux,log,out,toc,gnuplot,table,bbl,blg} ; echo "Clean up done"'<CR>
-nnoremap <silent> <F10> :call FullDocumentGeneration()<CR>
+nnoremap <F5> :execute '! make bib'<CR>
+nnoremap <F6> <Esc>:w<CR>: execute '! make all'<CR>
+nnoremap <silent> <F7> :execute '! make viewer'<CR>
+nnoremap <silent> <F8> :execute '! make full'<CR>
+nnoremap <F9> :execute '! make clean'<CR>
 
-" TODO eventually figure out a way of avoiding that after calling this
-" function (which gets executed in the shell), the control flow get
-" automatically to vim (no "press enter to continue", as per usual shell
-" commands ran with :! )
-function! FullDocumentGeneration()
-	execute "normal \<F6>"
-	execute "normal \<F5>"
-	execute "normal \<F6>"
-	execute "normal \<F6>"
-endfunction
-
+"nunmap <F2> " I use this for NERDTree
+noremap <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>

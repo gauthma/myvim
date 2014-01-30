@@ -1,5 +1,3 @@
-source ~/.vim/customizations/spell_checking.vim
-
 " auto-wrap active by default
 let s:auto_line_wrap_disabled = 0
 autocmd InsertEnter * set formatoptions+=a 

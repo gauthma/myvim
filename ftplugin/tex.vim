@@ -1,5 +1,3 @@
-source ~/.vim/customizations/spell_checking.vim
-
 " Reformat lines (getting the spacing correct) {{{
 fun! TeX_fmt()
 	if (getline(".") != "")
@@ -26,7 +24,8 @@ fun! TeX_fmt()
 endfun
 " }}}
 
-nmap Q :call TeX_fmt()<CR>
+" TeX_fmt() enters visual mode, which causes relative line numbers to be " shown...
+nmap Q :call TeX_fmt()<CR><Esc>:set nornu<CR>
 
 "set wrap
 "set linebreak

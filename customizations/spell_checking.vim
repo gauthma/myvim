@@ -1,6 +1,6 @@
 " for spell checking 
-vnoremap <M-F5> :call SpellCheck("en", GetAspellMode())<cr>
-vnoremap <M-F6> :call SpellCheck("pt", GetAspellMode())<cr>
+noremap <M-F5> :'<,'>call SpellCheck("en", GetAspellMode())<cr>
+noremap <M-F6> :'<,'>call SpellCheck("pt", GetAspellMode())<cr>
 
 function! GetAspellMode()
 	let l:filetype=&filetype
