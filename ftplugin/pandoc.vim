@@ -1,7 +1,7 @@
 " auto-wrap active by default
 let s:auto_line_wrap_disabled = 0
-autocmd InsertEnter * set formatoptions+=a 
-autocmd InsertLeave * set formatoptions-=a
+autocmd InsertEnter <buffer> set formatoptions+=a 
+autocmd InsertLeave <buffer> set formatoptions-=a
 
 nnoremap <Leader>aw :call Toggle_auto_line_wrap()<CR>
 
