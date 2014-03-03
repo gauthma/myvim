@@ -14,7 +14,7 @@ if &diff
 	colorscheme peaksea
 elseif has("gui_running")
 	" gui font (get it here: https://aur.archlinux.org/packages/ttf-inconsolata-g)
-	set guifont=Inconsolata-g\ 11
+	set guifont=Inconsolata-g\ 12
 	set background=dark
 	colorscheme solarized
 else
@@ -60,10 +60,10 @@ au BufNewFile,BufRead  modprobe.conf    set syntax=modconf
 
 """ tab stuff
 set noexpandtab
-set softtabstop=2
-set tabstop=2       " numbers of spaces of tab character
-set shiftwidth=2    " numbers of spaces to (auto)indent
-set smarttab        " use shiftwidth when inserting Tab in line start
+set softtabstop =2
+set tabstop     =2      " numbers of spaces of tab character
+set shiftwidth  =2      " numbers of spaces to (auto)indent
+set smarttab            " use shiftwidth when inserting Tab in line start
 
 " and about VIM tabs
 set tabpagemax=200 " XXX this might be removed in the future
@@ -159,7 +159,7 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
-map <c-i> <c-w>r
+map <c-y> <c-w>r
 
 " clear search highlights
 nnoremap <silent> ,/ :let @/=""<CR>
@@ -201,10 +201,14 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
 
+" settings for Conque (terminal in vim split)
+let g:ConqueTerm_EscKey = '<C-O>'
+let g:ConqueTerm_InsertOnEnter = 1
+
 " settings for Tex-9
 let g:tex_nine_config = {
-			\'compiler': 'luatex',
-			\'viewer': {'app':'xdvi', 'target':'dvi'},
+			\'compiler': 'make',
+			\'viewer': {'app':'okular', 'target':'pdf'},
 		\}
 
 " for gundo
@@ -212,8 +216,6 @@ nnoremap <F4> :GundoToggle<CR><CR>
 
 " vim-air
 let g:airline#extensions#whitespace#checks = [ ]
-
-let g:slimv_swank_cmd = '! sbcl --load ~/.vim/bundle/slimv.vim/slime/start-swank.lisp &'
 
 nnoremap <silent> v v:<C-u>set nonu rnu<CR>gv
 nnoremap <silent> V V:<C-u>set nonu rnu<CR>gv
