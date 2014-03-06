@@ -37,6 +37,14 @@ nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 
+" Vertical Split Buffer Function
+function VerticalSplitBuffer(buffer)
+	execute "vert belowright sb" a:buffer 
+endfunction
+
+" Vertical Split Buffer Mapping
+command -nargs=1 Vbuffer call VerticalSplitBuffer(<f-args>)
+
 """ misc
 " disable cursorline in netrw (scp et al. over vim)
 let g:netrw_cursorline = 0
