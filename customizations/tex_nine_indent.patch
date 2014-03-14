@@ -1,0 +1,38 @@
+--- tex_nine/indent/tex.vim	2014-03-13 22:17:28.562308375 +0000
++++ tex_nine/indent/tex.vim	2014-03-14 12:02:29.961915473 +0000
+@@ -39,18 +39,20 @@
+     let line = getline(lnum)             " first line in the current range
+     let cline = getline(v:lnum)          " current line
+ 
+-    if line =~ '^\s*%'
+-        return ind " Do not change indentation of commented lines.
+-    endif
+-
+     let openingpat = '\\\(begin\|section\*\=\|paragraph\*\=\)\(\[.\+\]\)\={\(.*\)}'
+     let endpat = '\\\(end\|section\*\=\|paragraph\*\=\)\(\[.\+\]\)\={\(.*\)}'
+-    let excluded = 'begin{document}\|begin{verbatim}\|end{document}\|end{verbatim}'
++    let excluded_begin= '\cbegin{document}\|begin{.*verbatim.*}'
++    let excluded_end= '\cend{document}\|end{.*verbatim.*}' " the \c is to support fancyvrb verbatim, et al...
++
++		" When we inside an excluded environment, use no indentation
++		if line =~ excluded_begin && cline !~ excluded_end 
++        return 0
++		endif
+ 
+     " Add/remove a 'shiftwidth' after an environment begins/ends.
+     " Add an additional 'shiftwidth' when entering a list and when typing in
+     " an item of a list. 
+-    if line =~ openingpat && line !~ excluded
++    if line =~ openingpat 
+         let ind += &sw
+ 
+         " Add another sw for item-environments
+@@ -60,7 +62,7 @@
+     endif
+ 
+     " Subtract a 'shiftwidth' when an environment ends
+-    if cline =~ endpat && cline !~ excluded
++    if cline =~ endpat 
+         let ind -= &sw
+         " Remove another sw for item-environments
+         if cline =~ 'itemize\|description\|enumerate\|thebibliography\|parts' 

@@ -215,6 +215,7 @@ let g:ConqueTerm_InsertOnEnter = 1
 
 " settings for Tex-9
 let g:tex_nine_config = {
+			\'debug' : 1,
 			\'compiler': 'make',
 			\'viewer': {'app':'okular', 'target':'pdf'},
 		\}
