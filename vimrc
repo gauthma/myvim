@@ -213,9 +213,10 @@ let NERDTreeKeepTreeInNewTab=1
 let g:ConqueTerm_EscKey = '<C-O>'
 let g:ConqueTerm_InsertOnEnter = 1
 
-" settings for Tex-9
+" settings for Tex-9. Add the below line to the config
+" to enable debug output.
+"	  	\'debug' : 1,
 let g:tex_nine_config = {
-			\'debug' : 1,
 			\'compiler': 'make',
 			\'viewer': {'app':'okular', 'target':'pdf'},
 		\}
