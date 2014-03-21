@@ -1,5 +1,6 @@
 " auto-wrap active by default
 let s:auto_line_wrap_disabled = 0
+let g:pandoc_syntax_dont_use_conceal_for_rules = [ "dashes", "list" ]
 
 nnoremap <Leader>aw :call Toggle_auto_line_wrap()<CR>
 

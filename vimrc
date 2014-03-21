@@ -102,9 +102,6 @@ nmap <Leader>ep :set paste<CR>"+P:set nopaste<CR>
 iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
 iab ttime <C-R>=strftime("%H:%M")<CR>
 
-" adapt as needed
-iab <Leader>-- --Óscar
-
 "tex file highlight 80
 au BufEnter *.tex call WriteLaTeXMode()
 au WinEnter *.tex call WriteLaTeXMode()
@@ -119,7 +116,9 @@ let g:pandoc_use_hard_wraps = 1
 function WriteTextMode()
 	" remember, visual select and gq to format manually!
 	set wrap
-	"set linebreak
+	set linebreak
+	set nolist
+	set autoindent
 	set fo+=t
 	set fo-=a
 	set fo+=n
@@ -129,8 +128,9 @@ function WriteTextMode()
 endfunction
 
 function WriteLaTeXMode()
-	"set wrap
-	"set linebreak
+	set wrap
+	set linebreak
+	set autoindent
 	set fo+=t
 	set fo+=l
 	set fo+=n
@@ -151,13 +151,6 @@ nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 
 " and other files
 nnoremap <silent> <leader>ssh :e ~/.ssh/config<CR>
-
-" AHAHAHAAH :-D
-" Use the damn hjkl keys
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
 
 nnoremap j gj
 nnoremap k gk
@@ -190,8 +183,8 @@ nnoremap Q gq}
 
 " for mutt mail composing
 au BufNewFile,BufRead /tmp/mutt*  setf mail
-au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68
-au BufNewFile,BufRead /tmp/mutt*  startinsert
+"au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68
+"au BufNewFile,BufRead /tmp/mutt*  startinsert
 
 "for status line (vim-air)
 set laststatus=2
