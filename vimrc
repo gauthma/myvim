@@ -178,6 +178,10 @@ nnoremap <Leader>cp :! <up>
 " justify selected text
 vnoremap <Leader>Q Jgqgq<Esc>:set nornu<CR>
 
+" for easier copy/paste from the system clipboard
+vnoremap <Leader>y "+y
+nnoremap <Leader>p "+p
+
 " justify paragraph
 nnoremap Q gq}
 
