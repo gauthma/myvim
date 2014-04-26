@@ -165,9 +165,6 @@ map <c-y> <c-w>r
 " clear search highlights
 nnoremap <silent> ,/ :let @/=""<CR>
 
-" sudo to the rescue! Do :W2 and you write in sudo mode!
-command! -bar -nargs=0 W2 :silent exe "write !sudo tee % >/dev/null" | silent edit!
-
 " brings up command prompt in vim
 nnoremap <Leader>cc :!
 
