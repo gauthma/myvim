@@ -92,8 +92,9 @@ set foldmethod=marker
 
 """ search
 set noignorecase    " DO NOT ignore case when searching -> best default
-set hlsearch        " highlight searches
 set incsearch       " do incremental searching
+set nohlsearch      " DO NOT highlight searches (but allow F5 to toggle -- see next line)
+nnoremap <F5> :set invhlsearch<CR>
 
 " toggle set paste
 nmap <Leader>ep :set paste<CR>"+P:set nopaste<CR>
@@ -161,6 +162,10 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 map <c-y> <c-w>r
+
+" and make splitting more natural
+set splitbelow
+set splitright
 
 " clear search highlights
 nnoremap <silent> ,/ :let @/=""<CR>
