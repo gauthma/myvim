@@ -195,6 +195,7 @@ au BufNewFile,BufRead /tmp/mutt*  setf mail
 "for status line (vim-air)
 set laststatus=2
 set wildmenu
+let g:airline_section_z = "%3p%% :%4l:%3v "
 
 " NerdTree
 noremap <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
