@@ -18,7 +18,7 @@ Install:
 bash $ mkdir -p ~/.vim/autoload ~/.vim/bundle; $
 curl -Sso ~/.vim/autoload/pathogen.vim \
 			 https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-			 ```
+```
 
 Next you need to install the plugins. Here's the list I use (adapt
 as needed):
