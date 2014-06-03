@@ -156,6 +156,10 @@ nnoremap <silent> <leader>ssh :e ~/.ssh/config<CR>
 nnoremap j gj
 nnoremap k gk
 
+" manual solution for parenthesis et al. completion: 
+" insert both, and then hit <left>, with a "closer" shortcut
+inoremap <C-h> <left>
+
 " also, switching windows is easier like this
 map <c-j> <c-w>j
 map <c-k> <c-w>k
