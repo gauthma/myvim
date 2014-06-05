@@ -156,9 +156,11 @@ nnoremap <silent> <leader>ssh :e ~/.ssh/config<CR>
 nnoremap j gj
 nnoremap k gk
 
-" manual solution for parenthesis et al. completion: 
-" insert both, and then hit <left>, with a "closer" shortcut
+" Manual solution for parenthesis et al. completion: 
+" insert both, and then hit <left>, with a "closer" shortcut.
+" The "right" shortcut is for when you want to continue past the delimiter.
 inoremap <C-h> <left>
+inoremap <C-l> <right>
 
 " also, switching windows is easier like this
 map <c-j> <c-w>j
