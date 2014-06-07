@@ -34,3 +34,9 @@ set fo+=l
 set fo+=n
 set fo+=w
 set tw=80
+
+" custom TeX text object for inline math
+vnoremap am vF$vf$
+onoremap am :normal vam<CR>
+vnoremap im vF$lvf$h
+onoremap im :normal vim<CR>
