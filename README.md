@@ -39,6 +39,7 @@ as needed):
 - vim-colors-solarized
 - vim-eunuch
 - vim-pandoc-syntax
+- vim-repeat
 - vimroom
 
 And presto, it's ready to use. Feedback on improvements is always welcome. Enjoy!
