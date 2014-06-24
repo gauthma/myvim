@@ -99,7 +99,7 @@ nnoremap <F5> :set invhlsearch<CR>
 " toggle set paste
 nmap <Leader>ep :set paste<CR>"+P:set nopaste<CR>
 
-"for current date
+" helpers
 iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
 iab ttime <C-R>=strftime("%H:%M")<CR>
 
@@ -246,3 +246,8 @@ vnoremap <Esc> <Esc>:set nornu<CR>
 " I commented out the autocmd CursorMoved because makes moving the mouse 
 " with the arrows too slow. It still works, as long as exits visual mode 
 " using the <Esc> key... otherwise, there's always Ctrl-L...
+
+func Eatchar(pat)
+	let c = nr2char(getchar(0))       
+	return (c =~ a:pat) ? '' : c      
+endfunc
