@@ -246,8 +246,3 @@ vnoremap <Esc> <Esc>:set nornu<CR>
 " I commented out the autocmd CursorMoved because makes moving the mouse 
 " with the arrows too slow. It still works, as long as exits visual mode 
 " using the <Esc> key... otherwise, there's always Ctrl-L...
-
-func Eatchar(pat)
-	let c = nr2char(getchar(0))       
-	return (c =~ a:pat) ? '' : c      
-endfunc

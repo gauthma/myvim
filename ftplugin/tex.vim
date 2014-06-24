@@ -40,6 +40,3 @@ vnoremap am vF$vf$
 onoremap am :normal vam<CR>
 vnoremap im vF$lvf$h
 onoremap im :normal vim<CR>
-
-" for documents with lots of inline verbatim
-iab <silent> ++ \verb!!<Left><C-R>=Eatchar('\s')<CR>
