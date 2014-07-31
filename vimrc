@@ -97,7 +97,7 @@ set nohlsearch      " DO NOT highlight searches (but allow F5 to toggle -- see n
 nnoremap <F5> :set invhlsearch<CR>
 
 " toggle set paste
-nmap <Leader>ep :set paste<CR>"+P:set nopaste<CR>
+set pastetoggle=<F12>
 
 " helpers
 iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>

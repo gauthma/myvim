@@ -26,9 +26,9 @@ as needed):
 - bufexplorer
 - DoxygenToolkit.vim
 - gundo.vim
-- vim-commentary
-- netrw.vim
 - paredit
+- vim-commentary
+- scss-syntax.vim -> https://github.com/cakebaker/scss-syntax.vim.git
 - slimv.vim
 - snipMate
 - surround.vim
