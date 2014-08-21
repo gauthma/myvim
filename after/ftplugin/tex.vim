@@ -1,7 +1,18 @@
-" TeX-9 "helpfully" changes this...
+" TeX-9 "helpfully" changes some of this... so dump it all inside after
 set softtabstop =2
 set tabstop     =2
 set shiftwidth  =2
+
+set wrap
+set linebreak
+set nolist
+set autoindent
+set fo+=t
+set fo+=l
+set fo+=n
+set fo+=w
+set tw=80
+
 
 " ... and this
 nnoremap <buffer> <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>

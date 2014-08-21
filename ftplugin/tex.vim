@@ -27,14 +27,6 @@ endfun
 " TeX_fmt() enters visual mode, which causes relative line numbers to be " shown...
 nmap Q :call TeX_fmt()<CR><Esc>:set nornu<CR>
 
-"set wrap
-"set linebreak
-set fo+=t
-set fo+=l
-set fo+=n
-set fo+=w
-set tw=80
-
 " custom TeX text object for inline math
 vnoremap am vF$vf$
 onoremap am :normal vam<CR>

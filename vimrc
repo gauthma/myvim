@@ -103,41 +103,9 @@ set pastetoggle=<F12>
 iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
 iab ttime <C-R>=strftime("%H:%M")<CR>
 
-"tex file highlight 80
-au BufEnter *.tex call WriteLaTeXMode()
-au WinEnter *.tex call WriteLaTeXMode()
-" and set the mode for pandoc
-au BufEnter *.pdc call WriteTextMode()
-au WinEnter *.pdc call WriteTextMode()
-
 " tell pandoc plugin NOT to fold sections (by default)
 let g:pandoc_no_folding = 1
 let g:pandoc_use_hard_wraps = 1
-
-function WriteTextMode()
-	" remember, visual select and gq to format manually!
-	set wrap
-	set linebreak
-	set nolist
-	set autoindent
-	set fo+=t
-	set fo-=a
-	set fo+=n
-	"--> in pandoc (and Markdown) 2 trailing whitespaces mean <br/>
-	set fo-=w "trailing whitespace does NOT indicate end of paragraph
-	set tw=68
-endfunction
-
-function WriteLaTeXMode()
-	set wrap
-	set linebreak
-	set autoindent
-	set fo+=t
-	set fo+=l
-	set fo+=n
-	set fo+=w
-	set tw=80
-endfunction
 
 " toggle relative line numbers
 nnoremap <Leader>m :set invrelativenumber<CR>
