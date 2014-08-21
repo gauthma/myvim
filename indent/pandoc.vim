@@ -32,9 +32,9 @@ function PandocIndent()
 	if lnum == 0 | return 0 
 	endif
 
-	let bulletpat = '^\s*\d\+\.\s'
+	let bulletpat = '^\s*\d\+\. '
 
-	let ind = indent(lnum)
+	let cur_ind = indent(v:lnum - 1)
 	let cline = getline(v:lnum)          " current line
 	
 	let j = 0 " (1)
@@ -57,7 +57,7 @@ function PandocIndent()
 		endif
 	endif
 
-	" return ind
+	return cur_ind " (4) by default return the indent of the previous line
 endfunction
 
 " returns the line number of the line that BEGINS 
@@ -91,12 +91,12 @@ endfunction
 "     22. foof sdf sdf sdf sadf asdf saf sdf sdf sf sdf sadf sdf sdf
 "         sdf sdf sdf sdf sdf sdf sdf asdf 
 "
-" To indent, we first discover the line where the current bullet starts (ie
-" where the number is). Then use matchend() to align subsequent lines in that
-" bullet. However, matchend() does NOT handle tabs (it counts them as one
-" char, which screws alignment), so we must calculate the needed amount of
-" space for each tab (1), and then replace tabs for spaces before calculating
-" the amount of indent space to return (2).
+" To indent a bullet list, we first discover the line where the current bullet
+" starts (ie where the number is). Then use matchend() to align subsequent
+" lines in that bullet. However, matchend() does NOT handle tabs (it counts
+" them as one char, which screws alignment), so we must calculate the needed
+" amount of space for each tab (1), and then replace tabs for spaces before
+" calculating the amount of indent space to return (2).
 "
 " The function BeginOfCurrentListItem() returns the line where the current
 " bullet begins. It discovers this by scanning lines upwards, until it finds
@@ -105,3 +105,5 @@ endfunction
 " with /pattern/ also as bullet items. So a line that matches the /pattern/ is
 " a bullet if it is the 1st line in file, or if it has some indentation space
 " (see example snippet), or otherwise if the line above it is blank (3).
+"
+" To indent other lines we return the indentation of the previous line (4).
