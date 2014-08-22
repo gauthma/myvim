@@ -47,7 +47,7 @@ function PandocIndent()
 	endwhile
 
 	if pline =~ bulletpat &&
-				\ ( (getline(v:lnum -2) =~ '^\s*$') || (cur_ind > 0) ) " (3)
+				\ ( getline(v:lnum -2) =~ '^\s*$' || cur_ind > 0 ) " (3)
 		let pline = substitute(pline, "\t", aux, "g") " (2)
 		let idx = matchend(pline, bulletpat)
 
