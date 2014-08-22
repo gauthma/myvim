@@ -33,8 +33,10 @@ function PandocIndent()
 	endif
 
 	let bulletpat = '^\s*\d\+\. '
+	let footnotepat = '^\[\^\d\+\]: '
 
-	let cur_ind = indent(v:lnum - 1)
+	let cur_ind = indent(v:lnum - 1)     " indentation of previous line
+	let pline  = getline(v:lnum - 1)     " previous line
 	let cline = getline(v:lnum)          " current line
 	
 	let j = 0 " (1)
@@ -44,12 +46,11 @@ function PandocIndent()
 		let j +=1
 	endwhile
 
-	let start_of_bullet = BeginOfCurrentListItem(bulletpat) 
-	if start_of_bullet != -1
-		let line = substitute(getline(start_of_bullet), "\t", aux, "g") " (2)
+	if pline =~ bulletpat &&
+				\ ( (getline(v:lnum -2) =~ '^\s*$') || (cur_ind > 0) ) " (3)
+		let pline = substitute(pline, "\t", aux, "g") " (2)
+		let idx = matchend(pline, bulletpat)
 
-		let idx = matchend(line, bulletpat)
-		echo "idx " idx
 		if cline !~ bulletpat 
 			return idx
 		else
@@ -57,53 +58,51 @@ function PandocIndent()
 		endif
 	endif
 
+	if pline =~ footnotepat && " (5)
+				\ ( getline(v:lnum -2) =~ '^\s*$')
+		return &sw + &sw
+	endif
+
 	return cur_ind " (4) by default return the indent of the previous line
-endfunction
-
-" returns the line number of the line that BEGINS 
-" the current item list
-function BeginOfCurrentListItem(listpat)
-	let i = v:lnum
-	let lnum = prevnonblank(i-1)
-
-	while i >= lnum
-		let line = getline(i)
-		if line =~ a:listpat
-			if i == 0 || line =~ '^\s\+' " (3)
-				return i
-			else
-				let line = getline(i-1)
-				if line =~ '^\s*$'
-					return i
-				endif
-			endif
-		endif
-		let i -= 1
-	endwhile
-	return -1
 endfunction
 
 " DOCUMENTATION
 "
-" Rationale: Consider the		following code snippet (the 11 is at start of line):
+" Rationale: 
+"
+" BULLET LISTS # TODO other types of bullets...
+"
+" Consider the	following code snippet (the 11 is at start of line):
 " 11. fo sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf
 "     sdf sdf sdf sdf sdf
 "     22. foof sdf sdf sdf sadf asdf saf sdf sdf sf sdf sadf sdf sdf
 "         sdf sdf sdf sdf sdf sdf sdf asdf 
 "
-" To indent a bullet list, we first discover the line where the current bullet
-" starts (ie where the number is). Then use matchend() to align subsequent
-" lines in that bullet. However, matchend() does NOT handle tabs (it counts
+" To indent a bullet list, we check if we're on the first line of the bullet
+" (which contains the 1. or 2. or ...). If so, do not touch indentation. If
+" we're on the next line, then use matchend() to align with the start oftext
+" of the previous line. However, matchend() does NOT handle tabs (it counts
 " them as one char, which screws alignment), so we must calculate the needed
 " amount of space for each tab (1), and then replace tabs for spaces before
-" calculating the amount of indent space to return (2).
+" calculating the amount of indent space to return (2). On the next lines of a
+" bullet just return the indent of the previous line.
 "
-" The function BeginOfCurrentListItem() returns the line where the current
-" bullet begins. It discovers this by scanning lines upwards, until it finds
-" one that matches the pattern. Note that it is NOT enough to just match the
-" pattern though, because that will (erroneously) treat text lines that begin
-" with /pattern/ also as bullet items. So a line that matches the /pattern/ is
-" a bullet if it is the 1st line in file, or if it has some indentation space
-" (see example snippet), or otherwise if the line above it is blank (3).
+" The if condition (3) is to detect if we're on the second line of a bullet:
+" the previous line must match bulletpat and either 1) it has non-zero
+" indentation (meaning it is a nested bullet) or the line previous to *that*
+" is blank (first bullet of non-indent bullet list).
+"
+" FOOTNOTES
+"
+" Consider the snippet (zero indent on first line):
+"
+" [^1]: sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf
+"     sdf sdf 
+"
+" Markdown requires that all lines after first on footnote are indented with
+" four spaces. So we use a similar rational (5) for the second line of a
+" footnote. After that, like in the bullet case, the default applies.
+"
+" DEFAULT
 "
 " To indent other lines we return the indentation of the previous line (4).
