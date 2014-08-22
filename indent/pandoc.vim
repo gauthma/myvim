@@ -58,8 +58,8 @@ function PandocIndent()
 		endif
 	endif
 
-	if pline =~ footnotepat && " (5)
-				\ ( getline(v:lnum -2) =~ '^\s*$')
+	if pline =~ footnotepat && 
+				\ ( getline(v:lnum -2) =~ '^\s*$') " (5)
 		return &sw + &sw
 	endif
 
