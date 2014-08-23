@@ -14,7 +14,7 @@ nnoremap <Leader>o o<Esc>0i%<Esc>
 "   functions
 "
 nnoremap <F5> :execute '! make bib'<CR>
-nnoremap <F6> <Esc>:w<CR>: execute '! make all'<CR>
+nnoremap <F6> :execute '! make all'<CR>
 nnoremap <silent> <F7> :execute '! make viewer'<CR>
 nnoremap <silent> <F8> :execute '! make full'<CR>
 nnoremap <F9> :execute '! make clean'<CR>

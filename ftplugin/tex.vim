@@ -32,3 +32,16 @@ vnoremap am vF$vf$
 onoremap am :normal vam<CR>
 vnoremap im vF$lvf$h
 onoremap im :normal vim<CR>
+
+" Build TeX output on write of TeX source.
+autocmd BufWritePost *.tex call BuildOnWrite()
+
+" Run `make all` on background.
+" Obviously, ignore include files...
+function! BuildOnWrite()
+	let filename = expand("%:p:t")
+	if filename =~ '^inc_'
+		return
+	endif
+	call system("make all &")
+endfunction
