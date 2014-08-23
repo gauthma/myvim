@@ -35,12 +35,24 @@ onoremap im :normal vim<CR>
 
 " Build TeX output on write of TeX source.
 autocmd BufWritePost *.tex call BuildOnWrite()
+" but allow it to be disabled
+let s:auto_compile_on_save = 1 " enabled by default
+fun! Toggle_auto_compile_on_save()
+	if (s:auto_compile_on_save == 0)
+		let s:auto_compile_on_save = 1
+		echo "Auto compile on save ENABLED!"
+	elseif (s:auto_compile_on_save == 1)
+		let s:auto_compile_on_save = 0
+		echo "Auto compile on save DISABLED!"
+	endif
+endfun
+nnoremap <Leader>acs :call Toggle_auto_compile_on_save()<CR>
 
 " Run `make all` on background.
 " Obviously, ignore include files...
 function! BuildOnWrite()
 	let filename = expand("%:p:t")
-	if filename =~ '^inc_'
+	if s:auto_compile_on_save == 0 || filename =~ '^inc_'
 		return
 	endif
 	call system("make all &")
