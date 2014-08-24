@@ -1,6 +1,5 @@
 set nocompatible    " use vim defaults
-let g:mapleader = ","
-let g:maplocalleader = ";"
+let g:mapleader = "\\"
 let g:lisp_rainbow=1
 
 execute pathogen#infect()
@@ -94,7 +93,7 @@ set foldmethod=marker
 set noignorecase    " DO NOT ignore case when searching -> best default
 set incsearch       " do incremental searching
 set nohlsearch      " DO NOT highlight searches (but allow F5 to toggle -- see next line)
-nnoremap <F5> :set invhlsearch<CR>
+nnoremap <leader>\  :set invhlsearch<CR>
 
 " toggle set paste
 set pastetoggle=<F12>
@@ -140,9 +139,6 @@ map <c-y> <c-w>r
 " and make splitting more natural
 set splitbelow
 set splitright
-
-" clear search highlights
-nnoremap <silent> ,/ :let @/=""<CR>
 
 " brings up command prompt in vim
 nnoremap <Leader>cc :!
@@ -191,6 +187,7 @@ let g:ConqueTerm_InsertOnEnter = 1
 " to enable debug output.
 "	  	\'debug' : 1,
 let g:tex_nine_config = {
+			\'leader': ':',
 			\'compiler': 'make',
 			\'viewer': {'app':'okular', 'target':'pdf'},
 		\}

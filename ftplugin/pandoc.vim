@@ -48,6 +48,10 @@ autocmd BufEnter,BufNew *.pdc    vnoremap am vF$vf$
 
 onoremap am :normal vam<CR>
 
+" TeX-9 magic
+let g:maplocalleader = ":"
+inoremap <buffer> <LocalLeader><LocalLeader> <LocalLeader>
+
 " Greek
 inoremap <buffer> <LocalLeader>a \alpha
 inoremap <buffer> <LocalLeader>b \beta
