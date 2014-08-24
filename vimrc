@@ -1,5 +1,5 @@
 set nocompatible    " use vim defaults
-let g:mapleader = "\\"
+let g:mapleader = "&"
 let g:lisp_rainbow=1
 
 execute pathogen#infect()
@@ -93,7 +93,8 @@ set foldmethod=marker
 set noignorecase    " DO NOT ignore case when searching -> best default
 set incsearch       " do incremental searching
 set nohlsearch      " DO NOT highlight searches (but allow F5 to toggle -- see next line)
-nnoremap <leader>\  :set invhlsearch<CR>
+" toggle highlighting and incremental search
+nnoremap <leader><leader>  :set invhlsearch<CR>:set incsearch<CR>
 
 " toggle set paste
 set pastetoggle=<F12>
@@ -102,13 +103,8 @@ set pastetoggle=<F12>
 iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
 iab ttime <C-R>=strftime("%H:%M")<CR>
 
-" tell pandoc plugin NOT to fold sections (by default)
-let g:pandoc_no_folding = 1
-let g:pandoc_use_hard_wraps = 1
-
 " toggle relative line numbers
-nnoremap <Leader>m :set invrelativenumber<CR>
-"nnoremap <C-M><C-M> :set invrelativenumber<CR>
+nnoremap <Leader>r :set invrelativenumber<CR>
 
 " toggle hex mode
 noremap <Leader>h :%!xxd<CR>
