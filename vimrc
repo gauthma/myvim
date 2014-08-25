@@ -1,5 +1,5 @@
 set nocompatible    " use vim defaults
-let g:mapleader = "&"
+let g:mapleader = " "
 let g:lisp_rainbow=1
 
 execute pathogen#infect()
@@ -98,6 +98,10 @@ nnoremap <leader><leader>  :set invhlsearch<CR>:set incsearch<CR>
 
 " toggle set paste
 set pastetoggle=<F12>
+" for easier copy/paste from the system clipboard
+vnoremap <Leader>y "+y
+nnoremap <Leader>p "+p
+inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
 
 " helpers
 iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
@@ -146,10 +150,6 @@ nnoremap <Leader>cp :! <up>
 " justify selected text
 vnoremap <Leader>Q Jgqgq<Esc>:set nornu<CR>
 
-" for easier copy/paste from the system clipboard
-vnoremap <Leader>y "+y
-nnoremap <Leader>p "+p
-
 " justify paragraph
 nnoremap Q gq}
 
@@ -165,8 +165,7 @@ let g:airline_section_z = "%3p%% :%4l:%3v "
 
 " NerdTree
 noremap <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-noremap <leader>e :NERDTreeFind<CR>
-nnoremap <leader>nt :NERDTreeFind<CR>
+noremap <Leader>f :NERDTreeFind<CR>
 
 "let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
@@ -174,10 +173,6 @@ let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
-
-" settings for Conque (terminal in vim split)
-let g:ConqueTerm_EscKey = '<C-O>'
-let g:ConqueTerm_InsertOnEnter = 1
 
 " settings for Tex-9. Add the below line to the config
 " to enable debug output.
