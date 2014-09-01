@@ -13,7 +13,6 @@ set fo+=n
 set fo+=w
 set tw=80
 
-
 " ... and this
 nnoremap <buffer> <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
 nnoremap <buffer> <F4> :GundoToggle<CR><CR>
@@ -33,4 +32,5 @@ endfunction
 inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
 
 " I like \varepsilon better
-inoremap <buffer> <LocalLeader>e \varepsilon
+" XXX see why this required at all...
+inoremap <buffer> :e \varepsilon

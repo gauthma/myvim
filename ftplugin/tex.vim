@@ -25,7 +25,7 @@ endfun
 " }}}
 
 " TeX_fmt() enters visual mode, which causes relative line numbers to be " shown...
-nmap Q :call TeX_fmt()<CR><Esc>:set nornu<CR>
+nmap Q mq:call TeX_fmt()<CR><Esc>:set nornu<CR>`q
 
 " custom TeX text object for inline math
 vnoremap am vF$vf$
@@ -36,6 +36,8 @@ onoremap im :normal vim<CR>
 " Build TeX output on write of TeX source.
 autocmd BufWritePost *.tex call BuildOnWrite()
 " but allow it to be disabled
+nnoremap <Leader>acs :call Toggle_auto_compile_on_save()<CR>
+
 let s:auto_compile_on_save = 1 " enabled by default
 fun! Toggle_auto_compile_on_save()
 	if (s:auto_compile_on_save == 0)
@@ -46,14 +48,17 @@ fun! Toggle_auto_compile_on_save()
 		echo "Auto compile on save DISABLED!"
 	endif
 endfun
-nnoremap <Leader>acs :call Toggle_auto_compile_on_save()<CR>
 
 " Run `make all` on background.
 " Obviously, ignore include files...
 function! BuildOnWrite()
+	let s:tex_build_pid = system("pidof lualatex")
 	let filename = expand("%:p:t")
 	if s:auto_compile_on_save == 0 || filename =~ '^inc_'
 		return
+	endif
+	if s:tex_build_pid != ""
+		call system("kill -TERM " . s:tex_build_pid)
 	endif
 	call system("make all &")
 endfunction

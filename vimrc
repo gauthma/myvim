@@ -147,11 +147,12 @@ nnoremap <Leader>cc :!
 " (just pressing <CR> will run it)
 nnoremap <Leader>cp :! <up>
 
-" justify selected text
-vnoremap <Leader>Q Jgqgq<Esc>:set nornu<CR>
-
-" justify paragraph
-nnoremap Q gq}
+" justify current paragraph
+nnoremap <Leader>Q mqvipJgq}<Esc>:set nornu<CR>`q
+" justify selection, and put cursor in the end of last selected line
+vnoremap <Leader>Q Jgqgq<Esc>:set nornu<CR>`.$
+" justify paragraph, from current line onwards
+nnoremap Q mqgq}`q
 
 " for mutt mail composing
 au BufNewFile,BufRead /tmp/mutt*  setf mail
