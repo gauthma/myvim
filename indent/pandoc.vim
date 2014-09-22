@@ -1,5 +1,5 @@
 " Vim indent file
-" Language:     Pandoc
+" Language:     Markdown
 " Maintainer:   Óscar Pereira <oscar@erroneousthoughts.org>
 " Created:
 " Last Change:
@@ -9,7 +9,6 @@
 " Disable system wide indentation
 let b:did_indent = 1 
 
-" Control TeX-9 indentation
 if exists("b:did_pandoc_indent") | finish
 endif
 let b:did_pandoc_indent = 1
@@ -32,7 +31,8 @@ function PandocIndent()
 	if lnum == 0 | return 0 
 	endif
 
-	let bulletpat = '^\s*\d\+\. '
+	" matches bullets *, +. -, 1., 1)
+	let bulletpat = '^\s*\(\(\-\|\*\|+\)\{1} \)\|\(\d\+\(\.\|)\)\{1}\) '
 	let footnotepat = '^\[\^\d\+\]: '
 
 	let cur_ind = indent(v:lnum - 1)     " indentation of previous line
@@ -47,7 +47,7 @@ function PandocIndent()
 	endwhile
 
 	if pline =~ bulletpat &&
-				\ ( getline(v:lnum -2) =~ '^\s*$' || cur_ind > 0 ) " (3)
+				\ ( getline(v:lnum - 2) =~ '^\s*$' || cur_ind > 0 ) " (3)
 		let pline = substitute(pline, "\t", aux, "g") " (2)
 		let idx = matchend(pline, bulletpat)
 
@@ -70,7 +70,7 @@ endfunction
 "
 " Rationale: 
 "
-" BULLET LISTS # TODO other types of bullets...
+" BULLET LISTS
 "
 " Consider the	following code snippet (the 11 is at start of line):
 " 11. fo sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf

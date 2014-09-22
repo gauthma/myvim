@@ -103,10 +103,6 @@ vnoremap <Leader>y "+y
 nnoremap <Leader>p "+p
 inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
 
-" helpers
-iab ddate <C-R>=strftime("%A, %d of %B of %Y")<CR>
-iab ttime <C-R>=strftime("%H:%M")<CR>
-
 " toggle relative line numbers
 nnoremap <Leader>r :set invrelativenumber<CR>
 
@@ -189,6 +185,9 @@ nnoremap <F4> :GundoToggle<CR><CR>
 
 " vim-air
 let g:airline#extensions#whitespace#checks = [ ]
+
+" narrow region
+nmap <F3> <Plug>NrrwrgnWinIncr
 
 nnoremap <silent> v v:<C-u>set nonu rnu<CR>gv
 nnoremap <silent> V V:<C-u>set nonu rnu<CR>gv

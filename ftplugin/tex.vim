@@ -28,10 +28,10 @@ endfun
 nmap Q mq:call TeX_fmt()<CR><Esc>:set nornu<CR>`q
 
 " custom TeX text object for inline math
-vnoremap am vF$vf$
-onoremap am :normal vam<CR>
-vnoremap im vF$lvf$h
-onoremap im :normal vim<CR>
+vnoremap am vmq?\$<cr>v/\$<cr>
+onoremap am :normal vam<CR>`q
+vnoremap im vmq?\$<cr>lv/\$<cr>h
+onoremap im :normal vim<CR>`q
 
 " Build TeX output on write of TeX source.
 autocmd BufWritePost *.tex call BuildOnWrite()

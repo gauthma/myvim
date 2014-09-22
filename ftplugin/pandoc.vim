@@ -9,7 +9,7 @@ set wrap
 set linebreak
 set nolist
 set autoindent
-set tw=68
+set tw=72
 set fo+=t
 set fo+=l
 " --> fo=n makes vim treat lines that start with <number><space> as bullets...
@@ -33,20 +33,20 @@ fun! Toggle_auto_line_wrap()
 endfun
 
 " custom TeX text object for MathJax
-vnoremap im vF$lvf$h
-onoremap im :normal vim<CR>
+vnoremap im vmq?\$<cr>lv/\$<cr>h
+onoremap im :normal vim<CR>`q
 
 " files with these two extensions are edited with kramdown, 
 " for which math code must ALWAYS be enclosed in $$ <...> $$.
 " Thus I modified the outer math motion to catch both $$, at
 " the beginning and the end.
-autocmd BufEnter,BufNew *.markdown vnoremap am vF$hvllf$l
-autocmd BufEnter,BufNew *.md       vnoremap am vF$hvllf$l
+autocmd BufEnter,BufNew *.markdown vnoremap am vmq?\$<cr>hvll/\$<cr>l
+autocmd BufEnter,BufNew *.md       vnoremap am vmq?\$<cr>hvll/\$<cr>l
 
-autocmd BufEnter,BufNew *.pandoc vnoremap am vF$vf$
-autocmd BufEnter,BufNew *.pdc    vnoremap am vF$vf$
+autocmd BufEnter,BufNew *.pandoc vnoremap am vmq?\$<cr>v/\$<cr>
+autocmd BufEnter,BufNew *.pdc    vnoremap am vmq?\$<cr>v/\$<cr>
 
-onoremap am :normal vam<CR>
+onoremap am :normal vam<CR>`q
 
 " TeX-9 magic
 let g:maplocalleader = ":"
