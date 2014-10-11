@@ -17,6 +17,9 @@ set fo-=n
 " --> in pandoc (and Markdown) 2 trailing whitespaces mean <br/>
 set fo-=w
 
+" Asterisk is for bullet lists!
+setlocal comments=fb:*
+
 fun! Toggle_auto_line_wrap()
 	if (s:auto_line_wrap_disabled == 0)
 		let s:auto_line_wrap_disabled = 1

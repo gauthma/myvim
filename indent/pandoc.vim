@@ -17,7 +17,8 @@ setlocal indentexpr=PandocIndent()
 setlocal nolisp
 setlocal nosmartindent
 setlocal autoindent
-" setlocal indentkeys+=},=\\item,=\\bibitem " check this XXX
+" Vim has strict rules about this; for example, does NOT work with "* "
+" setlocal indentkeys+==+<space>,
 
 " Only define the function once
 if exists("*PandocIndent") | finish
@@ -46,12 +47,19 @@ function PandocIndent()
 		let j +=1
 	endwhile
 
+	" do not indent lines that begin bullets
+	if cline =~ bulletpat
+		return cur_ind
+	endif
+
 	if pline =~ bulletpat &&
-				\ ( getline(v:lnum - 2) =~ '^\s*$' || cur_ind > 0 ) " (3)
+				\ ( cur_ind > 0 || (getline(v:lnum - 2) =~ '^\s*$' ||
+		                      \ indent (v:lnum - 2) > 0 ||
+		                      \ getline(v:lnum - 2) =~ bulletpat)) " (3)
 		let pline = substitute(pline, "\t", aux, "g") " (2)
 		let idx = matchend(pline, bulletpat)
 
-		if cline !~ bulletpat 
+		if cline !~ bulletpat
 			return idx
 		else
 			return indent(cline)
@@ -89,15 +97,16 @@ endfunction
 "
 " The if condition (3) is to detect if we're on the second line of a bullet:
 " the previous line must match bulletpat and either 1) it has non-zero
-" indentation (meaning it is a nested bullet) or the line previous to *that*
-" is blank (first bullet of non-indent bullet list).
+" indentation (meaning it is a nested bullet) or the line previous to *that
+" previous line* is either a) blank b) has non-zero indent (i.e. is the last
+" of a previous bullet) or c) is a bullet.
 "
 " FOOTNOTES
 "
 " Consider the snippet (zero indent on first line):
 "
 " [^1]: sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf
-"     sdf sdf 
+" sdf sdf
 "
 " Markdown requires that all lines after first on footnote are indented with
 " four spaces. So we use a similar rational (5) for the second line of a

@@ -27,5 +27,37 @@ snippet La "Big left arrow"
 snippet pitem "Paused item"
 	{
 		\fadeFrom{${1:2}}{${2:80}}
-		\item ${3}
+		\pause \item ${3}
 	}
+# Part
+snippet part
+	\part{${1:part name}}
+	\label{prt:${2}}
+	${3}
+	% part $1 (end)
+# Chapter
+snippet cha
+	\chapter{${1:chapter name}}
+		\label{cha:${2}}
+		${3}
+	% chapter $1 (end)
+# Section
+snippet sec
+	\section{${1:section name}}
+		\label{sec:${2}}
+		${3}
+# Sub Section
+snippet sub
+	\subsection{${1:subsection name}}
+	\label{sub:${2}}
+	${3}
+# Sub Sub Section
+snippet subs
+	\subsubsection{${1:subsubsection name}}
+	\label{subs:${2}}
+	${3}
+# Paragraph
+snippet par
+	\paragraph{${1:paragraph name}}
+	\label{par:${2}}
+	${3}
