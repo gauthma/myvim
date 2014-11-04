@@ -7,11 +7,11 @@ Requirements:
 
 - The **TeX-9** plugin requires that vim be compiled with python
 	support. - My overall settings I use assume a slew of external
-	programms: aspell, luatex (lualatex), bibtex, sudo, etc. These are
-	not  strictly necessary to use my vim settings; they are just
-	programs that I use a lot, so they've ended up in my settings.
+	programs: aspell, luatex (lualatex), bibtex, sudo, etc. These are not
+	strictly necessary to use my vim settings; they are just programs that
+	I use a lot, so they've ended up in my settings.
 	
-Install:
+Install: 
 --- 
 
 ```

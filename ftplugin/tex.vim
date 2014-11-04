@@ -38,13 +38,13 @@ autocmd BufWritePost *.tex call BuildOnWrite()
 " but allow it to be disabled
 nnoremap <Leader>acs :call Toggle_auto_compile_on_save()<CR>
 
-let s:auto_compile_on_save = 1 " enabled by default
+let b:auto_compile_on_save = 1 " enabled by default
 fun! Toggle_auto_compile_on_save()
-	if (s:auto_compile_on_save == 0)
-		let s:auto_compile_on_save = 1
+	if (b:auto_compile_on_save == 0)
+		let b:auto_compile_on_save = 1
 		echo "Auto compile on save ENABLED!"
-	elseif (s:auto_compile_on_save == 1)
-		let s:auto_compile_on_save = 0
+	elseif (b:auto_compile_on_save == 1)
+		let b:auto_compile_on_save = 0
 		echo "Auto compile on save DISABLED!"
 	endif
 endfun
@@ -52,13 +52,13 @@ endfun
 " Run `make all` on background.
 " Obviously, ignore include files...
 function! BuildOnWrite()
-	let s:tex_build_pid = system("pidof lualatex")
+	let l:tex_build_pid = system("pidof lualatex")
 	let filename = expand("%:p:t")
-	if s:auto_compile_on_save == 0 || filename =~ '^inc_'
+	if b:auto_compile_on_save == 0 || filename =~ '^inc_'
 		return
 	endif
-	if s:tex_build_pid != ""
-		call system("kill -TERM " . s:tex_build_pid)
+	if l:tex_build_pid != ""
+		call system("kill -TERM " . l:tex_build_pid)
 	endif
 	call system("make all &")
 endfunction

@@ -143,6 +143,14 @@ nnoremap <Leader>cc :!
 " (just pressing <CR> will run it)
 nnoremap <Leader>cp :! <up>
 
+" Spell check toggling
+"" Switch Spellchecking English
+nnoremap <Leader>sse :setlocal spell spelllang=en<CR>
+"" Switch Spellchecking Portuguese
+nnoremap <Leader>ssp :setlocal spell spelllang=pt<CR>
+"" Switch Spellchecking None
+nnoremap <Leader>ssn :setlocal nospell<CR>
+
 " justify current paragraph
 nnoremap <Leader>Q mqvipJgq}<Esc>:set nornu<CR>`q
 " justify selection, and put cursor in the end of last selected line
@@ -155,7 +163,7 @@ au BufNewFile,BufRead /tmp/mutt*  setf mail
 "au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68
 "au BufNewFile,BufRead /tmp/mutt*  startinsert
 
-"for status line (vim-air)
+" for status line (vim-air)
 set laststatus=2
 set wildmenu
 let g:airline_section_z = "%3p%% :%4l:%3v "
