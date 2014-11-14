@@ -34,3 +34,7 @@ inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
 " I like \varepsilon better
 " XXX see why this required at all...
 inoremap <buffer> :e \varepsilon
+
+" for angle brackets
+inoremap :« \langle
+inoremap :» \rangle

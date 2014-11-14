@@ -46,8 +46,7 @@ onoremap im :normal vim<CR>`q
 autocmd BufEnter,BufNew *.markdown vnoremap am vmq?\$<cr>hvll/\$<cr>l
 autocmd BufEnter,BufNew *.md       vnoremap am vmq?\$<cr>hvll/\$<cr>l
 
-autocmd BufEnter,BufNew *.pandoc vnoremap am vmq?\$<cr>v/\$<cr>
-autocmd BufEnter,BufNew *.pdc    vnoremap am vmq?\$<cr>v/\$<cr>
+autocmd BufEnter,BufNew *.cmk vnoremap am vmq?\$<cr>v/\$<cr>
 
 onoremap am :normal vam<CR>`q
 
