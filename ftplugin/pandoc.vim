@@ -47,8 +47,20 @@ autocmd BufEnter,BufNew *.markdown vnoremap am vmq?\$<cr>hvll/\$<cr>l
 autocmd BufEnter,BufNew *.md       vnoremap am vmq?\$<cr>hvll/\$<cr>l
 
 autocmd BufEnter,BufNew *.cmk vnoremap am vmq?\$<cr>v/\$<cr>
+autocmd BufEnter,BufNew *.page vnoremap am vmq?\$<cr>v/\$<cr>
 
 onoremap am :normal vam<CR>`q
+
+" BEGIN gitit
+" To allow gitit *.page files to be edited in vim
+autocmd BufWritePost */wikidata/*.page call GitCommitOnWrite()
+
+function! GitCommitOnWrite()
+	let l:folder = expand('%:p:h')
+	let l:file = expand('%:t')
+	call system("cd " . shellescape(l:folder) . " ; git commit -m\"automated commit on save\" " . shellescape(l:file))
+endfunction
+" END gitit stuff
 
 " TeX-9 magic
 let g:maplocalleader = ":"
