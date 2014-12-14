@@ -72,7 +72,7 @@ inoremap <buffer> <LocalLeader>b \beta
 inoremap <buffer> <LocalLeader>c \chi
 inoremap <buffer> <LocalLeader>d \delta
 inoremap <buffer> <LocalLeader>e \varepsilon
-inoremap <buffer> <LocalLeader>f \phi
+inoremap <buffer> <LocalLeader>f \varphi
 inoremap <buffer> <LocalLeader>g \gamma
 inoremap <buffer> <LocalLeader>h \eta
 inoremap <buffer> <LocalLeader>k \kappa
