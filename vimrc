@@ -99,7 +99,7 @@ nnoremap <leader><leader>  :set invhlsearch<CR>:set incsearch<CR>
 " toggle set paste
 set pastetoggle=<F12>
 " for easier copy/paste from the system clipboard
-vnoremap <Leader>y "+y
+xnoremap <Leader>y "+y
 nnoremap <Leader>p "+p
 inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
 
