@@ -9,7 +9,7 @@ set nolist
 set autoindent
 set fo+=t
 set fo+=l
-set fo+=n
+set fo-=n               " TeX can handle its own numbered lists...
 set fo+=w
 set tw=80
 

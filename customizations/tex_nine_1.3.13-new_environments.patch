@@ -1,5 +1,5 @@
---- tex_nine/ftplugin/tex_nine/__init__.py	2014-03-13 22:17:28.562308375 +0000
-+++ tex_nine/ftplugin/tex_nine/__init__.py	2014-03-14 11:57:05.481913371 +0000
+--- ftplugin/tex_nine/__init__.py	2015-01-15 13:46:23.019961908 +0000
++++ ftplugin/tex_nine/__init__.py	2015-01-15 13:47:31.291082108 +0000
 @@ -282,7 +282,7 @@
                  e = messages['MASTER_NOT_ACTIVE'].format(path.basename(master))
                  raise TeXNineError(e)
@@ -14,7 +14,7 @@
      @TeXNineBase.multi_file
      def _labels(self, vimbuffer,
 -                pat=re.compile(r'\\label{(?P<label>[^,}]+)}|\\in(?:clude|put){(?P<fname>[^}]+)}')):
-+                pat=re.compile(r'\\label{(?P<label>[^,}]+)}|\\in(?:clude\*?|put){(?P<fname>[^}]+)}')):
++                pat=re.compile(r'\\label{(?P<label>[^,}]+)}|\\in(?:clude\*|put){(?P<fname>[^}]+)}')):
          """Labels for references.
  
          Searches \label{} statements in the master file and in
