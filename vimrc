@@ -120,9 +120,8 @@ noremap <Leader>nh :%!xxd -r<CR>
 
 " iQuickly edit/reload the vimrc file
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
-
 " and other files
-nnoremap <silent> <leader>ssh :e ~/.ssh/config<CR>
+source ~/.vim/customizations/shortcuts_for_files.vim
 
 nnoremap j gj
 nnoremap k gk
