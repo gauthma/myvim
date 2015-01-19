@@ -57,9 +57,17 @@ set ttyfast              " smoother usage by assuming fast connection to termina
 set writebackup          " write backups when overwriting files
 set nobackup             " but don't keep afer successful overwrite
 syntax on                " syntax highlighing
-au filetype help set nonumber                  " no line numbers when viewing help
-au filetype help nnoremap <buffer><cr> <c-]>   " Enter selects help subject
-au filetype help nnoremap <buffer><bs> <c-T>   " Backspace goes back
+autocmd filetype help set nonumber                  " no line numbers when viewing help
+autocmd filetype help nnoremap <buffer><cr> <c-]>   " Enter selects help subject
+autocmd filetype help nnoremap <buffer><bs> <c-T>   " Backspace goes back
+autocmd BufWinEnter * :call ExpandFoldsOnOpenFile()
+
+function! ExpandFoldsOnOpenFile()
+	if exists("b:did_initial_fold_expansion") | return
+	endif
+	let b:did_initial_fold_expansion = 1
+	normal(zR)
+endfunction
 
 " File formats
 au BufNewFile,BufRead  *.pls    set syntax=dosini
