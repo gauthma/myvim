@@ -165,11 +165,6 @@ vnoremap <Leader>Q Jgqgq<Esc>:set nornu<CR>`.$
 " justify paragraph, from current line onwards
 nnoremap Q mqgq}`q
 
-" for mutt mail composing
-au BufNewFile,BufRead /tmp/mutt*  setf mail
-"au BufNewFile,BufRead /tmp/mutt*  set ai et tw=68
-"au BufNewFile,BufRead /tmp/mutt*  startinsert
-
 " for status line (vim-air)
 set laststatus=2
 set wildmenu
