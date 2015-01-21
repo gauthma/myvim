@@ -60,15 +60,6 @@ syntax on                " syntax highlighing
 autocmd filetype help set nonumber                  " no line numbers when viewing help
 autocmd filetype help nnoremap <buffer><cr> <c-]>   " Enter selects help subject
 autocmd filetype help nnoremap <buffer><bs> <c-T>   " Backspace goes back
-autocmd BufWinEnter * :call ExpandFoldsOnOpenFile()
-
-function! ExpandFoldsOnOpenFile()
-	if exists("b:did_initial_fold_expansion") | return
-	endif
-	let b:did_initial_fold_expansion = 1
-	normal(zR)
-endfunction
-
 " File formats
 au BufNewFile,BufRead  *.pls    set syntax=dosini
 au BufNewFile,BufRead  modprobe.conf    set syntax=modconf

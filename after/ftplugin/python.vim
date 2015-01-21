@@ -8,3 +8,5 @@ normal m`:%s/\s\+$//e ``
 setlocal syntax=python
 
 set nonu
+
+source $HOME/.vim/customizations/ExpandFoldsOnOpenFile.vim
