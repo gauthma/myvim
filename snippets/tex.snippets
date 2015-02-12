@@ -32,11 +32,13 @@ snippet sli "Slide with title"
 	\begin{slide}
 		\Stripe{${1}}
 	\end{slide}
-snippet pitem "Paused item"
+snippet pitem "Presentation item"
 	{
-		\fadeFrom{${1:2}}{${2:80}}
-		\pause \item ${3}
+		\fadeTo{${1:1}}{${2:85}}
+		\fadeFrom{${3:3}}{${4:85}}
+		\item ${5}
 	}
+	\vfill
 # Part
 snippet part
 	\part{${1:part name}}

@@ -36,14 +36,6 @@ nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 
-" Vertical Split Buffer Function
-function VerticalSplitBuffer(buffer)
-	execute "vert belowright sb" a:buffer 
-endfunction
-
-" Vertical Split Buffer Mapping
-command -nargs=1 Vbuffer call VerticalSplitBuffer(<f-args>)
-
 """ misc
 " disable cursorline in netrw (scp et al. over vim)
 let g:netrw_cursorline = 0
@@ -175,7 +167,7 @@ let NERDTreeKeepTreeInNewTab=1
 
 " settings for Tex-9. Add the below line to the config
 " to enable debug output.
-"	  	\'debug' : 1,
+" \'debug' : 1,
 let g:tex_nine_config = {
 			\'leader': ':',
 			\'compiler': 'make',
