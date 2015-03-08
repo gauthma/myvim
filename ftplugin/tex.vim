@@ -43,10 +43,10 @@ let g:auto_compile_on_save = 1 " enabled by default
 fun! Toggle_auto_compile_on_save()
 	if (g:auto_compile_on_save == 0)
 		let g:auto_compile_on_save = 1
-		echo "Auto compile on save ENABLED!"
+		echo "Auto compile on save (*globally*) ENABLED!"
 	elseif (g:auto_compile_on_save == 1)
 		let g:auto_compile_on_save = 0
-		echo "Auto compile on save DISABLED!"
+		echo "Auto compile on save (*globally*) DISABLED!"
 	endif
 endfun
 
