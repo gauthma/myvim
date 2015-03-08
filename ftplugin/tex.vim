@@ -37,14 +37,15 @@ onoremap im :normal vim<CR>`q
 autocmd BufWritePost *.tex call BuildOnWrite()
 " but allow it to be disabled
 nnoremap <Leader>acs :call Toggle_auto_compile_on_save()<CR>
+nnoremap <Leader>klc :call KillallLaTeX()<CR>
 
-let b:auto_compile_on_save = 1 " enabled by default
+let g:auto_compile_on_save = 1 " enabled by default
 fun! Toggle_auto_compile_on_save()
-	if (b:auto_compile_on_save == 0)
-		let b:auto_compile_on_save = 1
+	if (g:auto_compile_on_save == 0)
+		let g:auto_compile_on_save = 1
 		echo "Auto compile on save ENABLED!"
-	elseif (b:auto_compile_on_save == 1)
-		let b:auto_compile_on_save = 0
+	elseif (g:auto_compile_on_save == 1)
+		let g:auto_compile_on_save = 0
 		echo "Auto compile on save DISABLED!"
 	endif
 endfun
@@ -52,13 +53,20 @@ endfun
 " Run `make all` on background.
 " Obviously, ignore include files...
 function! BuildOnWrite()
-	let l:tex_build_pid = system("pidof lualatex")
+	let l:tex_build_pid = system("make --silent get_compiler_pid") " TODO handle case of more than 1 pid returned
+	echom l:tex_build_pid
 	let filename = expand("%:p:t")
-	if b:auto_compile_on_save == 0 || filename =~ '^inc_'
+	if g:auto_compile_on_save == 0 || filename =~ '^inc_'
 		return
 	endif
 	if l:tex_build_pid != ""
-		call system("kill -TERM " . l:tex_build_pid)
+		echoerr "LaTeX compilation already running! Not interrupting..."
+		return
 	endif
 	call system("make all &")
+endfunction
+
+function! KillallLaTeX()
+	let l:tex_build_pid = system("make --silent get_compiler_pid") " TODO handle case of more than 1 pid returned
+	call system("kill -TERM " . l:tex_build_pid)
 endfunction

@@ -33,7 +33,7 @@ function PandocIndent()
 	endif
 
 	" matches bullets *, +. -, 1., 1)
-	let bulletpat = '^\s*\(\(\-\|\*\|+\)\{1} \)\|\(\d\+\(\.\|)\)\{1}\) '
+	let bulletpat = '\(^\s*\(\-\|\*\|+\)\{1} \)\|\(^\s*\d\+\(\.\|)\)\{1}\) '
 	let footnotepat = '^\[\^\d\+\]: '
 
 	let cur_ind = indent(v:lnum - 1)     " indentation of previous line
