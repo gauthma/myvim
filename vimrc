@@ -181,13 +181,14 @@ nnoremap <F4> :GundoToggle<CR><CR>
 let g:airline#extensions#whitespace#checks = [ ]
 
 " narrow region
+vmap <Leader>nn	<Leader>nr
 nmap <F3> <Plug>NrrwrgnWinIncr
 
-nnoremap <silent> v v:<C-u>set nonu rnu<CR>gv
-nnoremap <silent> V V:<C-u>set nonu rnu<CR>gv
-nnoremap <silent> <C-v> <C-v>:<C-u>set nonu rnu<CR>gv
+" nnoremap <silent> v v:<C-u>set nonu rnu<CR>gv
+" nnoremap <silent> V V:<C-u>set nonu rnu<CR>gv
+" nnoremap <silent> <C-v> <C-v>:<C-u>set nonu rnu<CR>gv
 
-vnoremap <Esc> <Esc>:set nornu<CR>
+" vnoremap <Esc> <Esc>:set nornu<CR>
 "autocmd CursorMoved * if mode() !~# "[vV\<C-v>]" | set nornu | endif
 "
 "Adapted from here:
