@@ -17,6 +17,9 @@ set fo-=n
 " --> in pandoc (and Markdown) 2 trailing whitespaces mean <br/>
 set fo-=w
 
+" avoid text right next to edge...
+set foldcolumn=1
+
 " Asterisk is for bullet lists!
 setlocal comments=fb:*
 

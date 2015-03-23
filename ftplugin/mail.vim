@@ -2,3 +2,5 @@
 setf mail
 set ai et tw=72
 startinsert
+
+set foldcolumn=1
