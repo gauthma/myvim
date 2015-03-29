@@ -1,3 +1,4 @@
+# TeX style (including math)
 snippet emp
 	\emph{${1}}${2}
 snippet tt "Typewriter Text"
@@ -16,6 +17,7 @@ snippet mi "Italic Math"
 	\mathit{${1}}${2}
 snippet mb "Blackboard Math"
 	\mathbb{${1}}${2}
+# Arrows
 snippet ra "Small right arrow"
 	\rightarrow
 snippet Ra "Big right arrow"
@@ -28,6 +30,18 @@ snippet x "math multiplication symbol"
 	\times
 snippet op "math XOR symbol"
 	\oplus
+# Custom math commands, adapted
+snippet abs "absolute value"
+	\left\lvert ${1} \right\rvert${2}
+snippet norm "norm of vector"
+	\left\lVert ${1} \right \rVert${2}
+snippet pth "normal parenthesis"
+	\left( ${1} \right )${2}
+snippet spth "square parenthesis"
+	\left[ ${1} \right ]${2}
+snippet cpth "curly brackets"
+	\left\{ ${1} \right\}${2}
+# Presentation
 snippet sli "Slide with title"
 	\begin{slide}
 		\Stripe{${1}}
