@@ -49,7 +49,10 @@ endfun
 
 " Run `make all` on background.
 " Obviously, ignore include files...
+" NOTA BENE: this assumes that the current dir is the same where 
+" the Makefile (and the main *.tex file) are.
 function! s:BuildOnWrite()
+	if !filereadable("Makefile") | return | endif
 	let l:tex_build_pid = system("make --silent get_compiler_pid") " TODO handle case of more than 1 pid returned
 	let filename = expand("%:p:t")
 	if g:auto_compile_on_save == 0 || filename =~ '^inc_'
