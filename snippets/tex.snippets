@@ -41,6 +41,31 @@ snippet spth "square parenthesis"
 	\left[ ${1} \right ]${2}
 snippet cpth "curly brackets"
 	\left\{ ${1} \right\}${2}
+# math environments
+snippet thm "theorem environment"
+	\begin{thm}
+		\label{thm:${1:label}}
+		${2:theorem}
+	\end{thm}
+snippet proof "theorem proof environment"
+	\begin{proof}
+		${1:proof}
+	\end{proof}
+snippet def "definition environment"
+	\begin{definition}
+		\label{def:${1:label}}
+		${2:definition}
+	\end{definition}
+snippet lemma "lemma environment"
+	\begin{lemma}
+		\label{lem:${1:label}}
+		${2:lemma}
+	\end{lemma}
+snippet corollary "corollary environment"
+	\begin{corollary}
+		\label{cor:${1:label}}
+		${2:corollary}
+	\end{corollary}
 # Presentation
 snippet sli "Slide with title"
 	\begin{slide}
