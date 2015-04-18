@@ -41,7 +41,6 @@ nnoremap <Leader>0 :10b<CR>
 let g:netrw_cursorline = 0
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.class
 set title                " show title in console title bar
 set visualbell           " don't beep
 set noerrorbells         " don't beep
@@ -148,6 +147,14 @@ vnoremap <Leader>Q Jgqgq<Esc>:set nornu<CR>`.$
 " justify paragraph, from current line onwards
 nnoremap Q mqgq}`q
 
+" (files) to be ignored...
+set wildignore+=*.o,*.a,*.bak,*.pyc,*.class
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+" add ctrlp's ignore list...
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
 " for status line (vim-air)
 set laststatus=2
 set wildmenu
@@ -183,6 +190,11 @@ let g:airline#extensions#whitespace#checks = [ ]
 " narrow region
 vmap <Leader>nn	<Leader>nr
 nmap <F3> <Plug>NrrwrgnWinIncr
+
+" tagbar side bar
+nnoremap <silent> <F12> :TagbarToggle<CR>
+" also, to be able to jump to tag definition
+nnoremap <leader>. :CtrlPTag<cr>
 
 " nnoremap <silent> v v:<C-u>set nonu rnu<CR>gv
 " nnoremap <silent> V V:<C-u>set nonu rnu<CR>gv

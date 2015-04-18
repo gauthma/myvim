@@ -21,22 +21,25 @@ curl -Sso ~/.vim/autoload/pathogen.vim \
 ```
 
 Next you need to install the plugins. Here's the list I use (adapt
-as needed):
+as needed). Do keep in mind that you need to run pathogen's `:Helptags`.
+This runs `:helptags <plugin/doc>` for each directory in your runtime
+path.
 
-- bufexplorer
-- DoxygenToolkit.vim
-- gundo.vim
-- paredit
-- vim-commentary
+- ctrlp
+- DoxygenToolkit
+- gundo
+- NrrwRgn
 - scss-syntax.vim -> https://github.com/cakebaker/scss-syntax.vim.git
-- slimv.vim
+- slimv
 - snipMate
-- surround.vim
+- surround
 - tabular
+- tagbar
 - tex_nine
 - The-NERD-tree
 - vim-airline
 - vim-colors-solarized
+- vim-commentary
 - vim-eunuch
 - vim-pandoc-syntax
 - vim-repeat
