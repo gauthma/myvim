@@ -150,7 +150,6 @@ nnoremap Q mqgq}`q
 " (files) to be ignored...
 set wildignore+=*.o,*.a,*.bak,*.pyc,*.class
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 " add ctrlp's ignore list...
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
