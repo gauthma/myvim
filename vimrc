@@ -1,6 +1,5 @@
 set nocompatible    " use vim defaults
-let g:mapleader = " "
-let g:lisp_rainbow=1
+let g:mapleader=" " " as it happens, <Space> does not work...
 
 execute pathogen#infect()
 filetype plugin indent on  " required!
@@ -35,6 +34,9 @@ nnoremap <Leader>7 :7b<CR>
 nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
+
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 
 """ misc
 " disable cursorline in netrw (scp et al. over vim)
