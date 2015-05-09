@@ -5,20 +5,20 @@ let g:pandoc#syntax#conceal#use = 0
 nnoremap <Leader>aw :call Toggle_auto_line_wrap()<CR>
 
 " remember, visual select and gq to format manually!
-set wrap
-set linebreak
-set nolist
-set autoindent
-set tw=72
-set fo+=t
-set fo+=l
+setlocal wrap
+setlocal linebreak
+setlocal nolist
+setlocal autoindent
+setlocal tw=72
+setlocal fo+=t
+setlocal fo+=l
 " --> fo=n makes vim treat lines that start with <number><space> as bullets...
-set fo-=n
+setlocal fo-=n
 " --> in pandoc (and Markdown) 2 trailing whitespaces mean <br/>
-set fo-=w
+setlocal fo-=w
 
 " avoid text right next to edge...
-set foldcolumn=1
+setlocal foldcolumn=1
 
 " Asterisk is for bullet lists!
 setlocal comments=fb:*

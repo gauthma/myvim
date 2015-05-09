@@ -1,17 +1,17 @@
 " TeX-9 "helpfully" changes some of this... so dump it all inside after
-set softtabstop =2
-set tabstop     =2
-set shiftwidth  =2
+setlocal softtabstop =2
+setlocal tabstop     =2
+setlocal shiftwidth  =2
 
-set wrap
-set linebreak
-set nolist
-set autoindent
-set fo+=t
-set fo+=l
-set fo-=n               " TeX can handle its own numbered lists...
-set fo+=w
-set tw=80
+setlocal wrap
+setlocal linebreak
+setlocal nolist
+setlocal autoindent
+setlocal fo+=t
+setlocal fo+=l
+setlocal fo-=n               " TeX can handle its own numbered lists...
+setlocal fo+=w
+setlocal tw=80
 
 " ... and this
 nnoremap <buffer> <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
