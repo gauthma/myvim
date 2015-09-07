@@ -1,21 +1,49 @@
-# TeX style (including math)
+# TeX style
 snippet emp
 	\emph{${1}}${2}
 snippet tt "Typewriter Text"
 	\texttt{${1}}${2}
-snippet frac
-	\frac{${1}}{${2}}${3}
 snippet bf "Bold Text"
 	\textbf{${1}}${2}
 snippet it "Italic Text"
 	\textit{${1}}${2}
-snippet mbo "Bold Math"
+
+#
+# Sectioning
+#
+# Chapter
+snippet cha
+	\chapter{${1:chapter name}}
+		\label{cha:${2}}
+		${3}
+	% chapter $1 (end)
+# Section
+snippet sec
+	\section{${1:section name}}
+		\label{sec:${2}}
+		${3}
+# Sub Section
+snippet sub
+	\subsection{${1:subsection name}}
+	\label{${2}}
+	${3}
+# Sub Sub Section
+snippet subs
+	\subsubsection{${1:subsubsection name}}
+	\label{${2}}
+	${3}
+
+#
+# Mathematics
+#
+# Style
+snippet mb "Bold Math"
 	\mathbf{${1}}${2}
 snippet mc "Math Caligraphy"
 	\mathcal{${1}}${2}
 snippet mi "Italic Math"
 	\mathit{${1}}${2}
-snippet mb "Blackboard Math"
+snippet mbb "Blackboard Math"
 	\mathbb{${1}}${2}
 # Arrows
 snippet ra "Small right arrow"
@@ -31,6 +59,8 @@ snippet x "math multiplication symbol"
 snippet op "math XOR symbol"
 	\oplus
 # Custom math commands, adapted
+snippet frac
+	\frac{${1}}{${2}}${3}
 snippet abs "absolute value"
 	\left\lvert ${1} \right\rvert${2}
 snippet norm "norm of vector"
@@ -41,7 +71,7 @@ snippet spth "square parenthesis"
 	\left[ ${1} \right ]${2}
 snippet cpth "curly brackets"
 	\left\{ ${1} \right\}${2}
-# math environments
+# Math environments (optional names are appended to "begin" line, in [ ])
 snippet thm "theorem environment"
 	\begin{thm}
 		\label{thm:${1:label}}
@@ -66,7 +96,10 @@ snippet corollary "corollary environment"
 		\label{cor:${1:label}}
 		${2:corollary}
 	\end{corollary}
+
+#
 # Presentation
+#
 snippet sli "Slide with title"
 	\begin{slide}
 		\Stripe{${1}}
@@ -78,35 +111,25 @@ snippet pitem "Presentation item"
 		\item ${5}
 	}
 	\vfill
-# Part
-snippet part
-	\part{${1:part name}}
-	\label{prt:${2}}
-	${3}
-	% part $1 (end)
-# Chapter
-snippet cha
-	\chapter{${1:chapter name}}
-		\label{cha:${2}}
-		${3}
-	% chapter $1 (end)
-# Section
-snippet sec
-	\section{${1:section name}}
-		\label{sec:${2}}
-		${3}
-# Sub Section
-snippet sub
-	\subsection{${1:subsection name}}
-	\label{sub:${2}}
-	${3}
-# Sub Sub Section
-snippet subs
-	\subsubsection{${1:subsubsection name}}
-	\label{subs:${2}}
-	${3}
-# Paragraph
-snippet par
-	\paragraph{${1:paragraph name}}
-	\label{par:${2}}
-	${3}
+
+#
+# Figures
+#
+snippet figure Custom figure for LaTeX #1
+	\begin{figure}
+		\centering
+		\includegraphics[scale=${1:1.0}]{${4}}
+		\caption{\label{fig:${2:label}} ${3:caption}}
+	\end{figure}
+
+#
+# Tables
+#
+snippet table Custom table for LaTeX #1
+	\begin{table}
+		\centering
+		\begin{tabular}{${3:c}}
+			${4}
+		\end{tabular}
+		\caption{\label{tab:${1:label}} ${2:caption}}
+	\end{table}

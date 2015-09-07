@@ -1,3 +1,11 @@
+"""" Settings for filetype=tex, that do *not* depend on TeX-9 (those are done
+"""" in after/ftplugin/tex.vim.
+""""
+"""" Defined maps:
+"""" - nnoremap <Leader>kal :call KillallLaTeX()<CR>
+"""" - command WaB write | call s:BuildOnWrite()
+"""" - cnoremap ww WaB
+
 " Reformat lines (getting the spacing correct) {{{
 fun! TeX_fmt()
 	if (getline(".") != "")
@@ -33,36 +41,46 @@ onoremap am :normal vam<CR>`q
 vnoremap im vmq?\$<cr>lv/\$<cr>h
 onoremap im :normal vim<CR>`q
 
-if !exists("g:auto_compile_on_save")
-	let g:auto_compile_on_save = 1 " enabled by default, unless already set
-endif
-
-function! Toggle_auto_compile_on_save()
-	if (g:auto_compile_on_save == 0)
-		let g:auto_compile_on_save = 1
-		echo "Auto compile on save (*globally*) ENABLED!"
-	elseif (g:auto_compile_on_save == 1)
-		let g:auto_compile_on_save = 0
-		echo "Auto compile on save (*globally*) DISABLED!"
-	endif
-endfun
-
 " Run `make all` on background.
 " Obviously, ignore include files...
-" NOTA BENE: this assumes that the current dir is the same where 
-" the Makefile (and the main *.tex file) are.
+" NOTA BENE: if a main TeX file exists, the Makefile is expected to exist in
+" the same directory.
 function! s:BuildOnWrite()
-	if !filereadable("Makefile") | return | endif
+	" Check pre-conditions to build file
 	let l:tex_build_pid = system("make --silent get_compiler_pid") " TODO handle case of more than 1 pid returned
-	let filename = expand("%:p:t")
-	if g:auto_compile_on_save == 0 || filename =~ '^inc_'
+	let l:filename = expand("%:p:t")
+	if l:filename =~ '^inc_'
 		return
 	endif
 	if l:tex_build_pid != ""
 		echoerr "LaTeX compilation already running! Not interrupting... (" . l:tex_build_pid . ")"
 		return
 	endif
+
+	" Get path of main TeX file, if it exists.
+	" To do so, check if exists "mainfile" modline, like so:
+	" % mainfile: ../thesis.tex
+	let l:mainfile = ""
+	let l:head = getline(1, 3)
+	for line in l:head
+		if line =~ '^%\s\+mainfile:\s\+\(\S\+\.tex\)'
+			let l:mainfile = matchstr(line, '\(\S\+\.tex\)')
+			break
+		endif
+	endfor
+
+	" Initially, set path of Makefile to path of current file
+	let l:makefile_path = expand("%:p:h")
+	" Then, append relative path of main TeX file, which if exists, is where
+	" Makefile must be
+	if mainfile !~ '^$' 
+		let l:makefile_path .= "/" . fnamemodify(l:mainfile, ":h") 
+	endif
+
+	if !filereadable(l:makefile_path . "/Makefile") | return | endif
+	execute 'lcd' fnameescape(l:makefile_path)
 	call system("make all &")
+	lcd -
 endfunction
 
 function! KillallLaTeX()
@@ -70,11 +88,6 @@ function! KillallLaTeX()
 	call system("kill -TERM " . l:tex_build_pid)
 endfunction
 
-" Build TeX output on write of TeX source...
-augroup BOW
-	autocmd!
-	autocmd BufWritePost * call s:BuildOnWrite()
-augroup END
-"... but allow it to be disabled
-nnoremap <Leader>acs :call Toggle_auto_compile_on_save()<CR>
-nnoremap <Leader>klc :call KillallLaTeX()<CR>
+nnoremap <Leader>kal :call KillallLaTeX()<CR>
+command! WaB write | call s:BuildOnWrite()
+cnoremap ww WaB

@@ -1,3 +1,11 @@
+"""" Customisations to TeX-9.
+
+if exists('g:maplocalleader')
+    let s:maplocalleader_saved = g:maplocalleader
+endif
+
+let g:maplocalleader = b:tex_nine_config.leader 
+
 " TeX-9 "helpfully" changes some of this... so dump it all inside after
 setlocal softtabstop =2
 setlocal tabstop     =2
@@ -15,6 +23,7 @@ setlocal tw=80
 
 " ... and this
 nnoremap <buffer> <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+nnoremap <buffer> <F3> <nop>
 nnoremap <buffer> <F4> :GundoToggle<CR><CR>
 
 " for LaTeX quotes
@@ -33,8 +42,18 @@ inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
 
 " I like \varepsilon better
 " XXX see why this required at all...
-inoremap <buffer> :e \varepsilon
+inoremap <buffer> <LocalLeader>e \varepsilon
 
 " for angle brackets
-inoremap :« \langle
-inoremap :» \rangle
+inoremap <LocalLeader>« \langle
+inoremap <LocalLeader>» \rangle
+
+imap <buffer><expr> <LocalLeader>A 'Code Snippet~' . tex_nine#SmartInsert('\ref{')
+imap <buffer><expr> <LocalLeader>H 'Figure~'       . tex_nine#SmartInsert('\ref{')
+imap <buffer><expr> <LocalLeader>J 'Table~'        . tex_nine#SmartInsert('\ref{')
+
+if exists('s:maplocalleader_saved')
+    let g:maplocalleader = s:maplocalleader_saved
+else
+    unlet g:maplocalleader
+endif
