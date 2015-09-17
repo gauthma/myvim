@@ -1,7 +1,7 @@
 """" Customisations to TeX-9.
 
 if exists('g:maplocalleader')
-    let s:maplocalleader_saved = g:maplocalleader
+	let s:maplocalleader_saved = g:maplocalleader
 endif
 
 let g:maplocalleader = b:tex_nine_config.leader 
@@ -29,14 +29,14 @@ nnoremap <buffer> <F4> :GundoToggle<CR><CR>
 " for LaTeX quotes
 " from auctex: https://github.com/vim-scripts/auctex.vim
 function! s:TexQuotes()
-    let insert = "''"
-    let left = getline('.')[col('.')-2]
-    if left =~ '^\(\|\s\)$'
-			let insert = '``'
-    elseif left == '\'
-			let insert = '"'
-    endif
-    return insert
+	let insert = "''"
+	let left = getline('.')[col('.')-2]
+	if left =~ '^\(\|\s\)$'
+		let insert = '``'
+	elseif left == '\'
+		let insert = '"'
+	endif
+	return insert
 endfunction
 inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
 
@@ -53,7 +53,7 @@ imap <buffer><expr> <LocalLeader>H 'Figure~'       . tex_nine#SmartInsert('\ref{
 imap <buffer><expr> <LocalLeader>J 'Table~'        . tex_nine#SmartInsert('\ref{')
 
 if exists('s:maplocalleader_saved')
-    let g:maplocalleader = s:maplocalleader_saved
+	let g:maplocalleader = s:maplocalleader_saved
 else
-    unlet g:maplocalleader
+	unlet g:maplocalleader
 endif

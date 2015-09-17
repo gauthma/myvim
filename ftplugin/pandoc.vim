@@ -134,3 +134,20 @@ inoremap <buffer> <LocalLeader>{ \left\{ \right\}<Esc>F a
 
 inoremap <buffer> ^^ ^{}<Esc>i
 inoremap <buffer> __ _{}<Esc>i
+inoremap <buffer> == &=
+
+function! s:BuildOnWrite() " TODO language en pt...
+	let l:filename = expand("%:p:t")
+	let l:filepath = expand("%:p:h")
+
+	" prevent gitit pages from being made into pdf...
+	if l:filename =~ 'page$' | return | endif
+
+	execute 'lcd' fnameescape(l:filepath)
+	call system("pandoc -Ss -r markdown ". l:filename ." -o ". l:filename .".pdf --latex-engine=xelatex &")
+	lcd -
+endfunction
+
+nnoremap <LocalLeader>V :silent ! okular %:p:h/%:p:t.pdf &> /dev/null &<CR>:redraw!<CR>
+command! WaB write | call s:BuildOnWrite()
+cnoremap ww WaB
