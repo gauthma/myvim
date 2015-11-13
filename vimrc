@@ -155,7 +155,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 " add ctrlp's ignore list...
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_working_path_mode = '0'
 
 " for status line (vim-air)
 set laststatus=2
