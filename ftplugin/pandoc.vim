@@ -148,6 +148,15 @@ function! s:BuildOnWrite() " TODO language en pt...
 	lcd -
 endfunction
 
-nnoremap <LocalLeader>V :silent ! okular %:p:h/%:p:t.pdf &> /dev/null &<CR>:redraw!<CR>
+function! s:OpenPDF(fpath)
+	if !empty(glob(a:fpath))
+		call system("okular " . a:fpath . "&> /dev/null &")
+		redraw!
+	else
+		echohl WarningMsg | echom("PDF does not exist! (" . a:fpath .")") | echohl None
+	endif
+endfunction
+
+nnoremap <LocalLeader>V :call <SID>OpenPDF(expand("%:p") . ".pdf")<CR>
 command! WaB write | call s:BuildOnWrite()
 cnoremap ww WaB
