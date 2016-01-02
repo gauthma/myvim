@@ -104,12 +104,13 @@ function! FormatTeXparagraphs()
 	let l:top = l:linenum
 	let l:bottom = l:linenum
 
-	" Get the line num where the current paragraph starts...
+	" While loop to get the line num where the current paragraph starts...
 	while l:top > 0
 		let currentLine = getline(l:top - 1)
 		" ... which is delimited by either a blank (or comment only) line, 
 		" or \begin, \label, etc. Note that it is unlikely that the function
-		" will be called when the cursor is actually ON one of these lines.
+		" will be called when the cursor is actually ON one of these lines --> so
+		" no need to make the function work on those cases.
 		if currentLine =~ '^\s*$\|^\s*%\+\s*$' ||
 					\ currentLine =~ '^\s*\\\(begin\|label\|\(sub\)\{0,2}section\|chapter\){.\+}.*$'
 			" If if-cond matches, paragraph begins at current value of l:top, so exit loop
@@ -118,12 +119,13 @@ function! FormatTeXparagraphs()
 		let l:top -=1
 	endwhile
 
-	" Get the line num where the current paragraph ends...
+	" While loop to get the line num where the current paragraph ends...
 	while l:bottom < line('$')
 		let currentLine = getline(l:bottom + 1)
-		" ... which is delimited by either a blank (or comment only) line, 
-		" or and \end command. Note that it is unlikely that the function
-		" will be called when the cursor is actually ON one of these lines.
+		" ... which is delimited by either a blank (or comment only) line, or
+		" and \end command. Note that it is unlikely that the function will be
+		" called when the cursor is actually ON one of these lines --> so " no
+		" need to make the function work on those cases.
 		if currentLine =~ '^\s*$\|^\s*%\+\s*$' ||
 					\ currentLine =~ '^\s*\\end{.\+}\s*$'
 			" If if-cond matches, paragraph ends at current value of l:bottom, so exit loop
@@ -133,8 +135,8 @@ function! FormatTeXparagraphs()
 	endwhile
 
 	" Now that we now the numbers of the lines where the paragraph starts and
-	" ends, so go the start line, visually select until the end line, join them
-	" into one line, and then format the whole mess. Profit!
+	" ends, go the start line, visually select until the end line, join them
+	" into one line, and then format (gqgq) the whole mess. Profit!
 	execute "normal! ".l:top."GV".l:bottom."GJgqgq"
 endfunction
 
