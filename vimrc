@@ -12,7 +12,7 @@ if &diff
 	colorscheme peaksea
 elseif has("gui_running")
 	" gui font (get it here: https://aur.archlinux.org/packages/ttf-inconsolata-g)
-	set guifont=Inconsolata-g\ 12
+	set guifont=Inconsolata-g\ 13
 	set background=dark
 	colorscheme solarized
 else
