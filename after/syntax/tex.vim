@@ -14,3 +14,14 @@ syntax sync minlines=500 match LaTeXSection       grouphere texSectionZone      
 
 "" For further details see:
 "" see https://stackoverflow.com/questions/23353009/vim-spellcheck-not-always-working-in-tex-file-check-region-in-vim
+
+
+"""" SYNTAX HIGHLIGHT FOR minted ENVIRON
+"" Imagine you have a $ in a minted snippet: if it is not escaped, it will
+"" screw up highlighing. If it is, that backslash will be shown in the pdf...
+"" So, add syntax rules for it:
+
+syn region texZone start="\\begin{minted}" end="\\end{minted}\|%stopzone\>"
+
+"" For details see:
+"" https://stackoverflow.com/questions/6738902/vim-syntax-highlighting-with-and-lstlistings-lstinline
