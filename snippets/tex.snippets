@@ -177,10 +177,11 @@ snippet figenv Custom figure for LaTeX #1
 		\includegraphics[scale=${1:1.0}]{${4}}
 		\caption{\label{fig:${2:label}} ${3:caption}}
 	\end{figure}
+# TeX-9 tip: hit Ctrl-X-O for omnicompletion!
 snippet figure
-	Figure~\ref{${1:fig:}}${2}
+	Figure~\ref{${1}}${2}
 snippet figura
-	Figura~\ref{${1:fig:}}${2}
+	Figura~\ref{${1}}${2}
 
 #
 # Tables
@@ -193,7 +194,8 @@ snippet tabenv Custom table for LaTeX #1
 		\end{tabular}
 		\caption{\label{tab:${1:label}} ${2:caption}}
 	\end{table}
+# TeX-9 tip: hit Ctrl-X-O for omnicompletion!
 snippet table
-	Table~\ref{${1:tab:}}${2}
+	Table~\ref{${1}}${2}
 snippet tabela
-	Tabela~\ref{${1:tab:}}${2}
+	Tabela~\ref{${1}}${2}
