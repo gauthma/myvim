@@ -9,74 +9,56 @@ snippet it "Italic Text"
 	\textit{${1}}${2}
 
 #
-# Sectioning
+# Environmental stuff (including math envs)
 #
-# Chapter
-snippet cha
-	\chapter{${1:chapter name}}
-		\label{cha:${2}}
-		${3}
-	% chapter $1 (end)
-# Section
-snippet sec
-	\section{${1:section name}}
-		\label{sec:${2}}
-		${3}
-# Sub Section
-snippet sub
-	\subsection{${1:subsection name}}
-	\label{${2}}
+# \begin{}...\end{}
+snippet begin
+	\begin{${1:env}}
+		${2}
+	\end{$1}
+# Tabular
+snippet tab
+	\begin{${1:tabular}}{${2:c}}
 	${3}
-# Sub Sub Section
-snippet subs
-	\subsubsection{${1:subsubsection name}}
-	\label{${2}}
-	${3}
-
-#
-# Mathematics
-#
-# Style
-snippet mb "Bold Math"
-	\mathbf{${1}}${2}
-snippet mc "Math Caligraphy"
-	\mathcal{${1}}${2}
-snippet mi "Italic Math"
-	\mathit{${1}}${2}
-snippet mbb "Blackboard Math"
-	\mathbb{${1}}${2}
-# Arrows
-snippet ra "Small right arrow"
-	\rightarrow
-snippet Ra "Big right arrow"
-	\Rightarrow
-snippet la "Small left arrow"
-	\leftarrow
-snippet La "Big left arrow"
-	\Leftarrow
-snippet x "math multiplication symbol"
-	\times
-snippet op "math XOR symbol"
-	\oplus
-# Custom math commands, adapted
-snippet frac
-	\frac{${1}}{${2}}${3}
-snippet abs "absolute value"
-	\left\lvert ${1} \right\rvert${2}
-snippet norm "norm of vector"
-	\left\lVert ${1} \right \rVert${2}
-snippet pth "normal parenthesis"
-	\left( ${1} \right )${2}
-snippet spth "square parenthesis"
-	\left[ ${1} \right ]${2}
-snippet cpth "curly brackets"
-	\left\{ ${1} \right\}${2}
-# Math environments (optional names are appended to "begin" line, in [ ])
+	\end{$1}
+# Align(ed)
+snippet align
+	\begin{align${1:ed}}
+		${2}
+	\end{align$1}
+# Enumerate
+snippet enum
+	\begin{enumerate}
+		\item ${1}
+	\end{enumerate}
+# Itemize
+snippet item
+	\begin{itemize}
+		\item ${1}
+	\end{itemize}
+# Description
+snippet desc
+	\begin{description}
+		\item[${1}] ${2}
+	\end{description}
+# Matrix
+snippet matrix
+	\begin{${1:p/b/v/V/B/small}matrix}
+		${2}
+	\end{$1matrix}
+# Cases
+snippet cases
+	\begin{cases}
+		${1:equation}, &\textrm{ if }${2:case}\\
+		${3}
+	\end{cases}
+# Math theorem/proof/def/etc environments.
+# (optional names are appended to "begin" line, in [ ])
 snippet thm "theorem environment"
-	\begin{thm}
+	\begin{theorem}
 		\label{thm:${1:label}}
 		${2:theorem}
-	\end{thm}
+	\end{theorem}
 snippet proof "theorem proof environment"
 	\begin{proof}
 		${1:proof}
@@ -96,6 +78,77 @@ snippet corollary "corollary environment"
 		\label{cor:${1:label}}
 		${2:corollary}
 	\end{corollary}
+
+#
+# Sectioning
+#
+# Chapter
+snippet cha
+	\chapter{${1:chapter name}}
+		\label{cha:${2}}
+		${3}
+	% chapter $1 (end)
+# Section
+snippet sec
+	\section{${1:section name}}
+		\label{sec:${2}}
+		${3}
+# Sub Section
+snippet sub
+	\subsection{${1:subsection name}}
+	\label{${2}}
+	${3}
+# Sub Sub Section
+snippet sss
+	\subsubsection{${1:subsubsection name}}
+	\label{${2}}
+	${3}
+# Sub Paragraph
+snippet subp
+	\subparagraph{${1:subparagraph name}}
+	\label{${2}}
+	${3}
+
+#
+# Mathematics
+#
+# Style
+snippet mb "Bold Math"
+	\mathbf{${1}}${2}
+snippet mc "Math Caligraphy"
+	\mathcal{${1}}${2}
+snippet mi "Italic Math"
+	\mathit{${1}}${2}
+snippet mbb "Blackboard Math"
+	\mathbb{${1}}${2}
+# Arrows and symbols
+snippet ra "Small right arrow"
+	\rightarrow
+snippet Ra "Big right arrow"
+	\Rightarrow
+snippet la "Small left arrow"
+	\leftarrow
+snippet La "Big left arrow"
+	\Leftarrow
+snippet eqv "Equivalence in equations"
+	\Rightleftarrow
+snippet x "math multiplication symbol"
+	\times
+snippet op "math XOR symbol"
+	\oplus
+# Custom math commands, adapted
+snippet frac
+	\frac{${1}}{${2}}${3}
+snippet abs "absolute value"
+	\left\lvert ${1} \right\rvert${2}
+snippet norm "norm of vector"
+	\left\lVert ${1} \right \rVert${2}
+snippet pth "normal parenthesis"
+	\left( ${1} \right )${2}
+snippet spth "square parenthesis"
+	\left[ ${1} \right ]${2}
+snippet cpth "curly brackets"
+	\left\{ ${1} \right\}${2}
 
 #
 # Presentation
@@ -118,17 +171,21 @@ snippet vf "\vfill"
 #
 # Figures
 #
-snippet figure Custom figure for LaTeX #1
+snippet figenv Custom figure for LaTeX #1
 	\begin{figure}
 		\centering
 		\includegraphics[scale=${1:1.0}]{${4}}
 		\caption{\label{fig:${2:label}} ${3:caption}}
 	\end{figure}
+snippet figure
+	Figure~\ref{${1:fig:}}${2}
+snippet figura
+	Figura~\ref{${1:fig:}}${2}
 
 #
 # Tables
 #
-snippet table Custom table for LaTeX #1
+snippet tabenv Custom table for LaTeX #1
 	\begin{table}
 		\centering
 		\begin{tabular}{${3:c}}
@@ -136,3 +193,7 @@ snippet table Custom table for LaTeX #1
 		\end{tabular}
 		\caption{\label{tab:${1:label}} ${2:caption}}
 	\end{table}
+snippet table
+	Table~\ref{${1:tab:}}${2}
+snippet tabela
+	Tabela~\ref{${1:tab:}}${2}
