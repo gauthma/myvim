@@ -1,0 +1,32 @@
+" ctrlp
+https://github.com/kien/ctrlp.vim
+
+"gundo
+https://github.com/sjl/gundo.vim.git
+
+" surround
+https://github.com/tpope/vim-surround.git
+
+" tabular
+https://github.com/godlygeek/tabular.git
+
+" air-line
+https://github.com/vim-airline/vim-airline.git
+
+" solarized
+https://github.com/altercation/vim-colors-solarized.git
+
+" commentary
+https://github.com/tpope/vim-commentary.git
+
+" eunuch
+https://github.com/tpope/vim-eunuch.git
+
+" repeat
+https://github.com/tpope/vim-repeat.git
+
+" pandoc syntax
+https://github.com/vim-pandoc/vim-pandoc-syntax.git
+
+" tagbar
+https://github.com/majutsushi/tagbar.git

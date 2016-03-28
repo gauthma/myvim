@@ -164,26 +164,6 @@ set wildmenu
 set wildmode=list:longest
 let g:airline_section_z = "%3p%% :%4l:%3v "
 
-" NerdTree
-noremap <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-noremap <Leader>f :NERDTreeFind<CR>
-
-"let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=0
-let NERDTreeKeepTreeInNewTab=1
-
-" settings for Tex-9. Add the below line to the config
-" to enable debug output.
-" \'debug' : 1,
-let g:tex_nine_config = {
-			\'leader': ':',
-			\'compiler': 'make',
-			\'viewer': {'app':'okular', 'target':'pdf'},
-		\}
-
 " for gundo
 nnoremap <F4> :GundoToggle<CR><CR>
 
