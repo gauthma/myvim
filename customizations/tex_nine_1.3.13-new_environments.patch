@@ -9,6 +9,17 @@
                                    masterbuffer)
                  if not match:
                      e = messages['NO_BIBTEX']
+
+@@ -292,7 +292,8 @@ class TeXNineBibTeX(TeXNineBase):
+                 dirname = path.dirname(master)
+                 # Find the absolute paths of the bibfiles
+                 for b in bibfiles:
+-                    b += '.bib'
++                    if not b.endswith('.bib'):
++                        b += '.bib'
+                     # Check if the bibfile is in the compilation folder
+                     bibtemp = path.join(dirname, b)
+                     b = ( bibtemp if path.exists(bibtemp) else b )
 @@ -347,7 +347,7 @@
  
      @TeXNineBase.multi_file
