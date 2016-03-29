@@ -8,6 +8,7 @@ function do_setup {
 	ln -s ~/.vim/vimrc ~/.vimrc
 
 	# download plugins
+	cd
 	while read -r line ; do
 		# skip blank or empty lines
 		if [ -z "$line" -o "$line" == " " ]; then
@@ -20,7 +21,7 @@ function do_setup {
 		cd ~/.vim/bundle
 		echo "Cloning $line..."
 		git clone $line > /dev/null
-	done < "~/.vim/customizations/vim_plugin_list"
+	done < ".vim/customizations/vim_plugin_list"
 
 	# run :Helptags
 	vim -c "Helptags|q"
