@@ -21,8 +21,8 @@ $ sh setup.sh
 $ rm setup.sh
 ```
 
-**NOTE**: this ***DELETE*** any existing `~/.vim` and `~/.vimrc`, so due
-care must be taken to back up any previous settings.
+**NOTE**: this will ***DELETE*** any existing `~/.vim` and `~/.vimrc`,
+so due care must be taken to back up any previous settings.
 
 This installs (*most*; TODO fix this) the plugins. Here's the list I use
 (adapt as needed). It also run `pathogen`'s `:Helptags`. Which in turn
