@@ -1,7 +1,6 @@
 #! /bin/bash
 
 function do_setup {
-	return
 	rm -rf ~/.vimrc ~/.vim
 	mkdir -p ~/.vim ~/.vim/autoload ~/.vim/bundle;
 	git clone https://github.com/gauthma/myvim.git ~/.vim
@@ -28,7 +27,6 @@ function do_setup {
 }
 
 function postprocess {
-	return
 	# I just use the TeX snippets in ~/.vim/snippets/
 	rm ~/.vim/bundle/snipmate/tex.snippets
 }
