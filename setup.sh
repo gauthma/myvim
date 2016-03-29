@@ -29,7 +29,9 @@ function do_setup {
 
 function postprocess {
 	# I just use the TeX snippets in ~/.vim/snippets/
-	rm ~/.vim/bundle/snipmate/tex.snippets
+	rm ~/.vim/bundle/snipmate.vim/tex.snippets
+	# ditto for the globals file...
+	rm ~/.vim/bundle/snipmate.vim/_.snippets
 }
 
 echo "WARNING! WARNING! WARNING!"
