@@ -7,6 +7,7 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Y]$ ]]
 then
 	do_setup
+	postprocess
 fi
 
 function do_setup {
@@ -33,4 +34,9 @@ function do_setup {
 
 	# run :Helptags
 	vim -c "Helptags|q"
+}
+
+function postprocess{
+	# I just use the TeX snippets in ~/.vim/snippets/
+	rm ~/.vim/bundle/snipmate/tex.snippets
 }
