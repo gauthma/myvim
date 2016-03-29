@@ -22,9 +22,6 @@ function do_setup {
 		echo "Cloning $line..."
 		git clone $line > /dev/null
 	done < ".vim/customizations/vim_plugin_list"
-
-	# run :Helptags
-	vim -c "Helptags|q"
 }
 
 function postprocess {
@@ -32,6 +29,9 @@ function postprocess {
 	rm ~/.vim/bundle/snipmate.vim/tex.snippets
 	# ditto for the globals file...
 	rm ~/.vim/bundle/snipmate.vim/_.snippets
+
+	# run :Helptags
+	vim -c "Helptags|q"
 }
 
 echo "WARNING! WARNING! WARNING!"
