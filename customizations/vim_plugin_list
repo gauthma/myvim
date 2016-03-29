@@ -30,3 +30,6 @@ https://github.com/vim-pandoc/vim-pandoc-syntax.git
 
 " tagbar
 https://github.com/majutsushi/tagbar.git
+
+" msanders snipmate
+https://github.com/msanders/snipmate.vim.git

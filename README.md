@@ -16,15 +16,15 @@ Install:
 --- 
 
 ``` bash 
-$ mkdir -p ~/.vim/autoload ~/.vim/bundle; 
-$ curl -Sso ~/.vim/autoload/pathogen.vim \
-			 https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+$ sh setup.sh
 ```
 
-Next you need to install the plugins. Here's the list I use (adapt
-as needed). Do keep in mind that you need to run pathogen's `:Helptags`.
-This runs `:helptags <plugin/doc>` for each directory in your runtime
-path.
+**NOTE**: this ***DELETE*** any existing `~/.vim` and `~/.vimrc`, so due
+care must be taken to back up any previous settings.
+
+This installs (*most*; TODO fix this) the plugins. Here's the list I use
+(adapt as needed). It also run `pathogen`'s `:Helptags`. Which in turn
+runs `:helptags <plugin/doc>` for each directory in your runtime path.
 
 - ctrlp
 - DoxygenToolkit
