@@ -16,7 +16,9 @@ Install:
 --- 
 
 ``` bash 
+$ wget https://raw.githubusercontent.com/gauthma/myvim/master/setup.sh
 $ sh setup.sh
+$ rm setup.sh
 ```
 
 **NOTE**: this ***DELETE*** any existing `~/.vim` and `~/.vimrc`, so due
