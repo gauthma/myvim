@@ -89,11 +89,14 @@ set nohlsearch      " DO NOT highlight searches (but allow F5 to toggle -- see n
 nnoremap <leader><leader>  :set invhlsearch<CR>:set incsearch<CR>
 
 " toggle set paste
-set pastetoggle=<F12>
+set pastetoggle=<F1>
 " for easier copy/paste from the system clipboard
 xnoremap <Leader>y "+y
 nnoremap <Leader>p "+p
-inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
+
+" NB: you can still insert '^V' (for literal char codes); 
+" just do it in PASTE "mode" (i.e. press <F1>!).
+inoremap <C-v> <Esc>:set paste<CR>"+p<F1>a
 
 " toggle relative line numbers
 nnoremap <Leader>r :set invrelativenumber<CR>
