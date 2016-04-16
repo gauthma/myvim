@@ -79,6 +79,7 @@ function! s:BuildOnWrite()
 		let l:makefile_path .= "/" . fnamemodify(l:mainfile, ":h") 
 	endif
 
+	" cd to dir that has Makefile, run make, and cd back
 	if !filereadable(l:makefile_path . "/Makefile") | return | endif
 	execute 'lcd' fnameescape(l:makefile_path)
 	call system("make all &")

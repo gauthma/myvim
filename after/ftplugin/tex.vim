@@ -48,10 +48,6 @@ inoremap <buffer> <LocalLeader>e \varepsilon
 inoremap <LocalLeader>« \langle
 inoremap <LocalLeader>» \rangle
 
-imap <buffer><expr> <LocalLeader>A 'Code Snippet~' . tex_nine#SmartInsert('\ref{')
-imap <buffer><expr> <LocalLeader>H 'Figure~'       . tex_nine#SmartInsert('\ref{')
-imap <buffer><expr> <LocalLeader>J 'Table~'        . tex_nine#SmartInsert('\ref{')
-
 if exists('s:maplocalleader_saved')
 	let g:maplocalleader = s:maplocalleader_saved
 else
