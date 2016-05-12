@@ -144,7 +144,7 @@ function! s:BuildOnWrite() " TODO language en pt...
 	if l:filename =~ 'page$' | return | endif
 
 	execute 'lcd' fnameescape(l:filepath)
-	call system("pandoc -Ss -r markdown ". l:filename ." -o ". l:filename .".pdf --latex-engine=xelatex &")
+	call system("pandoc -Ss -r markdown -V colorlinks ". l:filename ." -o ". l:filename .".pdf --latex-engine=xelatex &")
 	lcd -
 endfunction
 
