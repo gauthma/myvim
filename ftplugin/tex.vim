@@ -36,7 +36,7 @@ endfun
 " TeX_fmt() enters visual mode, which causes relative line numbers to be " shown...
 nmap Q mq:call TeX_fmt()<CR><Esc>:set nornu<CR>`q
 
-" custom TeX text object for inline math
+" Custom TeX text object for inline math.
 vnoremap am vmq?\$<cr>v/\$<cr>
 onoremap am :normal vam<CR>`q
 vnoremap im vmq?\$<cr>lv/\$<cr>h

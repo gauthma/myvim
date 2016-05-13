@@ -22,7 +22,8 @@ setlocal fo+=w
 setlocal tw=80
 
 " ... and this
-nnoremap <buffer> <F2> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+nnoremap <buffer> <F1> <nop>
+nnoremap <buffer> <F2> <nop>
 nnoremap <buffer> <F3> <nop>
 nnoremap <buffer> <F4> :GundoToggle<CR><CR>
 
@@ -45,8 +46,14 @@ inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
 inoremap <buffer> <LocalLeader>e \varepsilon
 
 " for angle brackets
-inoremap <LocalLeader>« \langle
-inoremap <LocalLeader>» \rangle
+inoremap <buffer> <LocalLeader>« \langle
+inoremap <buffer> <LocalLeader>» \rangle
+
+" Tap <LocalLeader>} to get {}. Very useful for custom commands!
+" Similar maps for () and [] follow.
+inoremap <buffer> <LocalLeader>} {}<Left>
+inoremap <buffer> <LocalLeader>] []<Left>
+inoremap <buffer> <LocalLeader>) ()<Left>
 
 if exists('s:maplocalleader_saved')
 	let g:maplocalleader = s:maplocalleader_saved
