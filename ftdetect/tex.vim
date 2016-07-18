@@ -6,6 +6,6 @@ au! Bufread,BufNewFile *.tex    set filetype=tex
 let g:tex_nine_config = {
 			\'leader': ':',
 			\'compiler': 'make',
-			\'viewer': {'app':'okular', 'target':'pdf'},
+			\'viewer': {'app':'okular --unique', 'target':'pdf'},
 		\}
 
