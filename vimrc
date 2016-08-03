@@ -130,6 +130,9 @@ map <c-y> <c-w>r
 set splitbelow
 set splitright
 
+" for i3: when resizing, leave splits untouched
+autocmd VimResized * wincmd =
+
 " brings up command prompt in vim
 nnoremap <Leader>cc :!
 
