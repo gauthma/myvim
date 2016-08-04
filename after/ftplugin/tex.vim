@@ -50,10 +50,11 @@ inoremap <buffer> <LocalLeader>« \langle
 inoremap <buffer> <LocalLeader>» \rangle
 
 " Tap <LocalLeader>} to get {}. Very useful for custom commands!
-" Similar maps for () and [] follow.
+" Similar maps for (), [] and $$ follow.
 inoremap <buffer> <LocalLeader>} {}<Left>
 inoremap <buffer> <LocalLeader>] []<Left>
 inoremap <buffer> <LocalLeader>) ()<Left>
+inoremap <buffer> <LocalLeader>$ $$<Left>
 
 if exists('s:maplocalleader_saved')
 	let g:maplocalleader = s:maplocalleader_saved

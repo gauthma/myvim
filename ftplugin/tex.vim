@@ -42,6 +42,10 @@ onoremap am :normal vam<CR>`q
 vnoremap im vmq?\$<cr>lv/\$<cr>h
 onoremap im :normal vim<CR>`q
 
+" syntax stuff (also see: after/syntax/tex.vim)
+command! SyncFull  syntax sync fromstart
+command! Sync      syntax sync minlines=500 match LaTeXSection       grouphere texSectionZone       "^\s*\\section{[a-zA-Z0-9]\+"
+
 " Run `make all` on background.
 " Obviously, ignore include files...
 " NOTA BENE: if a main TeX file exists, the Makefile is expected to exist in

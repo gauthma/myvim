@@ -138,7 +138,7 @@ nnoremap <Leader>cc :!
 
 " brings up cmd prompt, filled with the last executed command
 " (just pressing <CR> will run it)
-nnoremap <Leader>cp :! <up>
+nnoremap <Leader>cp :<up>
 
 " Spell check toggling
 "" Switch Spellchecking English
