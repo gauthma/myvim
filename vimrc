@@ -183,7 +183,7 @@ let g:airline#extensions#whitespace#checks = [ ]
 nnoremap <F4> :GundoToggle<CR><CR>
 
 " narrow region
-vmap <Leader>nn	<Leader>nr
+vmap <Leader>nn <Leader>nr<CR>
 nmap <F3> <Plug>NrrwrgnWinIncr
 
 " tagbar side bar
