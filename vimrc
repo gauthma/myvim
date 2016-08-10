@@ -59,9 +59,9 @@ au BufNewFile,BufRead  modprobe.conf    set syntax=modconf
 
 """ tab stuff
 set noexpandtab
-set softtabstop =2
-set tabstop     =2      " numbers of spaces of tab character
-set shiftwidth  =2      " numbers of spaces to (auto)indent
+set softtabstop =2      " in insert/edit, it is the <Space>-length of <Tab>
+set tabstop     =2      " numbers of spaces of tab character (in view mode)
+set shiftwidth  =2      " numbers of spaces to (auto)indent (eg << and >>)
 set smarttab            " use shiftwidth when inserting Tab in line start
 
 " and about VIM tabs
@@ -70,12 +70,9 @@ set tabpagemax=200 " XXX this might be removed in the future
 " indentation, scrolling, ponctuation et al.
 set scrolloff=3     " keep 3 lines when scrolling
 set autoindent      " always set autoindenting on
-"set smartindent -->  DO NOT ENABLE! starts indenting C keywords in ANY file...
-"set cindent        " cindent
-set cinoptions=l1   " otherwise the case statement is wrongly indented (see :help cinoptions-values)
 set showcmd         " display incomplete commands
 set ruler           " show the cursor position all the time
-set nonumber        " show line numbers (or not)
+set nonumber        " show line numbers (or rather don't not)
 set shortmess=atI   " Abbreviate messages
 set nostartofline   " try to leave cursor in same column when going up and down...
 set nojoinspaces    " when joining lines, never put two spaces after .,?! et al
@@ -84,7 +81,7 @@ set foldmethod=marker
 """ search
 set noignorecase    " DO NOT ignore case when searching -> best default
 set incsearch       " do incremental searching
-set nohlsearch      " DO NOT highlight searches (but allow F5 to toggle -- see next line)
+set nohlsearch      " DO NOT highlight searches (but allow toggling -- see next line)
 " toggle highlighting and incremental search
 nnoremap <leader><leader>  :set invhlsearch<CR>:set incsearch<CR>
 
@@ -92,11 +89,9 @@ nnoremap <leader><leader>  :set invhlsearch<CR>:set incsearch<CR>
 set pastetoggle=<F1>
 " for easier copy/paste from the system clipboard
 xnoremap <Leader>y "+y
-nnoremap <Leader>p "+p
-
+inoremap <C-v> <Esc>:set paste<CR>"+p<F1>a
 " NB: you can still insert '^V' (for literal char codes); 
 " just do it in PASTE "mode" (i.e. press <F1>!).
-inoremap <C-v> <Esc>:set paste<CR>"+p<F1>a
 
 " toggle relative line numbers
 nnoremap <Leader>r :set invrelativenumber<CR>
@@ -119,12 +114,23 @@ nnoremap k gk
 inoremap <C-h> <left>
 inoremap <C-l> <right>
 
-" also, switching windows is easier like this
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-map <c-y> <c-w>r
+" also, resizing and switching windows is easier like this
+map <C-up> <C-w>+
+map <C-down> <C-w>-
+map <C-right> <C-w>>
+map <C-left> <C-w><
+" this might be counterintuitive at times... but other options are more
+" complicated due to TERMinal reasons... Basically:
+" up and right equal bigger, down and left equal smaller
+
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <C-h> <C-w>h
+map <C-y> <C-w>r
+" NOTA BENE: the same resizing shortcuts, but with *caps* characters, works
+" for *moving* window splits! E.g. to move a split to the right, do
+" <C-w><S-l>. To move a split into a new tab, do <C-w><S-t>.
 
 " and make splitting more natural
 set splitbelow
@@ -134,7 +140,7 @@ set splitright
 autocmd VimResized * wincmd =
 
 " brings up command prompt in vim
-nnoremap <Leader>cc :!
+nnoremap <Leader>cc :! 
 
 " brings up cmd prompt, filled with the last executed command
 " (just pressing <CR> will run it)
@@ -171,12 +177,10 @@ set laststatus=2
 set wildmenu
 set wildmode=list:longest
 let g:airline_section_z = "%3p%% :%4l:%3v "
+let g:airline#extensions#whitespace#checks = [ ]
 
 " for gundo
 nnoremap <F4> :GundoToggle<CR><CR>
-
-" vim-air
-let g:airline#extensions#whitespace#checks = [ ]
 
 " narrow region
 vmap <Leader>nn	<Leader>nr
