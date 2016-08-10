@@ -97,8 +97,8 @@ inoremap <C-v> <Esc>:set paste<CR>"+p<F1>a
 nnoremap <Leader>r :set invrelativenumber<CR>
 
 " toggle hex mode
-noremap <Leader>h :%!xxd<CR>
-noremap <Leader>nh :%!xxd -r<CR>
+noremap <Leader>hr :%!xxd<CR> :set filetype=xxd<CR>
+noremap <Leader>hw :%!xxd -r<CR> :set binary<CR> :set filetype=<CR>
 
 " iQuickly edit/reload the vimrc file
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
