@@ -42,10 +42,10 @@ endfun
 vnoremap im vmq?\$<cr>lv/\$<cr>h
 onoremap im :normal vim<CR>`q
 
-" files with these two extensions are edited with kramdown, 
-" for which math code must ALWAYS be enclosed in $$ <...> $$.
-" Thus I modified the outer math motion to catch both $$, at
-" the beginning and the end.
+" files with these two extensions are edited with kramdown (for octopress), "
+" for which math code must ALWAYS be enclosed in $$ <...> $$. " Thus I
+" modified the outer math motion to catch both $$, at " the beginning and the
+" end.
 autocmd BufEnter,BufNew *.markdown vnoremap am vmq?\$<cr>hvll/\$<cr>l
 autocmd BufEnter,BufNew *.md       vnoremap am vmq?\$<cr>hvll/\$<cr>l
 
