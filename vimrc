@@ -1,5 +1,6 @@
 set nocompatible    " use vim defaults
 let g:mapleader=" " " as it happens, <Space> does not work...
+let &titleold=getcwd() " so long, \"thanks for flying vim\"...
 
 execute pathogen#infect()
 filetype plugin indent on  " required!
