@@ -7,7 +7,6 @@ snippet bf "Bold Text"
 	\textbf{${1}}${2}
 snippet it "Italic Text"
 	\textit{${1}}${2}
-
 #
 # Environmental stuff (including math envs)
 #
@@ -78,7 +77,6 @@ snippet corollary "corollary environment"
 		\label{cor:${1:label}}
 		${2:corollary}
 	\end{corollary}
-
 #
 # Sectioning
 #
@@ -108,7 +106,6 @@ snippet subp
 	\subparagraph{${1:subparagraph name}}
 	\label{${2}}
 	${3}
-
 #
 # Mathematics
 #
@@ -149,13 +146,11 @@ snippet spth "square parenthesis"
 	\left[ ${1} \right ]${2}
 snippet cpth "curly brackets"
 	\left\{ ${1} \right\}${2}
-
 #
 # Code
 #
 snippet verb "First chose delimiter, then content (then exit)"
-	\verb${1:+}${2}$1${3}
-
+	\verb${1:+}${2:text}$1${3}
 #
 # Presentation
 #
@@ -166,14 +161,12 @@ snippet sli "Slide with title"
 snippet pbu "Presentation bullet item"
 	{
 		\fadeTo{X}{85}
-		\fadeFrom{Y}{85}
+		\fadeFr{Y}{85}
 		\bullet${1:ABDT} ${2}
 	}
 	\vfill
-
 snippet vf "\vfill"
 	\vfill
-
 #
 # Figures
 #
@@ -188,7 +181,6 @@ snippet figure
 	Figure~\ref{${1}}${2}
 snippet figura
 	Figura~\ref{${1}}${2}
-
 #
 # Tables
 #
