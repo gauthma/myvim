@@ -136,6 +136,17 @@ inoremap <buffer> ^^ ^{}<Esc>i
 inoremap <buffer> __ _{}<Esc>i
 inoremap <buffer> == &=
 
+" for angle brackets
+inoremap <buffer> <LocalLeader>« \langle
+inoremap <buffer> <LocalLeader>» \rangle
+
+" Tap <LocalLeader>} to get {}. Very useful for custom commands! (in LaTeX...)
+" Similar maps for (), [] and $$ follow.
+inoremap <buffer> <LocalLeader>} {}<Left>
+inoremap <buffer> <LocalLeader>] []<Left>
+inoremap <buffer> <LocalLeader>) ()<Left>
+inoremap <buffer> <LocalLeader>$ $$<Left>
+
 function! s:BuildOnWrite() " TODO language en pt...
 	let l:filename = expand("%:p:t")
 	let l:filepath = expand("%:p:h")
