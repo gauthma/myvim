@@ -48,8 +48,10 @@ onoremap im :normal vim<CR>`q
 " end.
 autocmd BufEnter,BufNew *.markdown vnoremap am vmq?\$<cr>hvll/\$<cr>l
 autocmd BufEnter,BufNew *.md       vnoremap am vmq?\$<cr>hvll/\$<cr>l
+autocmd BufEnter,BufNew *.markdown cnoremap ww w
+autocmd BufEnter,BufNew *.md       cnoremap ww w
 
-autocmd BufEnter,BufNew *.cmk vnoremap am vmq?\$<cr>v/\$<cr>
+autocmd BufEnter,BufNew *.cmk  vnoremap am vmq?\$<cr>v/\$<cr>
 autocmd BufEnter,BufNew *.page vnoremap am vmq?\$<cr>v/\$<cr>
 
 onoremap am :normal vam<CR>`q
