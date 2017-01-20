@@ -44,6 +44,8 @@ inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
 " I like \varepsilon better
 " XXX see why this required at all...
 inoremap <buffer> <LocalLeader>e \varepsilon
+" and \emptyset is fugly...
+inoremap <buffer> <LocalLeader>0 \varnothing
 
 " for angle brackets
 inoremap <buffer> <LocalLeader>« \langle
