@@ -58,6 +58,10 @@ inoremap <buffer> <LocalLeader>] []<Left>
 inoremap <buffer> <LocalLeader>) ()<Left>
 inoremap <buffer> <LocalLeader>$ $$<Left>
 
+" And tap <LocalLeader>backspace to delete the pair of braces
+" if you got the wrong one (very common in practice!)
+inoremap <buffer> <LocalLeader><BS> <Esc>2xi
+
 if exists('s:maplocalleader_saved')
 	let g:maplocalleader = s:maplocalleader_saved
 else
