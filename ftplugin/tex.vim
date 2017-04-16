@@ -148,6 +148,10 @@ endfunction
 nnoremap <Leader>Q mq:call FormatTeXparagraphs()<CR>`q
 
 function! SyncTexForward()
+	" TODO for a rainy day: figure out why the below line -- which needs no
+	" redraw -- does NOT WORK: pdf just stays in the same place...
+	" call system("okular --unique ".tex_nine#GetOutputFile()."\\#src:".line(".")."%:p &> /dev/null &")
+
 	let cmd = "silent !okular --unique ".tex_nine#GetOutputFile()."\\#src:".line(".")."%:p &> /dev/null &"
 	exec cmd
 	redraw!
