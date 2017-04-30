@@ -77,7 +77,7 @@ function! s:BuildOnWrite()
 
 	" Initially, set path of Makefile to path of current file
 	let l:makefile_path = expand("%:p:h")
-	" Then, append relative path of main TeX file, which if exists, is where
+	" Then, append *relative* path of main TeX file, which if exists, is where
 	" Makefile must be
 	if mainfile !~ '^$' 
 		let l:makefile_path .= "/" . fnamemodify(l:mainfile, ":h") 

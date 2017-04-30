@@ -1,30 +1,38 @@
 # TeX style
-snippet emp
-	\emph{${1}}${2}
-snippet tt "Typewriter Text"
-	\texttt{${1}}${2}
 snippet bf "Bold Text"
 	\textbf{${1}}${2}
+snippet emp
+	\emph{${1}}${2}
 snippet it "Italic Text"
 	\textit{${1}}${2}
+snippet tt "Typewriter Text"
+	\texttt{${1}}${2}
+snippet vsni "for separate paragraphs"
+	\vspace{1em}\noindent
 #
 # Environmental stuff (including math envs)
 #
-# \begin{}...\end{}
-snippet begin
-	\begin{${1:env}}
-		${2}
-	\end{$1}
-# Tabular
-snippet tab
-	\begin{${1:tabular}}{${2:c}}
-	${3}
-	\end{$1}
 # Align(ed)
 snippet align
 	\begin{align${1:ed}}
 		${2}
 	\end{align$1}
+# \begin{}...\end{}
+snippet begin
+	\begin{${1:env}}
+		${2}
+	\end{$1}
+# Cases
+snippet cases
+	\begin{cases}
+		${1:equation}, &\textrm{ if }${2:case}\\
+		${3}
+	\end{cases}
+# Description
+snippet desc
+	\begin{description}
+		\item[${1}] ${2}
+	\end{description}
 # Enumerate
 snippet enum
 	\begin{enumerate}
@@ -35,48 +43,42 @@ snippet item
 	\begin{itemize}
 		\item ${1}
 	\end{itemize}
-# Description
-snippet desc
-	\begin{description}
-		\item[${1}] ${2}
-	\end{description}
 # Matrix
 snippet matrix
 	\begin{${1:p/b/v/V/B/small}matrix}
 		${2}
 	\end{$1matrix}
-# Cases
-snippet cases
-	\begin{cases}
-		${1:equation}, &\textrm{ if }${2:case}\\
-		${3}
-	\end{cases}
+# Tabular
+snippet tab
+	\begin{${1:tabular}}{${2:c}}
+	${3}
+	\end{$1}
 # Math theorem/proof/def/etc environments.
 # (optional names are appended to "begin" line, in [ ])
-snippet thm "theorem environment"
-	\begin{theorem}
-		\label{thm:${1:label}}
-		${2:theorem}
-	\end{theorem}
-snippet proof "theorem proof environment"
-	\begin{proof}
-		${1:proof}
-	\end{proof}
-snippet def "definition environment"
-	\begin{definition}
-		\label{def:${1:label}}
-		${2:definition}
-	\end{definition}
-snippet lemma "lemma environment"
-	\begin{lemma}
-		\label{lem:${1:label}}
-		${2:lemma}
-	\end{lemma}
 snippet corollary "corollary environment"
 	\begin{corollary}
 		\label{cor:${1:label}}
 		${2:corollary}
 	\end{corollary}
+snippet def "definition environment"
+	\begin{definition}
+		\label{def:${1:label}}
+		${2:definition}
+	\end{definition}
+snippet proof "theorem proof environment"
+	\begin{proof}
+		${1:proof}
+	\end{proof}
+snippet lemma "lemma environment"
+	\begin{lemma}
+		\label{lem:${1:label}}
+		${2:lemma}
+	\end{lemma}
+snippet thm "theorem environment"
+	\begin{theorem}
+		\label{thm:${1:label}}
+		${2:theorem}
+	\end{theorem}
 #
 # Sectioning
 #
@@ -112,42 +114,30 @@ snippet subp
 # Style
 snippet mb "Bold Math"
 	\mathbf{${1}}${2}
+snippet mbb "Blackboard Math"
+	\mathbb{${1}}${2}
 snippet mc "Math Caligraphy"
 	\mathcal{${1}}${2}
 snippet mi "Italic Math"
 	\mathit{${1}}${2}
-snippet mbb "Blackboard Math"
-	\mathbb{${1}}${2}
 # Arrows and symbols
-snippet ra "Small right arrow"
-	\rightarrow
-snippet Ra "Big right arrow"
-	\Rightarrow
+snippet eqv "Equivalence in equations"
+	\Leftrightarrow
 snippet la "Small left arrow"
 	\leftarrow
 snippet La "Big left arrow"
 	\Leftarrow
-snippet eqv "Equivalence in equations"
-	\Leftrightarrow
-snippet x "math multiplication symbol"
-	\times
 snippet op "math XOR symbol"
 	\oplus
+snippet ra "Small right arrow"
+	\rightarrow
+snippet Ra "Big right arrow"
+	\Rightarrow
+snippet x "math multiplication symbol"
+	\times
 # Custom math commands, adapted
 snippet frac
 	\frac{${1}}{${2}}${3}
-snippet abs "absolute value"
-	\left\lvert ${1} \right\rvert${2}
-snippet vec "vector"
-	\vec{${1}}${2}
-snippet norm "norm of vector"
-	\left\lVert ${1} \right \rVert${2}
-snippet pth "normal parenthesis"
-	\left( ${1} \right )${2}
-snippet spth "square parenthesis"
-	\left[ ${1} \right ]${2}
-snippet cpth "curly brackets"
-	\left\{ ${1} \right\}${2}
 #
 # Code
 #
@@ -156,10 +146,6 @@ snippet verb "First chose delimiter, then content (then exit)"
 #
 # Presentation
 #
-snippet sli "Slide with title"
-	\begin{slide}
-		\Stripe{${1}}
-	\end{slide}
 snippet pbu "Presentation bullet item"
 	{
 		\fadeTo{X}{85}
@@ -167,6 +153,10 @@ snippet pbu "Presentation bullet item"
 		\bullet${1:ABDT} ${2}
 	}
 	\vfill
+snippet sli "Slide with title"
+	\begin{slide}
+		\Stripe{${1}}
+	\end{slide}
 snippet vf "\vfill"
 	\vfill
 #
