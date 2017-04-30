@@ -33,7 +33,7 @@ fun! TeX_fmt()
 endfun
 " }}}
 
-" TeX_fmt() enters visual mode, which causes relative line numbers to be " shown...
+" TeX_fmt() enters visual mode, which causes relative line numbers to be shown...
 nmap Q mq:call TeX_fmt()<CR><Esc>:set nornu<CR>`q
 
 " Custom TeX text object for inline math.

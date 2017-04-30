@@ -57,6 +57,8 @@ autocmd filetype help nnoremap <buffer><bs> <c-T>   " Backspace goes back
 " File formats
 au BufNewFile,BufRead  *.pls    set syntax=dosini
 au BufNewFile,BufRead  modprobe.conf    set syntax=modconf
+" show soft broken lines
+set showbreak=…
 
 """ tab stuff
 set noexpandtab
