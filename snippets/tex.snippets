@@ -9,6 +9,8 @@ snippet tt "Typewriter Text"
 	\texttt{${1}}${2}
 snippet vsni "for separate paragraphs"
 	\vspace{1em}\noindent
+snippet cmd "generic \command{}"
+	\${1:cmd}{${2:arg}}${3}
 #
 # Environmental stuff (including math envs)
 #
@@ -112,8 +114,10 @@ snippet subp
 # Mathematics
 #
 # Style
-snippet mb "Bold Math"
-	\mathbf{${1}}${2}
+snippet iff "not stricly math, but very useful!"
+	if and only if
+snippet mb "Bold Math (\RequirePackage{bm})"
+	\bm{${1}}${2}
 snippet mbb "Blackboard Math"
 	\mathbb{${1}}${2}
 snippet mc "Math Caligraphy"
