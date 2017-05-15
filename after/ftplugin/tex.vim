@@ -42,8 +42,10 @@ endfunction
 inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
 
 " I like \varepsilon better
+" And the same goes for \varphi
 " XXX see why this required at all...
 inoremap <buffer> <LocalLeader>e \varepsilon
+inoremap <buffer> <LocalLeader>f \varphi
 " and \emptyset is fugly...
 inoremap <buffer> <LocalLeader>0 \varnothing
 
