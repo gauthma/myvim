@@ -25,10 +25,8 @@ function do_setup {
 }
 
 function postprocess {
-	# I just use the TeX snippets in ~/.vim/snippets/
-	rm ~/.vim/bundle/snipmate.vim/snippets/tex.snippets
-	# ditto for the globals file...
-	rm ~/.vim/bundle/snipmate.vim/snippets/_.snippets
+	# I just use the snippets in ~/.vim/snippets/
+	rm -rf ~/.vim/bundle/snipmate.vim/snippets
 
 	# run :Helptags
 	vim -c "Helptags|q"

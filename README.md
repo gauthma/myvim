@@ -24,33 +24,16 @@ $ rm setup.sh
 **NOTE**: this will ***DELETE*** any existing `~/.vim` and `~/.vimrc`,
 so due care must be taken to back up any previous settings.
 
-This installs (*most*; TODO fix this) the plugins. Here's the list I use
-(adapt as needed). It also run `pathogen`'s `:Helptags`. Which in turn
-runs `:helptags <plugin/doc>` for each directory in your runtime path.
-
-- ctrlp
-- DoxygenToolkit
-- gundo
-- NrrwRgn
-- scss-syntax.vim -> https://github.com/cakebaker/scss-syntax.vim.git
-- slimv
-- snipMate
-- surround
-- tabular
-- tagbar
-- tex_nine
-- The-NERD-tree
-- vim-airline
-- vim-colors-solarized
-- vim-commentary
-- vim-eunuch
-- vim-pandoc-syntax
-- vim-repeat
+This installs (*most*; TODO fix this) the plugins. The list of plugins I
+use can be seen in the file `~/.vim/customizations/vim_plugin_list` .
+The script also runs `pathogen`'s `:Helptags`. Which in turn runs
+`:helptags <plugin/doc>` for each directory in your runtime path.
 
 And presto, it's ready to use. Feedback on improvements is always welcome. Enjoy!
 
 Information on the patches in the `customizations` folder can be
-found on my Vim Hacks page, [here](http://erroneousthoughts.org/vim-hacks/).
+found on my Vim Hacks page,
+[here](http://erroneousthoughts.org/writings/vim-hacks/).
 
 Notes:
 ---
