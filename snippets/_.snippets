@@ -1,6 +1,12 @@
+# I'm no fan of copywrong, but sometimes may be useful
+snippet (c)
+	`&enc[:2] == "utf" ? "©" : "(c)"` Copyright `strftime("%Y")` ${1:`g:snips_author`}. All Rights Reserved.${2}
+# Long date: Weekday, daynr of Month of Year
 snippet ldate
 	`strftime("%A, %d of %B of %Y")`
+# Medium date: Month daynr, Year
 snippet mdate
 	`strftime("%B %d, %Y")`
+# Short date: Year-monthnr-daynr
 snippet sdate
-	`strftime("%d/%m/%Y")`
+	`strftime("%Y-%m-%d")`
