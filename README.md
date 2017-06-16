@@ -33,7 +33,7 @@ And presto, it's ready to use. Feedback on improvements is always welcome. Enjoy
 
 Information on the patches in the `customizations` folder can be
 found on my Vim Hacks page,
-[here](http://erroneousthoughts.org/writings/vim-hacks/).
+[here](https://erroneousthoughts.org/writings/vim-hacks/).
 
 Notes:
 ---
