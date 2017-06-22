@@ -9,10 +9,10 @@ snippet tt "Typewriter Text"
 	\texttt{${1}}${2}
 snippet vsni "for separate paragraphs"
 	\vspace{1em}\noindent
-snippet cmd "generic \command{}"
+snippet c "generic LaTeX \command{}"
 	\${1:cmd}{${2:arg}}${3}
-snippet alias "generic \alias\"
-	\${1:cmd}\${2}
+snippet m "generic LaTeX \macro (no arguments), with an extra \ if required"
+	\${1:macro}${2:\}
 #
 # Environmental stuff (including math envs)
 #
@@ -28,10 +28,14 @@ snippet begin
 	\end{$1}
 # Cases
 snippet cases
-	\begin{cases}
-		${1:equation}, &\textrm{ if }${2:case}\\
-		${3}
-	\end{cases}
+	\begin{displaymath}
+		\begin{aligned}
+			\begin{cases}
+				${1:equation}, &\textrm{ if }${2:case}\\
+				${3}
+			\end{cases}
+		\end{aligned}
+	\end{displaymath}
 # Description
 snippet desc
 	\begin{description}
@@ -147,7 +151,7 @@ snippet frac
 #
 # Code
 #
-snippet verb "First chose delimiter, then content (then exit)"
+snippet verb "First choose delimiter, then content (then exit)"
 	\verb${1:+}${2:text}$1${3}
 #
 # Presentation
