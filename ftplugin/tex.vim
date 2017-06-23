@@ -158,3 +158,8 @@ function! SyncTexForward()
 	redrawstatus!
 endfunction
 nmap <Leader>f :call SyncTexForward()<CR>
+
+" For (pre)viewing pdf, but not in an '--unique' okular instance (useful when the
+" unique instance is being used to view another document, for instance).
+" SyncTeX might b0rk in unexpected ways -- so best to avoid it.
+nnoremap <Leader>P :execute "silent !okular ".tex_nine#GetOutputFile()."\\#src:".line(".")."%:p &> /dev/null &"<CR>
