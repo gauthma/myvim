@@ -63,30 +63,35 @@ snippet tab
 	\end{$1}
 # Math theorem/proof/def/etc environments.
 # (optional names are appended to "begin" line, in [ ])
-snippet corollary "corollary environment"
-	\begin{corollary}
-		\label{cor:${1:label}}
-		${2:corollary}
-	\end{corollary}
 snippet def "definition environment"
 	\begin{definition}
 		\label{def:${1:label}}
 		${2:definition}
 	\end{definition}
-snippet proof "theorem proof environment"
-	\begin{proof}
-		${1:proof}
-	\end{proof}
-snippet lemma "lemma environment"
-	\begin{lemma}
-		\label{lem:${1:label}}
-		${2:lemma}
-	\end{lemma}
 snippet thm "theorem environment"
 	\begin{theorem}
 		\label{thm:${1:label}}
 		${2:theorem}
 	\end{theorem}
+snippet lemma "lemma environment"
+	\begin{lemma}
+		\label{lem:${1:label}}
+		${2:lemma}
+	\end{lemma}
+snippet proof "theorem proof environment"
+	\begin{proof}
+		${1:proof}
+	\end{proof}
+snippet corollary "corollary environment"
+	\begin{corollary}
+		\label{cor:${1:label}}
+		${2:corollary}
+	\end{corollary}
+snippet rem "remark environment"
+	\begin{remark}
+		\label{rem:${1:label}}
+		${2:remark}
+	\end{remark}
 #
 # Sectioning
 #
@@ -172,11 +177,27 @@ snippet vf "\vfill"
 #
 # Figures
 #
-snippet figenv Custom figure for LaTeX #1
+snippet figenv "Custom figure for LaTeX"
 	\begin{figure}
 		\centering
 		\includegraphics[scale=${1:1.0}]{${4}}
 		\caption{\label{fig:${2:label}} ${3:caption}}
+	\end{figure}
+snippet figSbS "Figures side by side"
+	\begin{figure}[!htb]
+		\centering
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[scale=1.0]{graphicfile}
+			\caption{Lorem ipsum.}
+			\label{fig:somelabel}
+		\end{minipage}%
+		\begin{minipage}{0.5\textwidth}
+			\centering
+			\includegraphics[scale=1.0]{graphicfile}
+			\caption{Lorem ipsum.}
+			\label{fig:somelabel}
+		\end{minipage}
 	\end{figure}
 # TeX-9 tip: hit Ctrl-X-O for omnicompletion!
 snippet figure
@@ -186,13 +207,37 @@ snippet figura
 #
 # Tables
 #
-snippet tabenv Custom table for LaTeX #1
+snippet tabenv "Custom table for LaTeX"
 	\begin{table}
 		\centering
-		\begin{tabular}{${3:c}}
-			${4}
+		\begin{tabular}{${3:c | c | c}}
+			${4:foo & bar & baz \\}
 		\end{tabular}
 		\caption{\label{tab:${1:label}} ${2:caption}}
+	\end{table}
+snippet tabSbS "Tables side by side"
+	\begin{table}[h]
+		\centering
+		\parbox{0.4\textwidth}{
+		\centering
+		\begin{tabular}{c | c | c}
+			+ & 0 & 1 \\
+			\hline
+			0 & 0 & 1 \\
+			\hline
+			1 & 1 & 0 \\
+		\end{tabular}
+		\caption{\label{tab:xor}Addition in GF2.}}
+		\parbox{0.4\textwidth}{
+		\centering
+		\begin{tabular}{c | c | c}
+			\times & 0 & 1 \\
+			\hline
+			0 & 0 & 0 \\
+			\hline
+			1 & 0 & 1 \\
+		\end{tabular}
+		\caption{\label{tab:xor}Multiplication in GF2.}}
 	\end{table}
 # TeX-9 tip: hit Ctrl-X-O for omnicompletion!
 snippet table
