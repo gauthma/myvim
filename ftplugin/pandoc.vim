@@ -160,7 +160,7 @@ function! s:BuildOnWrite() " TODO language en pt...
 	" change the language to portuguese, if required
 	call system("pandoc -Ss -r markdown+autolink_bare_uris -V colorlinks -V lang=UKenglish ". l:filename ." -o ". l:filename .".pdf --latex-engine=xelatex &")
 	" TODO add debug mode that executes the command in the foreground
-	echom v:shell_error
+	" echom v:shell_error
 	lcd -
 endfunction
 command! WaB write | call s:BuildOnWrite()
