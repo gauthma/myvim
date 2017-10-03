@@ -159,18 +159,19 @@ function! s:BuildOnWrite() " TODO language en pt...
 	execute 'lcd' fnameescape(l:filepath)
 	" change the language to portuguese, if required
 	call system("pandoc -Ss -r markdown+autolink_bare_uris -V colorlinks -V lang=UKenglish ". l:filename ." -o ". l:filename .".pdf --latex-engine=xelatex &")
+	" TODO add debug mode that executes the command in the foreground
+	echom v:shell_error
 	lcd -
 endfunction
+command! WaB write | call s:BuildOnWrite()
+cnoremap ww WaB
 
 function! s:OpenPDF(fpath)
-	if !empty(glob(a:fpath))
+	if filereadable(a:fpath)
 		call system("okular " . a:fpath . "&> /dev/null &")
 		redraw!
 	else
-		echohl WarningMsg | echom("PDF does not exist! (" . a:fpath .")") | echohl None
+		echohl WarningMsg | echom("PDF not found (or not readable)! (" . a:fpath .")") | echohl None
 	endif
 endfunction
-
 nnoremap <LocalLeader>V :call <SID>OpenPDF(expand("%:p") . ".pdf")<CR>
-command! WaB write | call s:BuildOnWrite()
-cnoremap ww WaB
