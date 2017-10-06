@@ -153,12 +153,16 @@ function! s:BuildOnWrite() " TODO language en pt...
 	let l:filename = expand("%:p:t")
 	let l:filepath = expand("%:p:h")
 
+	let l:cmd = "pandoc -Ss -r markdown+autolink_bare_uris -V colorlinks -V lang=UKenglish "
+				\ . l:filename ." -o ". l:filename .".pdf --latex-engine=xelatex 2>&1"
+
 	" prevent gitit pages from being made into pdf...
 	if l:filename =~ 'page$' | return | endif
 
 	execute 'lcd' fnameescape(l:filepath)
 	" change the language to portuguese, if required
-	call system("pandoc -Ss -r markdown+autolink_bare_uris -V colorlinks -V lang=UKenglish ". l:filename ." -o ". l:filename .".pdf --latex-engine=xelatex &")
+	let o = system(l:cmd)
+	echom o
 	" TODO add debug mode that executes the command in the foreground
 	" echom v:shell_error
 	lcd -
