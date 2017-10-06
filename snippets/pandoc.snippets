@@ -1,3 +1,11 @@
+# header
+snippet hdr
+	---
+	title: ${1:title}
+	date: ${2:`strftime("%B %d, %Y")`}
+	tags: ${3:comma separated, unquoted}
+	summary: "${4:summary}"
+	---
 # source code snippet
 snippet ~~~
 	~~~ ${1}
