@@ -48,8 +48,10 @@ onoremap im :normal vim<CR>`q
 " end.
 autocmd BufEnter,BufNew *.markdown vnoremap am vmq?\$<cr>hvll/\$<cr>l
 autocmd BufEnter,BufNew *.md       vnoremap am vmq?\$<cr>hvll/\$<cr>l
+
 autocmd BufEnter,BufNew *.markdown cnoremap ww w
 autocmd BufEnter,BufNew *.md       cnoremap ww w
+autocmd BufEnter,BufNew *.page     cnoremap ww w
 
 autocmd BufEnter,BufNew *.cmk  vnoremap am vmq?\$<cr>v/\$<cr>
 autocmd BufEnter,BufNew *.page vnoremap am vmq?\$<cr>v/\$<cr>
@@ -174,9 +176,6 @@ function! s:BuildOnWrite(...) " TODO language en pt...
 	if l:debug == 0
 		let l:cmd = l:cmd . " &"
 	end
-
-	" Prevent gitit pages from being made into pdf...
-	if l:filename =~ 'page$' | return | endif
 
 	" Change into file's directory, execute command, change back to previous
 	" dir, print output if in debug mode (and if there is any output, which is
