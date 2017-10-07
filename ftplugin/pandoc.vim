@@ -149,26 +149,49 @@ inoremap <buffer> <LocalLeader>] []<Left>
 inoremap <buffer> <LocalLeader>) ()<Left>
 inoremap <buffer> <LocalLeader>$ $$<Left>
 
-function! s:BuildOnWrite() " TODO language en pt...
+" Pandoc's common mark to PDF. Without arguments, just runs command in
+" background (i.e. fire and forget). If called with argument "debug", runs in
+" foreground (i.e. vim blocks until command finishes), and then prints the
+" output, if there is any (in which case it is likely an error).
+"
+function! s:BuildOnWrite(...) " TODO language en pt...
+	" Check if we are in debug mode or not.
+	if a:0 > 0 && a:1 == 'debug'
+		let l:debug = 1
+	else
+		let l:debug = 0
+	end
+
+	" Get current file's name and path.
 	let l:filename = expand("%:p:t")
 	let l:filepath = expand("%:p:h")
 
+	" Set up pandoc command.
 	let l:cmd = "pandoc -Ss -r markdown+autolink_bare_uris -V colorlinks -V lang=UKenglish "
 				\ . l:filename ." -o ". l:filename .".pdf --latex-engine=xelatex 2>&1"
+	" XXX change the language to portuguese, if required
+	" If NOT in debug mode, command runs in the background.
+	if l:debug == 0
+		let l:cmd = l:cmd . " &"
+	end
 
-	" prevent gitit pages from being made into pdf...
+	" Prevent gitit pages from being made into pdf...
 	if l:filename =~ 'page$' | return | endif
 
+	" Change into file's directory, execute command, change back to previous
+	" dir, print output if in debug mode (and if there is any output, which is
+	" very likely the effect of error), and we are done.
 	execute 'lcd' fnameescape(l:filepath)
-	" change the language to portuguese, if required
-	let o = system(l:cmd)
-	echom o
-	" TODO add debug mode that executes the command in the foreground
-	" echom v:shell_error
+	let l:output = system(l:cmd)
 	lcd -
+	if l:debug && len(l:output) > 0
+		echoerr l:output
+	end
 endfunction
 command! WaB write | call s:BuildOnWrite()
+command! WaBd write | call s:BuildOnWrite("debug")
 cnoremap ww WaB
+cnoremap wd WaBd
 
 function! s:OpenPDF(fpath)
 	if filereadable(a:fpath)
