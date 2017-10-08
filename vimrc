@@ -166,7 +166,7 @@ nnoremap Q mqgq}`q
 
 " (files) to be ignored...
 set wildignore+=*.o,*.a,*.bak,*.pyc,*.class
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 " experimental: make ctrlp begin in last used mode...
 let g:ctrlp_cmd = 'CtrlPLastMode'
