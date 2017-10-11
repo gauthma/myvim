@@ -1,3 +1,6 @@
+#
+# For blog posts
+#
 # header
 snippet hdr
 	---
@@ -6,6 +9,11 @@ snippet hdr
 	tags: ${3:comma separated, unquoted}
 	summary: "${4:summary}"
 	---
+snippet img
+	![${1:caption}](${2:url}){width=${3:60%}}${4}
+#
+# END For blog posts
+#
 # source code snippet
 snippet ~~~
 	~~~ ${1}
