@@ -61,7 +61,7 @@ au BufNewFile,BufRead  modprobe.conf    set syntax=modconf
 set showbreak=…
 
 """ tab stuff
-set noexpandtab
+set expandtab           " if you can't win...
 set softtabstop =2      " in insert/edit, it is the <Space>-length of <Tab>
 set tabstop     =2      " numbers of spaces of tab character (in view mode)
 set shiftwidth  =2      " numbers of spaces to (auto)indent (eg << and >>)
@@ -118,22 +118,25 @@ inoremap <C-h> <left>
 inoremap <C-l> <right>
 
 " also, resizing and switching windows is easier like this
-map <C-up> <C-w>+
-map <C-down> <C-w>-
-map <C-right> <C-w>>
-map <C-left> <C-w><
-" this might be counterintuitive at times... but other options are more
-" complicated due to TERMinal reasons... Basically:
-" up and right equal bigger, down and left equal smaller
+nnoremap <C-up>    <C-w>+
+nnoremap <C-down>  <C-w>-
+nnoremap <C-right> <C-w>>
+nnoremap <C-left>  <C-w><
+" Basically: up and right equal bigger, down and left equal smaller
 
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-map <C-h> <C-w>h
-map <C-y> <C-w>r
-" NOTA BENE: the same resizing shortcuts, but with *caps* characters, works
-" for *moving* window splits! E.g. to move a split to the right, do
-" <C-w><S-l>. To move a split into a new tab, do <C-w><S-t>.
+" moving between splits, made easy
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+
+" for switching the position of splits
+nnoremap <S-Down>  <C-w><S-j>
+nnoremap <S-Up>    <C-w><S-k>
+nnoremap <S-Right> <C-w><S-l>
+nnoremap <S-Left>  <C-w><S-h>
+nnoremap <S-y>     <C-w>r
+" NOTA BENE: <S-Up> and <S-Down> work in gvim, but may not in vim, depending on terminal
 
 " and make splitting more natural
 set splitbelow
