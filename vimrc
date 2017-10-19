@@ -135,7 +135,7 @@ nnoremap <S-Down>  <C-w><S-j>
 nnoremap <S-Up>    <C-w><S-k>
 nnoremap <S-Right> <C-w><S-l>
 nnoremap <S-Left>  <C-w><S-h>
-nnoremap <S-y>     <C-w>r
+nnoremap <S-s>     <C-w>r
 " NOTA BENE: <S-Up> and <S-Down> work in gvim, but may not in vim, depending on terminal
 
 " and make splitting more natural
