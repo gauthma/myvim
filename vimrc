@@ -10,7 +10,7 @@ filetype plugin indent on  " required!
 if &diff
 	set t_Co=256
 	set background=dark
-	colorscheme peaksea
+	colorscheme solarized
 elseif has("gui_running")
 	" gui font (get it here: https://aur.archlinux.org/packages/ttf-inconsolata-g)
 	set guifont=Inconsolata-g\ 13
@@ -38,6 +38,34 @@ nnoremap <Leader>0 :10b<CR>
 
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+
+" also, resizing and switching buffers is easier like this
+nnoremap <C-up>    <C-w>+
+nnoremap <C-down>  <C-w>-
+nnoremap <C-right> <C-w>>
+nnoremap <C-left>  <C-w><
+" Basically: up and right equal bigger, down and left equal smaller
+
+" moving between splits, made easy
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+
+" for switching the position of splits
+nnoremap <S-Down>  <C-w><S-j>
+nnoremap <S-Up>    <C-w><S-k>
+nnoremap <S-Right> <C-w><S-l>
+nnoremap <S-Left>  <C-w><S-h>
+nnoremap <S-s>     <C-w>r
+" NOTA BENE: <S-Up> and <S-Down> work in gvim, but may not in vim, depending on terminal
+
+" and make splitting more natural
+set splitbelow
+set splitright
+
+" for i3: when resizing, leave splits untouched
+autocmd VimResized * wincmd =
 
 """ misc
 " disable cursorline in netrw (scp et al. over vim)
@@ -117,33 +145,21 @@ nnoremap k gk
 inoremap <C-h> <left>
 inoremap <C-l> <right>
 
-" also, resizing and switching windows is easier like this
-nnoremap <C-up>    <C-w>+
-nnoremap <C-down>  <C-w>-
-nnoremap <C-right> <C-w>>
-nnoremap <C-left>  <C-w><
-" Basically: up and right equal bigger, down and left equal smaller
+" Tap :} to get {}. Very useful for custom commands!
+" Similar maps for (), [] and $$ follow.
+inoremap <buffer> :} {}<Left>
+inoremap <buffer> :] []<Left>
+inoremap <buffer> :) ()<Left>
+inoremap <buffer> :$ $$<Left>
 
-" moving between splits, made easy
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
+" And tap :backspace to delete the pair of braces
+" if you got the wrong one (very common in practice!)
+inoremap <buffer> :<BS> <Esc>2xi
 
-" for switching the position of splits
-nnoremap <S-Down>  <C-w><S-j>
-nnoremap <S-Up>    <C-w><S-k>
-nnoremap <S-Right> <C-w><S-l>
-nnoremap <S-Left>  <C-w><S-h>
-nnoremap <S-s>     <C-w>r
-" NOTA BENE: <S-Up> and <S-Down> work in gvim, but may not in vim, depending on terminal
-
-" and make splitting more natural
-set splitbelow
-set splitright
-
-" for i3: when resizing, leave splits untouched
-autocmd VimResized * wincmd =
+" And of course, tap :: to actually get :
+inoremap <buffer> :: :
+" NB: These mappins come from LaTeX/pandoc, but they seem useful in other
+" places as well, so I "promoted" them to vimrc!
 
 " brings up command prompt in vim
 nnoremap <Leader>cc :! 

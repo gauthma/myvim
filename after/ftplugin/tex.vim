@@ -53,17 +53,6 @@ inoremap <buffer> <LocalLeader>0 \varnothing
 inoremap <buffer> <LocalLeader>« \langle
 inoremap <buffer> <LocalLeader>» \rangle
 
-" Tap <LocalLeader>} to get {}. Very useful for custom commands!
-" Similar maps for (), [] and $$ follow.
-inoremap <buffer> <LocalLeader>} {}<Left>
-inoremap <buffer> <LocalLeader>] []<Left>
-inoremap <buffer> <LocalLeader>) ()<Left>
-inoremap <buffer> <LocalLeader>$ $$<Left>
-
-" And tap <LocalLeader>backspace to delete the pair of braces
-" if you got the wrong one (very common in practice!)
-inoremap <buffer> <LocalLeader><BS> <Esc>2xi
-
 if exists('s:maplocalleader_saved')
 	let g:maplocalleader = s:maplocalleader_saved
 else

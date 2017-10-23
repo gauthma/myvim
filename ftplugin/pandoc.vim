@@ -144,13 +144,6 @@ inoremap <buffer> == &=
 inoremap <buffer> <LocalLeader>« \langle
 inoremap <buffer> <LocalLeader>» \rangle
 
-" Tap <LocalLeader>} to get {}. Very useful for custom commands! (in LaTeX...)
-" Similar maps for (), [] and $$ follow.
-inoremap <buffer> <LocalLeader>} {}<Left>
-inoremap <buffer> <LocalLeader>] []<Left>
-inoremap <buffer> <LocalLeader>) ()<Left>
-inoremap <buffer> <LocalLeader>$ $$<Left>
-
 " Pandoc's common mark to PDF. Without arguments, just runs command in
 " background (i.e. fire and forget). If called with argument "debug", runs in
 " foreground (i.e. vim blocks until command finishes), and then prints the
