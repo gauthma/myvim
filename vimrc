@@ -152,7 +152,11 @@ inoremap <buffer> :] []<Left>
 inoremap <buffer> :) ()<Left>
 inoremap <buffer> :$ $$<Left>
 
-" And tap :backspace to delete the pair of braces
+" Same for quotes
+inoremap <buffer> :" ""<Left>
+inoremap <buffer> :' ''<Left>
+
+" And tap :backspace to delete the pair of braces/quotes
 " if you got the wrong one (very common in practice!)
 inoremap <buffer> :<BS> <Esc>2xi
 
