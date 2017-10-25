@@ -147,21 +147,21 @@ inoremap <C-l> <right>
 
 " Tap :} to get {}. Very useful for custom commands!
 " Similar maps for (), [] and $$ follow.
-inoremap <buffer> :} {}<Left>
-inoremap <buffer> :] []<Left>
-inoremap <buffer> :) ()<Left>
-inoremap <buffer> :$ $$<Left>
+inoremap :} {}<Left>
+inoremap :] []<Left>
+inoremap :) ()<Left>
+inoremap :$ $$<Left>
 
 " Same for quotes
-inoremap <buffer> :" ""<Left>
-inoremap <buffer> :' ''<Left>
+inoremap :" ""<Left>
+inoremap :' ''<Left>
 
 " And tap :backspace to delete the pair of braces/quotes
 " if you got the wrong one (very common in practice!)
-inoremap <buffer> :<BS> <Esc>2xi
+inoremap :<BS> <Esc>2xi
 
 " And of course, tap :: to actually get :
-inoremap <buffer> :: :
+inoremap :: :
 " NB: These mappins come from LaTeX/pandoc, but they seem useful in other
 " places as well, so I "promoted" them to vimrc!
 
