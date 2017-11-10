@@ -48,6 +48,8 @@ inoremap <buffer> <LocalLeader>e \varepsilon
 inoremap <buffer> <LocalLeader>f \varphi
 " and \emptyset is fugly...
 inoremap <buffer> <LocalLeader>0 \varnothing
+" and \hat is not very useful...
+inoremap <buffer> <LocalLeader>^ \widehat{}<Left>
 
 " for angle brackets
 inoremap <buffer> <LocalLeader>« \langle
