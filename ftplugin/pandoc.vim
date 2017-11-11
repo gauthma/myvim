@@ -162,8 +162,8 @@ function! s:BuildOnWrite(...) " TODO language en pt...
 	let l:filepath = expand("%:p:h")
 
 	" Set up pandoc command.
-	let l:cmd = "pandoc -Ss -r markdown+autolink_bare_uris -V colorlinks -V lang=UKenglish "
-				\ . l:filename ." -o ". l:filename .".pdf --latex-engine=xelatex 2>&1"
+	let l:cmd = "pandoc -Ss -r markdown+autolink_bare_uris --toc -V colorlinks -V lang=UKenglish "
+				\ . l:filename ." -o ". l:filename .".pdf --latex-engine=xelatex --highlight-style=zenburn 2>&1"
 	" XXX change the language to portuguese, if required
 	" If NOT in debug mode, command runs in the background.
 	if l:debug == 0
