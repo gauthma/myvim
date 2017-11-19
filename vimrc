@@ -39,6 +39,8 @@ nnoremap <Leader>0 :10b<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
+nnoremap <Leader>bd :bd<CR>
+
 " also, resizing and switching buffers is easier like this
 nnoremap <C-up>    <C-w>+
 nnoremap <C-down>  <C-w>-
