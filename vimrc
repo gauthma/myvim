@@ -21,6 +21,9 @@ else
 	colorscheme solarized
 endif
 
+" when typing in terminal vim, skip Esc delay (by pressing other keys)
+inoremap <Esc> <Esc>:<C-c>
+
 """ buffers
 set hidden
 nnoremap <Leader>d :bdelete<CR>
