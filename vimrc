@@ -144,7 +144,7 @@ nnoremap <Leader>r :set invrelativenumber<CR>
 
 " toggle hex mode
 noremap <Leader>hr :%!xxd<CR> :set filetype=xxd<CR>
-noremap <Leader>hw :%!xxd -r<CR> :set binary<CR> :set filetype=<CR>
+noremap <Leader>hw :%!xxd -r<CR> :set binary<CR> :set filetype=<CR>:w<CR>:e<CR>
 
 " In case there are long lines...
 nnoremap j gj
