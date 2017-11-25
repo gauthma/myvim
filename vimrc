@@ -232,3 +232,6 @@ nnoremap <silent> <F12> :TagbarToggle<CR>
 " also, to be able to jump to tag definition
 nnoremap <leader>. :CtrlPTag<cr>
 
+" DO NOT use conceal (appearently this only works if it is placed in vimrc)
+let g:pandoc#syntax#conceal#use=0
+
