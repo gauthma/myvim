@@ -34,7 +34,7 @@ function postprocess {
 
 echo "WARNING! WARNING! WARNING!"
 echo "This will DELETE both ~/.vimrc and ~/.vim."
-read -p "Are you sure you want to continue? [Y/n]" -n 1 -r
+read -p "Are you sure you want to continue? [type uppercase y]" -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Y]$ ]]; then
 	do_setup
