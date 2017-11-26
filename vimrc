@@ -1,12 +1,9 @@
-syntax on              " syntax highlighing
-set nocompatible       " use vim defaults
-let g:mapleader=" "    " as it happens, <Space> does not work...
-let &titleold=getcwd() " so long, \"thanks for flying vim\"...
+syntax on                  " syntax highlighing
 
 execute pathogen#infect()
 filetype plugin indent on  " required!
+
 " Themes
-" this has to come after loading solarized colorscheme
 if &diff
 	set t_Co=256
 	set background=dark
@@ -24,6 +21,10 @@ endif
 "
 " Settings, lettings and autocmds
 "
+
+set nocompatible           " use vim defaults
+let g:mapleader=" "        " as it happens, <Space> does not work...
+let &titleold=getcwd()     " so long, \"thanks for flying vim\"...
 
 " for i3: when resizing, leave splits untouched
 autocmd VimResized * wincmd =
