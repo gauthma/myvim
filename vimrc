@@ -18,6 +18,11 @@ else
 	colorscheme solarized
 endif
 
+" It appears that this is required to have spelling errors underlined in
+" terminal vim...
+hi clear SpellBad
+hi SpellBad cterm=underline
+
 "
 " Settings, lettings and autocmds
 "
