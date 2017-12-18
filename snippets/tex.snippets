@@ -14,38 +14,33 @@ snippet m "generic LaTeX \macro (no arguments), with an extra \ if required"
 #
 # Environmental stuff (including math envs)
 #
-# Align(ed)
+# Align
 snippet align
-	\begin{align${1:ed}}
-		${2}
-	\end{align$1}
+	\begin{align}
+		&\phantom{{}={}}${1}
+	\end{align}
 # \begin{}...\end{}
 snippet begin
 	\begin{${1:env}}
 		${2}
 	\end{$1}
-# Cases
-snippet cases
-	\begin{displaymath}
-		\begin{aligned}
-			\begin{cases}
-				${1:equation}, &\textrm{ if }${2:case}\\
-				${3}
-			\end{cases}
-		\end{aligned}
-	\end{displaymath}
 # Description
-snippet desc
+snippet descenv
 	\begin{description}
 		\item[${1}] ${2}
 	\end{description}
 # Enumerate
-snippet enum
+snippet enumenv
 	\begin{enumerate}
 		\item ${1}
 	\end{enumerate}
+# Equation
+snippet eqenv
+	\begin{equation}
+		${1}
+	\end{equation}
 # Itemize
-snippet item
+snippet itemenv
 	\begin{itemize}
 		\item ${1}
 	\end{itemize}
@@ -54,11 +49,6 @@ snippet matrix
 	\begin{${1:p/b/v/V/B/small}matrix}
 		${2}
 	\end{$1matrix}
-# Tabular
-snippet tab
-	\begin{${1:tabular}}{${2:c}}
-	${3}
-	\end{$1}
 # Math theorem/proof/def/etc environments.
 # (optional names are appended to "begin" line, in [ ])
 snippet def "definition environment"
@@ -198,9 +188,13 @@ snippet figSbS "Figures side by side"
 		\end{minipage}
 	\end{figure}
 # TeX-9 tip: hit Ctrl-X-O for omnicompletion!
-snippet figure
+snippet figure "No caps"
+	figure~\ref{${1}}${2}
+snippet figure "Caps"
 	Figure~\ref{${1}}${2}
-snippet figura
+snippet figura "No caps"
+	figura~\ref{${1}}${2}
+snippet figura "Caps"
 	Figura~\ref{${1}}${2}
 #
 # Tables
@@ -238,7 +232,11 @@ snippet tabSbS "Tables side by side"
 		\caption{\label{tab:xor}Multiplication in GF2.}}
 	\end{table}
 # TeX-9 tip: hit Ctrl-X-O for omnicompletion!
-snippet table
+snippet table "No caps"
+	table~\ref{${1}}${2}
+snippet table "Caps"
 	Table~\ref{${1}}${2}
-snippet tabela
+snippet tabela "No caps"
+	tabela~\ref{${1}}${2}
+snippet tabela "Caps"
 	Tabela~\ref{${1}}${2}
