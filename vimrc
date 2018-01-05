@@ -87,6 +87,7 @@ set nohlsearch      " DO NOT highlight searches (but allow toggling -- see next 
 set pastetoggle=<F1>
 
 " when typing in terminal vim, skip Esc delay (by pressing other keys)
+" NB: b0rks startinsert!
 inoremap <Esc> <Esc>:<C-c>
 
 set hidden " don't unload (close?) buffers unless I tell you so!

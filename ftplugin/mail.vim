@@ -1,7 +1,10 @@
-"source ~/.vim/customizations/spell_checking.vim
 setf mail
 setlocal ai et tw=72 fo+=wq
 setlocal comments+=nb:>
-startinsert
 
 setlocal foldcolumn=1
+
+" Have to undo the Escape map (see vimrc), otherwise
+" startinsert b0rks.
+iunmap <Esc>
+startinsert
