@@ -21,7 +21,7 @@ function do_setup {
 		cd ~/.vim/bundle
 		echo "Cloning $line..."
 		git clone $line > /dev/null
-	done < ".vim/customizations/vim_plugin_list"
+	done < "~/.vim/customizations/vim_plugin_list"
 }
 
 function postprocess {

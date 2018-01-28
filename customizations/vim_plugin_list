@@ -11,7 +11,7 @@ https://github.com/tpope/vim-surround.git
 https://github.com/godlygeek/tabular.git
 
 " air-line
-https://github.com/vim-airline/vim-airline.git
+https://github.com/bling/vim-airline.git
 
 " solarized
 https://github.com/altercation/vim-colors-solarized.git
@@ -33,3 +33,9 @@ https://github.com/majutsushi/tagbar.git
 
 " msanders snipmate
 https://github.com/msanders/snipmate.vim.git
+
+" for narrow regions
+https://github.com/chrisbra/NrrwRgn.git
+
+" for Lisp!
+https://github.com/kovisoft/slimv.git
