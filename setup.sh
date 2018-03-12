@@ -5,7 +5,7 @@ function do_setup {
   git clone https://github.com/gauthma/myvim.git ~/.vim
   mkdir -p ~/.vim/autoload ~/.vim/bundle
   curl -LSso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-  ln -s ~/.vim/vimrc ~/.vimrc
+  ln -s ~/.vim/vimrc ~/.gvimrc
 
   # download plugins
   cd

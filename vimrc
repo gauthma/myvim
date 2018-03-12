@@ -64,9 +64,15 @@ set softtabstop =2      " in insert/edit, it is the <Space>-length of <Tab>
 set tabstop     =2      " numbers of spaces of tab character (in view mode)
 set shiftwidth  =2      " numbers of spaces to (auto)indent (eg << and >>)
 set smarttab            " use shiftwidth when inserting Tab in line start
-
 " and about VIM tabs
 set tabpagemax=200 " XXX this might be removed in the future
+
+" and line/paragraph stuff
+set wrap
+set linebreak
+set breakindent
+set nolist
+set autoindent
 
 " indentation, scrolling, ponctuation et al.
 set scrolloff=3     " keep 3 lines when scrolling
@@ -220,12 +226,9 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 " disable "smart" working path directory...
 let g:ctrlp_working_path_mode = '0'
 
-" for status line (vim-air)
+" for status line (lightline)
 set laststatus=2
-set wildmenu
-set wildmode=list:longest
-let g:airline_section_z = "%3p%% :%4l:%3v "
-let g:airline#extensions#whitespace#checks = [ ]
+let g:lightline = { 'colorscheme': 'solarized' }
 
 " for gundo
 nnoremap <F4> :GundoToggle<CR><CR>

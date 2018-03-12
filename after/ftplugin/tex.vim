@@ -6,22 +6,7 @@ endif
 
 let g:maplocalleader = b:tex_nine_config.leader 
 
-" TeX-9 "helpfully" changes some of this... so dump it all inside after
-setlocal softtabstop =2
-setlocal tabstop     =2
-setlocal shiftwidth  =2
-
-setlocal wrap
-setlocal linebreak
-setlocal nolist
-setlocal autoindent
-setlocal fo+=t
-setlocal fo+=l
-setlocal fo-=n               " TeX can handle its own numbered lists...
-setlocal fo+=w
-setlocal tw=80
-
-" ... and this
+" No need for this...
 nnoremap <buffer> <F1> <nop>
 nnoremap <buffer> <F2> <nop>
 nnoremap <buffer> <F3> <nop>

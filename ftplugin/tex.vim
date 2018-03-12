@@ -5,36 +5,15 @@
 """" - nnoremap <Leader>kal :call KillallLaTeX()<CR>
 """" - command WaB write | call s:BuildOnWrite()
 """" - cnoremap ww WaB
-"""" - nnoremap <Leader>Q mq:call FormatTeXparagraphs()<CR>`q
 
-" Reformat lines (getting the spacing correct) {{{
-fun! TeX_fmt()
-	if (getline(".") != "")
-		let save_cursor = getpos(".")
-		let op_wrapscan = &wrapscan
-		set nowrapscan
-		let par_begin = '^\(%D\)\=\s*\($\|\\label\|\\begin\|\\end\|\\[\|\\]\|\\\(sub\)*section\>\|\\item\>\|\\NC\>\|\\blank\>\|\\noindent\>\)'
-		let par_end   = '^\(%D\)\=\s*\($\|\\begin\|\\end\|\\[\|\\]\|\\place\|\\\(sub\)*section\>\|\\item\>\|\\NC\>\|\\blank\>\)'
-		try
-			exe '?'.par_begin.'?+'
-		catch /E384/
-			1
-		endtry
-		norm V
-		try
-			exe '/'.par_end.'/-'
-		catch /E385/
-			$
-		endtry
-		norm gq
-		let &wrapscan = op_wrapscan
-		call setpos('.', save_cursor) 
-	endif
-endfun
-" }}}
-
-" TeX_fmt() enters visual mode, which causes relative line numbers to be shown...
-nmap Q mq:call TeX_fmt()<CR><Esc>:set nornu<CR>`q
+" settings for Tex-9. Add the below line to the config
+" to enable debug output.
+" \'debug' : 1,
+let g:tex_nine_config = {
+			\'leader': ':',
+			\'compiler': 'make',
+			\'viewer': {'app':'okular --unique', 'target':'pdf'},
+		\}
 
 " Custom TeX text object for inline math.
 vnoremap am vmq?\$<cr>v/\$<cr>
@@ -98,54 +77,6 @@ endfunction
 nnoremap <Leader>kal :call KillallLaTeX()<CR>
 command! WaB write | call s:BuildOnWrite()
 cnoremap ww WaB
-
-" Visually selects a "TeX paragraph", and indents it (gqgq).
-"
-" A TeX paragraph are lines of text enclosed by either blank lines, or lines
-" with just the comment symbol (%) -- plus a few special cases.
-"
-function! FormatTeXparagraphs()
-	let l:linenum = line(".")
-	let l:top = l:linenum
-	let l:bottom = l:linenum
-
-	" While loop to get the line num where the current paragraph starts...
-	while l:top > 0
-		let currentLine = getline(l:top - 1)
-		" ... which is delimited by either a blank (or comment only) line, 
-		" or \begin, \label, etc. Note that it is unlikely that the function
-		" will be called when the cursor is actually ON one of these lines --> so
-		" no need to make the function work on those cases.
-		if currentLine =~ '^\s*$\|^\s*%\+\s*$' ||
-					\ currentLine =~ '^\s*\\\(begin\|label\|\(sub\)\{0,2}section\|chapter\){.\+}.*$'
-			" If if-cond matches, paragraph begins at current value of l:top, so exit loop
-			break
-		endif
-		let l:top -=1
-	endwhile
-
-	" While loop to get the line num where the current paragraph ends...
-	while l:bottom < line('$')
-		let currentLine = getline(l:bottom + 1)
-		" ... which is delimited by either a blank (or comment only) line, or
-		" and \end command. Note that it is unlikely that the function will be
-		" called when the cursor is actually ON one of these lines --> so " no
-		" need to make the function work on those cases.
-		if currentLine =~ '^\s*$\|^\s*%\+\s*$' ||
-					\ currentLine =~ '^\s*\\end{.\+}\s*$'
-			" If if-cond matches, paragraph ends at current value of l:bottom, so exit loop
-			break
-		endif
-		let l:bottom +=1
-	endwhile
-
-	" Now that we now the numbers of the lines where the paragraph starts and
-	" ends, go the start line, visually select until the end line, join them
-	" into one line, and then format (gqgq) the whole mess. Profit!
-	execute "normal! ".l:top."GV".l:bottom."GJgqgq"
-endfunction
-
-nnoremap <Leader>Q mq:call FormatTeXparagraphs()<CR>`q
 
 function! SyncTexForward()
 	" TODO for a rainy day: figure out why the below line -- which needs no
