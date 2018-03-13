@@ -4,18 +4,13 @@ execute pathogen#infect()
 filetype plugin indent on  " required!
 
 " Themes
-if &diff
+set background=light
+colorscheme solarized
+if &diff || !has('gui_running')
 	set t_Co=256
-	set background=dark
-	colorscheme solarized
 elseif has("gui_running")
 	" gui font (get it here: https://aur.archlinux.org/packages/ttf-inconsolata-g)
 	set guifont=Inconsolata-g\ 13
-	set background=dark
-	colorscheme solarized
-else
-	set background=dark
-	colorscheme solarized
 endif
 
 " It appears that this is required to have spelling errors underlined in
@@ -95,8 +90,15 @@ set pastetoggle=<F1>
 " when typing in terminal vim, skip Esc delay (by pressing other keys)
 " NB: b0rks startinsert!
 inoremap <Esc> <Esc>:<C-c>
+vnoremap <Esc> <Esc>:<C-c>
 
 set hidden " don't unload (close?) buffers unless I tell you so!
+
+" Command line completion. From 
+" https://stackoverflow.com/questions/526858/how-do-i-make-vim-do-normal-bash-like-tab-completion-for-file-names:
+" > the first tab hit will complete as much as possible, the second tab hit
+" > will provide a list [ and I don't use the rest of the example ]
+set wildmode=longest,list
 
 " (files) to be ignored...
 set wildignore+=*.o,*.a,*.bak,*.pyc,*.class
@@ -203,13 +205,6 @@ nnoremap <Leader>sse :setlocal spell spelllang=en<CR>
 nnoremap <Leader>ssp :setlocal spell spelllang=pt<CR>
 "" Switch Spellchecking None
 nnoremap <Leader>ssn :setlocal nospell<CR>
-
-" justify current paragraph
-nnoremap <Leader>Q mqvipJgq}<Esc>:set nornu<CR>`q
-" justify selection, and put cursor in the end of last selected line
-vnoremap <Leader>Q Jgqgq<Esc>:set nornu<CR>`.$
-" justify paragraph, from current line onwards
-nnoremap Q mqgq}`q
 
 " iQuickly edit/reload the vimrc (and other files)
 " (that file only contains map commands, so this line goes in this section).
