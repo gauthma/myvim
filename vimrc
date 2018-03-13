@@ -3,7 +3,9 @@ syntax on                  " syntax highlighing
 execute pathogen#infect()
 filetype plugin indent on  " required!
 
-" Themes
+"
+" Themes / GUI
+"
 set background=light
 colorscheme solarized
 if &diff || !has('gui_running')
@@ -21,7 +23,6 @@ hi SpellBad cterm=underline
 "
 " Settings, lettings and autocmds
 "
-
 set nocompatible           " use vim defaults
 let g:mapleader=" "        " as it happens, <Space> does not work...
 let &titleold=getcwd()     " so long, \"thanks for flying vim\"...
@@ -43,13 +44,24 @@ set noerrorbells           " don't beep
 set ttyfast                " smoother usage by assuming fast connection to terminal
 set writebackup            " write backups when overwriting files
 set nobackup               " but don't keep afer successful overwrite
+set hidden                 " don't unload (close?) buffers unless I tell you so!
+
+" Command line completion. From 
+" https://stackoverflow.com/questions/526858/how-do-i-make-vim-do-normal-bash-like-tab-completion-for-file-names:
+" > the first tab hit will complete as much as possible, the second tab hit
+" > will provide a list [ and I don't use the rest of the example ]
+set wildmode=longest,list
 
 autocmd filetype help set nonumber                  " no line numbers when viewing help
 autocmd filetype help nnoremap <buffer><cr> <c-]>   " Enter selects help subject
 autocmd filetype help nnoremap <buffer><bs> <c-T>   " Backspace goes back
-" File formats
+" File formats... 
 au BufNewFile,BufRead  *.pls    set syntax=dosini
 au BufNewFile,BufRead  modprobe.conf    set syntax=modconf
+" ... and ignores
+set wildignore+=*.o,*.a,*.bak,*.pyc,*.class
+set wildignore+=/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
 " show soft broken lines
 set showbreak=…
 
@@ -91,18 +103,6 @@ set pastetoggle=<F1>
 " NB: b0rks startinsert!
 inoremap <Esc> <Esc>:<C-c>
 vnoremap <Esc> <Esc>:<C-c>
-
-set hidden " don't unload (close?) buffers unless I tell you so!
-
-" Command line completion. From 
-" https://stackoverflow.com/questions/526858/how-do-i-make-vim-do-normal-bash-like-tab-completion-for-file-names:
-" > the first tab hit will complete as much as possible, the second tab hit
-" > will provide a list [ and I don't use the rest of the example ]
-set wildmode=longest,list
-
-" (files) to be ignored...
-set wildignore+=*.o,*.a,*.bak,*.pyc,*.class
-set wildignore+=/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 "
 " Maps, of all shapes and sizes!
@@ -161,7 +161,7 @@ nnoremap <Leader>r :set invrelativenumber<CR>
 noremap <Leader>hr :%!xxd<CR> :set filetype=xxd<CR>
 noremap <Leader>hw :%!xxd -r<CR> :set binary<CR> :set filetype=<CR>:w<CR>:e<CR>
 
-" In case there are long lines...
+" For long lines...
 nnoremap j gj
 nnoremap k gk
 
