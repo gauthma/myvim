@@ -80,6 +80,7 @@ set linebreak
 set breakindent
 set nolist
 set autoindent
+set display=lastline    " dont hide paragraph behind @ signs, if whole para doesn't fit screen
 
 " indentation, scrolling, ponctuation et al.
 set scrolloff=3     " keep 3 lines when scrolling
