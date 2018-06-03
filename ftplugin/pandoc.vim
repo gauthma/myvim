@@ -3,19 +3,6 @@ let s:auto_line_wrap_disabled = 0
 
 nnoremap <Leader>aw :call Toggle_auto_line_wrap()<CR>
 
-" remember, visual select and gq to format manually!
-setlocal wrap
-setlocal linebreak
-setlocal nolist
-setlocal autoindent
-setlocal tw=72
-setlocal fo+=t
-setlocal fo+=l
-" --> fo=n makes vim treat lines that start with <number><space> as bullets...
-setlocal fo-=n
-" --> in pandoc (and Markdown) 2 trailing whitespaces mean <br/>
-setlocal fo-=w
-
 " avoid text right next to edge...
 setlocal foldcolumn=1
 

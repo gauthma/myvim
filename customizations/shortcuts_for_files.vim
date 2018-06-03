@@ -1,4 +1,4 @@
-nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
+nnoremap <silent> <leader>vrc :e $MYVIMRC<CR>
 
 nnoremap <silent> <leader>brc  :e ~/.bashrc<CR>
 nnoremap <silent> <leader>ssh  :e ~/.ssh/config<CR>

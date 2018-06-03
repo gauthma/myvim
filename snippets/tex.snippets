@@ -11,6 +11,9 @@ snippet c "generic LaTeX \command{}"
 	\${1:cmd}{${2:arg}}${3}
 snippet m "generic LaTeX \macro (no arguments), with an extra \ if required"
 	\${1:macro}\${2}
+# TODO footnotes
+snippet fn "TODO footnote"
+	\footnote{XXX: ${1}}${2}
 #
 # Environmental stuff (including math envs)
 #
@@ -156,8 +159,8 @@ snippet verb "First choose delimiter, then content (then exit)"
 #
 snippet pbu "Presentation bullet item"
 	{
-		\fadeTo{X}{85}
-		\fadeFr{Y}{85}
+		% \fadeTo{X}{85}
+		% \fadeFr{Y}{85}
 		\bullet${1:ABDT} ${2}
 	}
 	\vfill

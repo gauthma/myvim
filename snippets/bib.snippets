@@ -4,3 +4,9 @@ snippet url "URL bib entry"
 		url     = "${2:url}",
 		urldate = "${3:urldate}"
 	}
+snippet url "URL bib entry for LNCS"
+	@misc{${1:reflabel},
+		title        = {${2:title}},
+		howpublished = {\url{${3:url}}},
+		note         = {Accessed: ${4:urldate}}
+	}

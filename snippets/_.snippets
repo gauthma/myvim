@@ -3,10 +3,10 @@ snippet (c)
 	`&enc[:2] == "utf" ? "©" : "(c)"` Copyright `strftime("%Y")` ${1:`g:snips_author`}. All Rights Reserved.${2}
 # Long date: Weekday, daynr of Month of Year
 snippet ldate
-	`strftime("%A, %d of %B of %Y")`
+	`system("sh ~/.vim/customizations/strfvim.sh")`
 # Medium date: Month daynr, Year
 snippet mdate
-	`strftime("%B %d, %Y")`
+	`strftime("%B %-d, %Y")`
 # Short date: Year-monthnr-daynr
 snippet sdate
 	`strftime("%Y-%m-%d")`
