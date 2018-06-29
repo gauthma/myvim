@@ -13,7 +13,15 @@ snippet hdr
 	<!-- vim: spell spelllang=en
 	-->
 snippet img
-	![${1:caption}](${2:url} "${3:popup tip}"){width=${4:60%}}${5}
+	<figure>
+	  <a style="display: block; width: ${2:80%}" href=""><img title="${3:popup tip}" alt="$3" width="100%" src="${1:url}" /></a>
+	  <figcaption>${4:caption}</figcaption>
+	</figure>${5}
+snippet	quote
+	<blockquote>
+	<p>${1:text}<br />
+	—<strong>${2:author}</strong></p>
+	</blockquote>
 #
 # END For blog posts
 #
