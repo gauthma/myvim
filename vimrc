@@ -180,6 +180,7 @@ inoremap :} {}<Left>
 inoremap :] []<Left>
 inoremap :) ()<Left>
 inoremap :$ $$<Left>
+inoremap :* **<Left>
 
 " Same for quotes
 inoremap :" ""<Left>
