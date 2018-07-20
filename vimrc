@@ -80,7 +80,7 @@ function! TabToggle()
     echo "expanding tabs..."
   endif
 endfunction
-nmap <F9> :execute TabToggle()<CR>
+nnoremap <F9> :call TabToggle()<CR>
 " and about VIM tabs
 set tabpagemax=200 " XXX this might be removed in the future
 
@@ -241,8 +241,8 @@ let g:ctrlp_working_path_mode = '0'
 nnoremap <F4> :GundoToggle<CR><CR>
 
 " narrow region
-vmap <Leader>nn <Leader>nr<CR>
-nmap <F3> <Plug>NrrwrgnWinIncr
+vnoremap <Leader>nn <Leader>nr<CR>
+nnoremap <F3> <Plug>NrrwrgnWinIncr
 
 " tagbar side bar
 nnoremap <silent> <F12> :TagbarToggle<CR>
