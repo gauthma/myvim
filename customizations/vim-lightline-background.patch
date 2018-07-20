@@ -1,5 +1,4 @@
 diff --git a/autoload/lightline/colorscheme/solarized.vim b/autoload/lightline/colorscheme/solarized.vim
-index d6ee9c6..119b20c 100644
 --- a/autoload/lightline/colorscheme/solarized.vim
 +++ b/autoload/lightline/colorscheme/solarized.vim
 @@ -65,10 +65,13 @@ let s:p.normal.left = [ [ s:base03, s:blue ], [ s:base03, s:base00 ] ]
@@ -8,12 +7,12 @@ index d6ee9c6..119b20c 100644
  let s:p.inactive.left =  [ [ s:base0, s:base02 ], [ s:base0, s:base02 ] ]
 -let s:p.insert.left = [ [ s:base03, s:green ], [ s:base03, s:base00 ] ]
 -let s:p.replace.left = [ [ s:base03, s:red ], [ s:base03, s:base00 ] ]
-+let s:p.insert.left = [ [ s:base03, s:red ], [ s:base03, s:base00 ] ]
++let s:p.insert.left = [ [ s:base03, s:yellow ], [ s:base03, s:base00 ] ]
 +let s:p.replace.left = [ [ s:base03, s:green ], [ s:base03, s:base00 ] ]
  let s:p.visual.left = [ [ s:base03, s:magenta ], [ s:base03, s:base00 ] ]
 -let s:p.normal.middle = [ [ s:base1, s:base02 ] ]
 +let s:p.normal.middle = [ [ s:base03, s:blue ] ]
-+let s:p.insert.middle = [ [ s:base03, s:red ] ]
++let s:p.insert.middle = [ [ s:base03, s:yellow ] ]
 +let s:p.visual.middle = [ [ s:base03, s:magenta ] ]
 +let s:p.replace.middle = [ [ s:base03, s:green ] ]
  let s:p.inactive.middle = [ [ s:base01, s:base02 ] ]

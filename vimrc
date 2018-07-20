@@ -71,6 +71,16 @@ set softtabstop =2      " in insert/edit, it is the <Space>-length of <Tab>
 set tabstop     =2      " numbers of spaces of tab character (in view mode)
 set shiftwidth  =2      " numbers of spaces to (auto)indent (eg << and >>)
 set smarttab            " use shiftwidth when inserting Tab in line start
+function! TabToggle()
+  if &expandtab
+    set noexpandtab
+    echo "NOT expanding tabs!"
+  else
+    set expandtab
+    echo "expanding tabs..."
+  endif
+endfunction
+nmap <F9> :execute TabToggle()<CR>
 " and about VIM tabs
 set tabpagemax=200 " XXX this might be removed in the future
 
@@ -92,13 +102,18 @@ set shortmess=atI   " Abbreviate messages
 set nostartofline   " try to leave cursor in same column when going up and down...
 set nojoinspaces    " when joining lines, never put two spaces after .,?! et al
 set foldmethod=marker
+" Shortcut to rapidly toggle `set list`
+nmap <Leader><Leader> :set list!<CR> 
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬,trail:•,nbsp:•
+
 
 """ search
 set noignorecase    " DO NOT ignore case when searching -> best default
 set incsearch       " do incremental searching
 set nohlsearch      " DO NOT highlight searches (but allow toggling -- see next line)
 " toggle set paste
-set pastetoggle=<F1>
+set pastetoggle=<F8>
 
 " when typing in terminal vim, skip Esc delay (by pressing other keys)
 " NB: b0rks startinsert!
@@ -108,9 +123,6 @@ vnoremap <Esc> <Esc>:<C-c>
 "
 " Maps, of all shapes and sizes!
 "
-
-" toggle highlighting and incremental search
-nnoremap <Leader><Leader>  :set invhlsearch<CR>:set incsearch<CR>
 
 nnoremap <Leader>d :bdelete<CR>
 nnoremap <Leader>1 :1b<CR>
@@ -225,10 +237,6 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 " disable "smart" working path directory...
 let g:ctrlp_working_path_mode = '0'
 
-" for status line (lightline)
-set laststatus=2
-let g:lightline = { 'colorscheme': 'solarized' }
-
 " for gundo
 nnoremap <F4> :GundoToggle<CR><CR>
 
@@ -244,3 +252,29 @@ nnoremap <leader>. :CtrlPTag<cr>
 " DO NOT use conceal (appearently this only works if it is placed in vimrc)
 let g:pandoc#syntax#conceal#use=0
 
+" {{{ for status line (lightline)
+set laststatus=2
+let g:lightline = { 'colorscheme': 'solarized' }
+
+let g:lightline.active = {
+      \ 'left': [ [ 'mode', 'paste', 'noet', 'sw' ],
+      \           [ 'readonly', 'filename', 'modified' ] ] }
+let g:lightline.component_expand = {
+      \ 'noet': 'LightlineNoexpandtab' }
+let g:lightline.component_function = {
+      \   'sw': 'LightlineShiftwidth' }
+let g:lightline.component_type = {
+      \   'noet': 'error' }
+function! LightlineNoexpandtab()
+  return &expandtab?'':'noet'
+endfunction
+function! LightlineShiftwidth()
+  return &expandtab?'↹ '.&shiftwidth:''
+endfunction
+
+augroup lightline_update
+  autocmd!
+  autocmd OptionSet tabstop,shiftwidth,expandtab,paste :call lightline#update()
+  autocmd Filetype * :call lightline#update()
+augroup END
+" }}} end lightline config
