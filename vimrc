@@ -12,13 +12,13 @@ if &diff || !has('gui_running')
 	set t_Co=256
 elseif has("gui_running")
 	" gui font (get it here: https://aur.archlinux.org/packages/ttf-inconsolata-g)
-	set guifont=Inconsolata-g\ 13
+	set guifont=Inconsolata-g\ 16
 endif
 
 " It appears that this is required to have spelling errors underlined in
 " terminal vim...
-hi clear SpellBad
 hi SpellBad cterm=underline
+" hi SpellBad gui=underline
 
 "
 " Settings, lettings and autocmds
