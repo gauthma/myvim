@@ -13,6 +13,17 @@ if &diff || !has('gui_running')
 elseif has("gui_running")
 	" gui font (get it here: https://aur.archlinux.org/packages/ttf-inconsolata-g)
 	set guifont=Inconsolata-g\ 16
+
+  set guioptions="-mTrL"
+  function! ToggleGUImenu()
+    if &guioptions =~# 'm'
+      exec('set guioptions-=m')
+    else
+      exec('set guioptions+=m')
+    endif
+  endfunction
+
+  nnoremap <Leader>mn <Esc>:call ToggleGUImenu()<cr>
 endif
 
 " It appears that this is required to have spelling errors underlined in
@@ -163,7 +174,7 @@ nnoremap <S-s>     <C-w>r
 
 " for easier copy/paste from the system clipboard
 xnoremap <Leader>y "+y
-inoremap <C-v> <Esc>:set paste<CR>"+p<F1>a
+inoremap <C-v> <Esc>:set paste<CR>"+p<F8>a
 " NB: you can still insert '^V' (for literal char codes); 
 " just do it in PASTE "mode" (i.e. press <F1>!).
 
