@@ -23,7 +23,7 @@ elseif has("gui_running")
     endif
   endfunction
 
-  nnoremap <Leader>mn <Esc>:call ToggleGUImenu()<cr>
+  nnoremap <Leader>mm <Esc>:call ToggleGUImenu()<cr>
 endif
 
 " It appears that this is required to have spelling errors underlined in
