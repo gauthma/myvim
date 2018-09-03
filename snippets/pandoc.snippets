@@ -12,6 +12,12 @@ snippet hdr
 
 	<!-- vim: spell spelllang=en
 	-->
+snippet newcmd "Hidden div for \newcommands etc"
+	<div style="display:none">
+		$\newcommand{\altprod}{\mathop{\widetilde{\prod}}\nolimits}$
+	</div>
+snippet lmj "To use local MathJax installation"
+	<head><script src='http://localhost:8001/MathJax.js?config=TeX-MML-AM_CHTML' async></script></head>
 snippet img
 	<figure>
 	  <a style="display: block; width: ${2:80}%" href=""><img title="${3:popup tip}" alt="$3" width="100%" src="${1:url}" /></a>
@@ -30,40 +36,55 @@ snippet ~~~
 	~~~ {.${1:language} .numberLines}
 	${2}
 	~~~
-snippet mbo "Bold Math"
-	\mathbf{${1}}${2}
-snippet mc "Math Caligraphy"
-	\mathcal{${1}}${2}
-snippet mi "Italic Math"
-	\mathit{${1}}${2}
-snippet mb "Blackboard Math"
-	\mathbb{${1}}${2}
-# \begin{}...\end{}
+#
+# Mathematics. *Grosso modo* same as tex.snippets, except for 
+# text mode environments (theorems, etc), which don't work 
+# with MathJax.
+#
+# Generic but very useful commands.
+snippet c "generic LaTeX \command{}"
+	\${1:cmd}{${2:arg}}${3}
+snippet m "generic LaTeX \macro (no arguments), with an extra \ if required"
+	\${1:macro}\${2}
+# Environments that also work in MathJax.
+snippet align
+	\begin{align}
+		&\phantom{{}={}}${1}
+	\end{align}
 snippet begin
 	\begin{${1:env}}
 		${2}
 	\end{$1}
-# Align(ed)
-snippet align
-	\begin{align${1:ed}}
-		${2}
-	\end{align$1}
-# Cases
-snippet cases
-	\begin{cases}
-		${1:equation}, &\text{ if }${2:case}\\
-		${3}
-	\end{cases}
-# Arrows
-snippet ra "Small right arrow"
-	\rightarrow
-snippet Ra "Big right arrow"
-	\Rightarrow
+snippet eqenv
+	\begin{equation}
+		${1}
+	\end{equation}
+# Style
+snippet iff "not stricly math, but very useful!"
+	if and only if
+snippet mb "Bold Math (\RequirePackage{bm})"
+	\bm{${1}}${2}
+snippet mbb "Blackboard Math"
+	\mathbb{${1}}${2}
+snippet mc "Math Caligraphy"
+	\mathcal{${1}}${2}
+snippet mi "Italic Math"
+	\mathit{${1}}${2}
+# Arrows and symbols
+snippet eqv "Equivalence in equations"
+	\Leftrightarrow
 snippet la "Small left arrow"
 	\leftarrow
 snippet La "Big left arrow"
 	\Leftarrow
-snippet x "math multiplication symbol"
-	\times
 snippet op "math XOR symbol"
 	\oplus
+snippet ra "Small right arrow"
+	\rightarrow
+snippet Ra "Big right arrow"
+	\Rightarrow
+snippet x "math multiplication symbol"
+	\times
+# Custom math commands, adapted
+snippet frac
+	\frac{${1}}{${2}}${3}
