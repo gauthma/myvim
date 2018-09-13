@@ -211,7 +211,15 @@ inoremap :' ''<Left>
 
 " And tap :backspace to delete the pair of braces/quotes
 " if you got the wrong one (very common in practice!)
-inoremap :<BS> <Esc>2xi
+function! DeletePairedDelims()
+  normal xx
+  if col(".") == col("$")-1 " if the paired delims end the line, call append after deleting them
+    startinsert!
+  else " otherwise, call insert
+    startinsert
+  endif
+endfunction
+inoremap :<BS> <Esc>:call DeletePairedDelims()<CR>
 
 " And of course, tap :: to actually get :
 inoremap :: :
