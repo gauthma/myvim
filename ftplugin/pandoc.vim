@@ -1,59 +1,19 @@
-" auto-wrap active by default
-let s:auto_line_wrap_disabled = 0
-
-nnoremap <Leader>aw :call Toggle_auto_line_wrap()<CR>
-
 " avoid text right next to edge...
 setlocal foldcolumn=1
 
 " Asterisk is for bullet lists!
 setlocal comments=fb:*
 
-fun! Toggle_auto_line_wrap()
-	if (s:auto_line_wrap_disabled == 0)
-		let s:auto_line_wrap_disabled = 1
-		autocmd! InsertEnter * 
-		autocmd! InsertLeave * 
-		set formatoptions-=a
-		echo "Auto line-wrapping DISABLED!"
-	elseif (s:auto_line_wrap_disabled == 1)
-		let s:auto_line_wrap_disabled = 0
-		autocmd InsertEnter * set formatoptions+=a 
-		autocmd InsertLeave * set formatoptions-=a
-		echo "Auto line-wrapping ACTIVE!"
-	endif
-endfun
-
 " custom TeX text object for MathJax
 vnoremap im vmq?\$<cr>lv/\$<cr>h
 onoremap im :normal vim<CR>`q
 
-" files with these two extensions are edited with kramdown (for octopress), "
-" for which math code must ALWAYS be enclosed in $$ <...> $$. " Thus I
-" modified the outer math motion to catch both $$, at " the beginning and the
-" end.
-autocmd BufEnter,BufNew *.markdown vnoremap am vmq?\$<cr>hvll/\$<cr>l
-autocmd BufEnter,BufNew *.md       vnoremap am vmq?\$<cr>hvll/\$<cr>l
-
-autocmd BufEnter,BufNew *.markdown cnoremap ww w
-autocmd BufEnter,BufNew *.md       cnoremap ww w
-autocmd BufEnter,BufNew *.page     cnoremap ww w
-
-autocmd BufEnter,BufNew *.cmk  vnoremap am vmq?\$<cr>v/\$<cr>
-autocmd BufEnter,BufNew *.page vnoremap am vmq?\$<cr>v/\$<cr>
-
+vnoremap am vmq?\$<cr>v/\$<cr>
 onoremap am :normal vam<CR>`q
 
-" BEGIN gitit
-" To allow gitit *.page files to be edited in vim
-autocmd BufWritePost */wikidata/*.page call GitCommitOnWrite()
-
-function! GitCommitOnWrite()
-	let l:folder = expand('%:p:h')
-	let l:file = expand('%:t')
-	call system("cd " . shellescape(l:folder) . " ; git commit -m\"automated commit on save\" " . shellescape(l:file))
-endfunction
-" END gitit stuff
+" In this case, there is no building to PDF...
+autocmd BufEnter,BufNew *.markdown cnoremap ww w
+autocmd BufEnter,BufNew *.md       cnoremap ww w
 
 " TeX-9 magic
 let g:maplocalleader = ":"
@@ -180,3 +140,25 @@ function! s:OpenPDF(fpath)
 	endif
 endfunction
 nnoremap <LocalLeader>V :call <SID>OpenPDF(expand("%:p") . ".pdf")<CR>
+
+" In MathJax, equation numbers have to be attributed manually, which means
+" that if new equations are inserted in the middle of the text, the numbering,
+" which should be sequential, will be "off by one" from that point onwards.
+" This function corrects that, by finding all \tag{<number>} from that point
+" onwards, and increasing the number by one.
+" The first (last) thing the function does it to store the current location
+" (return to the original location).
+function! UpdateMathJaxTagsNumbers()
+  normal mm
+  let pattern = '\\tag{\(\d\+\)}'
+
+  " The 'W' options is to prevent wrapping the search back to start of file.
+  while search(pattern, 'W') 
+    " Find the "tag" word, forward to the {, and move one char to the right.
+    " That leaves the cursor on the number. Then increase it by one.
+    normal /tag
+    normal f{l
+    normal 
+  endwhile
+  normal `m
+endfunction

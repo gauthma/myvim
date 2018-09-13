@@ -122,7 +122,7 @@ set listchars=tab:▸\ ,eol:¬,trail:•,nbsp:•
 """ search
 set noignorecase    " DO NOT ignore case when searching -> best default
 set incsearch       " do incremental searching
-set nohlsearch      " DO NOT highlight searches (but allow toggling -- see next line)
+set nohlsearch      " DO NOT highlight searches
 " toggle set paste
 set pastetoggle=<F8>
 
