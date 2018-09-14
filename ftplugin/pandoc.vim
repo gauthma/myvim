@@ -94,7 +94,6 @@ inoremap <buffer> <LocalLeader>» \rangle
 " background (i.e. fire and forget). If called with argument "debug", runs in
 " foreground (i.e. vim blocks until command finishes), and then prints the
 " output, if there is any (in which case it is likely an error).
-"
 function! s:BuildOnWrite(...) " TODO language en pt...
 	" Check if we are in debug mode or not.
 	if a:0 > 0 && a:1 == 'debug'
@@ -156,9 +155,10 @@ function! UpdateMathJaxTagsNumbers()
   while search(pattern, 'W') 
     " Find the "tag" word, forward to the {, and move one char to the right.
     " That leaves the cursor on the number. Then increase it by one.
-    normal /tag
-    normal f{l
-    normal 
+    normal! /tag
+    normal! f{l
+    normal! 
   endwhile
   normal `m
 endfunction
+command! Utags write | call UpdateMathJaxTagsNumbers()
