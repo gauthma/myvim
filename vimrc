@@ -194,11 +194,11 @@ nnoremap $ g$
 " Manual solution for parenthesis et al. completion: 
 " insert both, and then hit <left>, with a "closer" shortcut.
 " The "right" shortcut is for when you want to continue past the delimiter.
-inoremap <C-h> <left>
-inoremap <C-l> <right>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
 
 " Tap :} to get {}. Very useful for custom commands!
-" Similar maps for (), [] and $$ follow.
+" Similar maps for (), [], $$ and ** follow.
 inoremap :} {}<Left>
 inoremap :] []<Left>
 inoremap :) ()<Left>
@@ -212,8 +212,11 @@ inoremap :' ''<Left>
 " And tap :backspace to delete the pair of braces/quotes
 " if you got the wrong one (very common in practice!)
 function! DeletePairedDelims()
+  " When function is called, cursor is (in normal mode) over the opening delimiter.
+  let l:col_open_delim = col(".")
+
   normal xx
-  if col(".") == col("$")-1 " if the paired delims end the line, call append after deleting them
+  if col(".") == l:col_open_delim - 1 " if the delims ended the line, call append after deleting them
     startinsert!
   else " otherwise, call insert
     startinsert
@@ -223,8 +226,6 @@ inoremap :<BS> <Esc>:call DeletePairedDelims()<CR>
 
 " And of course, tap :: to actually get :
 inoremap :: :
-" NB: These mappins come from LaTeX/pandoc, but they seem useful in other
-" places as well, so I "promoted" them to vimrc!
 
 " brings up command prompt in vim
 nnoremap <Leader>cc :! 
