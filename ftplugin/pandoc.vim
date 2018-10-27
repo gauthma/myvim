@@ -65,28 +65,33 @@ inoremap <buffer> <LocalLeader>i \infty
 inoremap <buffer> <LocalLeader>/ \frac{}{}<Esc>F}i
 inoremap <buffer> <LocalLeader>v \vee
 inoremap <buffer> <LocalLeader>& \wedge
+inoremap <buffer> <LocalLeader>vv \bigvee
+inoremap <buffer> <LocalLeader>&& \bigwedge
 inoremap <buffer> <LocalLeader>@ \circ
 inoremap <buffer> <LocalLeader>\ \setminus
 inoremap <buffer> <LocalLeader>= \equiv
-inoremap <buffer> <LocalLeader>- \bigcap
-inoremap <buffer> <LocalLeader>+ \bigcup
+inoremap <buffer> <LocalLeader>- \cap
+inoremap <buffer> <LocalLeader>+ \cup
+inoremap <buffer> <LocalLeader>-- \bigcap
+inoremap <buffer> <LocalLeader>++ \bigcup
 inoremap <buffer> <LocalLeader>< \leq
 inoremap <buffer> <LocalLeader>> \geq
 inoremap <buffer> <LocalLeader>~ \tilde{}<Left>
-inoremap <buffer> <LocalLeader>^ \hat{}<Left>
-inoremap <buffer> <LocalLeader>_ \bar{}<Left>
+inoremap <buffer> <LocalLeader>^ \widehat{}<Left>
+inoremap <buffer> <LocalLeader>_ \overline{}<Left>
 inoremap <buffer> <LocalLeader>. \dot{}<Left>
 
-" Enlarged delimiters
+" Big delimiters.
 inoremap <buffer> <LocalLeader>( \left(\right)<Esc>F(a
 inoremap <buffer> <LocalLeader>[ \left[\right]<Esc>F[a
 inoremap <buffer> <LocalLeader>{ \left\{ \right\}<Esc>F a
 
+" Most useful maps ever!
 inoremap <buffer> ^^ ^{}<Esc>i
 inoremap <buffer> __ _{}<Esc>i
 inoremap <buffer> == &=
 
-" for angle brackets
+" For angle brackets.
 inoremap <buffer> <LocalLeader>« \langle
 inoremap <buffer> <LocalLeader>» \rangle
 

@@ -33,8 +33,17 @@ inoremap <buffer> <LocalLeader>e \varepsilon
 inoremap <buffer> <LocalLeader>f \varphi
 " and \emptyset is fugly...
 inoremap <buffer> <LocalLeader>0 \varnothing
-" and \hat is not very useful...
+" and \hat and \bar are not very useful...
 inoremap <buffer> <LocalLeader>^ \widehat{}<Left>
+inoremap <buffer> <LocalLeader>_ \overline{}<Left>
+" and I use \cap and \cup far more than their \big versions...
+inoremap <buffer> <LocalLeader>- \cap
+inoremap <buffer> <LocalLeader>+ \cup
+inoremap <buffer> <LocalLeader>-- \bigcap
+inoremap <buffer> <LocalLeader>++ \bigcup
+" also add shortcuts for big versions of \vee and \wedge
+inoremap <buffer> <LocalLeader>vv \bigvee
+inoremap <buffer> <LocalLeader>&& \bigwedge
 
 " for angle brackets
 inoremap <buffer> <LocalLeader>« \langle
