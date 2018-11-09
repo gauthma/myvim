@@ -123,6 +123,8 @@ set listchars=tab:▸\ ,eol:¬,trail:•,nbsp:•
 set noignorecase    " DO NOT ignore case when searching -> best default
 set incsearch       " do incremental searching
 set nohlsearch      " DO NOT highlight searches
+" Map '//' to search selected text
+vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 " toggle set paste
 set pastetoggle=<F8>
 

@@ -2,7 +2,7 @@
 # For blog posts
 #
 # header
-snippet hdr
+snippet hskel
 	---
 	title: ${1:title}
 	date: ${2:`strftime("%B %d, %Y")`}
@@ -16,8 +16,6 @@ snippet newcmd "Hidden div for \newcommands etc"
 	<div style="display:none">
 		$\newcommand{\altprod}{\mathop{\widetilde{\prod}}\nolimits}$
 	</div>
-snippet lmj "To use local MathJax installation"
-	<head><script src='http://localhost:8001/MathJax.js?config=TeX-MML-AM_CHTML' async></script></head>
 snippet img
 	<figure>
 	  <a style="display: block; width: ${2:80}%" href=""><img title="${3:popup tip}" alt="$3" width="100%" src="${1:url}" /></a>
