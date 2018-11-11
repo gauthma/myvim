@@ -12,19 +12,8 @@ nnoremap <buffer> <F2> <nop>
 nnoremap <buffer> <F3> <nop>
 nnoremap <buffer> <F4> :GundoToggle<CR><CR>
 
-" for LaTeX quotes
-" from auctex: https://github.com/vim-scripts/auctex.vim
-function! s:TexQuotes()
-	let insert = "''"
-	let left = getline('.')[col('.')-2]
-	if left =~ '^\(\|\s\)$'
-		let insert = '``'
-	elseif left == '\'
-		let insert = '"'
-	endif
-	return insert
-endfunction
-inoremap <buffer> " <C-R>=<SID>TexQuotes()<CR>
+" For LaTeX quotes, remap the default from .vimrc
+inoremap :" ``''<Left><Left>
 
 " I like \varepsilon better
 " And the same goes for \varphi
