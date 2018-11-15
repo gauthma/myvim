@@ -12,8 +12,10 @@
 let g:tex_nine_config = {
 			\'leader': ':',
 			\'compiler': 'make',
-			\'viewer': {'app':'okular --unique', 'target':'pdf'},
+			\'viewer': {'app':'none', 'target':'pdf'},
 		\}
+" NOTA BENE: in order for the function tex_nine#GetOutputFile() to work
+" as required by SyncTeX, viewer.target must be set to 'pdf'.
 
 " Custom TeX text object for inline math.
 vnoremap am vmq?\$<cr>v/\$<cr>
@@ -68,24 +70,11 @@ function! s:BuildOnWrite()
 	call system("make all &")
 	lcd -
 endfunction
+command! WaB write | call s:BuildOnWrite()
+cnoremap ww WaB
 
 function! KillallLaTeX()
 	let l:tex_build_pid = system("make --silent get_compiler_pid") " TODO handle case of more than 1 pid returned
 	call system("kill -TERM " . l:tex_build_pid)
 endfunction
-
 nnoremap <Leader>kal :call KillallLaTeX()<CR>
-command! WaB write | call s:BuildOnWrite()
-cnoremap ww WaB
-
-function! SyncTexForward()
-	" TODO for a rainy day: figure out why the below line -- which needs no
-	" redraw -- does NOT WORK: pdf just stays in the same place...
-	" call system("okular --unique ".tex_nine#GetOutputFile()."\\#src:".line(".")."%:p &> /dev/null &")
-
-	let cmd = "silent !okular --unique ".tex_nine#GetOutputFile()."\\#src:".line(".")."%:p &> /dev/null &"
-	exec cmd
-	redraw!
-	redrawstatus!
-endfunction
-nmap <Leader>f :call SyncTexForward()<CR>
