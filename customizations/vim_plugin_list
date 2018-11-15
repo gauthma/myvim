@@ -34,8 +34,5 @@ https://github.com/majutsushi/tagbar.git
 " msanders snipmate
 https://github.com/msanders/snipmate.vim.git
 
-" for narrow regions
-https://github.com/chrisbra/NrrwRgn.git
-
 " for Lisp!
 https://github.com/kovisoft/slimv.git
