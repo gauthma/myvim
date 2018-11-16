@@ -43,11 +43,13 @@ function customize {
   # setup lightline.vim to my liking
   cd bundle/lightline.vim
   patch -p1 < ../../customizations/vim-lightline-background.patch
+  git commit -a -m"Better bar colours for the different vim modes"
   cd "${GIT_CLONE_DIR}"
 
   # ditto for solarized
   cd bundle/vim-colors-solarized
   patch -p1 < ../../customizations/vim-colors-solarized.patch
+  git commit -a -m"Reverse colours used in completion: the dark ones are for the selected entries"
   cd "${GIT_CLONE_DIR}"
 }
 
