@@ -24,9 +24,12 @@ inoremap <buffer> <LocalLeader>e \varepsilon
 inoremap <buffer> <LocalLeader>f \varphi
 " and \emptyset is fugly...
 inoremap <buffer> <LocalLeader>0 \varnothing
-" and \hat and \bar are not very useful...
+" and \hat and \tilde and \bar are not very useful...
 inoremap <buffer> <LocalLeader>^ \widehat{}<Left>
+inoremap <buffer> <LocalLeader>~ \widetilde{}<Left>
 inoremap <buffer> <LocalLeader>_ \overline{}<Left>
+" the dotted variables for derivatives are so démodé
+inoremap <buffer> <LocalLeader>. \cdot<Space>
 " and I use \cap and \cup far more than their \big versions...
 inoremap <buffer> <LocalLeader>- \cap
 inoremap <buffer> <LocalLeader>+ \cup
