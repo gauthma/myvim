@@ -187,11 +187,11 @@ nnoremap <Leader>r :set invrelativenumber<CR>
 noremap <Leader>hr :%!xxd<CR> :set filetype=xxd<CR>
 noremap <Leader>hw :%!xxd -r<CR> :set binary<CR> :set filetype=<CR>:w<CR>:e<CR>
 
-" For long lines...
+" For wrapped long lines...
 nnoremap ^ g^
+nnoremap $ g$
 nnoremap j gj
 nnoremap k gk
-nnoremap $ g$
 
 " Manual solution for parenthesis et al. completion: 
 " insert both, and then hit <left>, with a "closer" shortcut.
