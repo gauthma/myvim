@@ -89,11 +89,10 @@ snippet rem "remark environment"
 		\label{rem:${1:label}}
 		${2:remark}
 	\end{remark}
-# TeX-9 tip: hit Ctrl-X-O for omnicompletion!
-snippet equation "No caps"
-	equation~\eqref{${1}}${2}
-snippet equation "Caps"
-	Equation~\eqref{${1}}${2}
+snippet equation "Common environment"
+	\begin{equation}
+		${1:equation}
+	\end{equation}
 #
 # Sectioning
 #
