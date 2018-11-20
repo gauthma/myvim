@@ -2,14 +2,15 @@
 
 GIT_CLONE_DIR=""
 
-function cd_cloned_dir {
+function get_cloned_dir {
   GIT_CLONE_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
-  echo "${GIT_CLONE_DIR}"
+  echo "Vim settings cloned in: ${GIT_CLONE_DIR}"
 }
 
 function do_setup {
   echo "Downloading plugins..."
 
+  cd "${GIT_CLONE_DIR}"
   mkdir -p autoload bundle
   curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
@@ -42,11 +43,13 @@ function customize {
   # setup lightline.vim to my liking
   cd bundle/lightline.vim
   patch -p1 < ../../customizations/vim-lightline-background.patch
+  git commit -a -m"Better bar colours for the different vim modes"
   cd "${GIT_CLONE_DIR}"
 
   # ditto for solarized
   cd bundle/vim-colors-solarized
   patch -p1 < ../../customizations/vim-colors-solarized.patch
+  git commit -a -m"Reverse colours used in completion: the dark ones are for the selected entries"
   cd "${GIT_CLONE_DIR}"
 }
 
@@ -67,7 +70,7 @@ function do_install {
   vim -c "Helptags|q"
 }
 
-cd_cloned_dir
+get_cloned_dir
 do_setup
 customize
 do_install
